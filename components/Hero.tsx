@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
-import Particles from 'react-tsparticles';  // Corregido de "tsparticles" a "react-tsparticles"
+'use client'
+import { motion } from 'framer-motion'
 
 export default function Hero() {
   return (
@@ -9,62 +9,70 @@ export default function Hero() {
       transition={{ duration: 1 }}
       className="min-h-screen flex items-center justify-center bg-gradient-to-br from-turquoise to-coral text-white text-center px-4 pt-24 sm:pt-0 relative overflow-hidden"
     >
-      <Particles
-        id="particles"
-        options={{
-          particles: {
-            number: { value: 50 },
-            size: { value: 3 },
-            move: { enable: true, speed: 1 },
-            color: { value: "#FFFFFF" },
-          },
-          interactivity: {
-            events: { onHover: { enable: true, mode: "repulse" } },
-          },
+      {/* Subtle animated gradient overlay */}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-tr from-turquoise/20 to-coral/20"
+        animate={{
+          backgroundPosition: ['0% 0%', '100% 100%'],
         }}
-        className="absolute inset-0 z-0"
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          repeatType: 'reverse',
+        }}
+        style={{ backgroundSize: '200% 200%' }}
       />
-      <div className="space-y-6 relative z-10">
+
+      <div className="space-y-6 relative z-10 max-w-4xl">
         <motion.h1
-          initial={{ opacity: 0, rotateX: -90 }}
-          animate={{ opacity: 1, rotateX: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="text-4xl sm:text-5xl md:text-6xl font-['Montserrat'] font-bold tracking-tight"
-          style={{ fontVariationSettings: "'wght' 700" }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="text-4xl sm:text-5xl md:text-6xl font-montserrat font-bold tracking-tight text-balance"
         >
-          Sebastian Napuri Mendoza
+          Transforming User Experience into Measurable Revenue Growth
         </motion.h1>
+
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1 }}
-          className="text-lg sm:text-xl md:text-2xl font-['Inter'] max-w-2xl mx-auto"
-          style={{ fontVariationSettings: "'wght' 400" }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="text-lg sm:text-xl md:text-2xl font-inter max-w-3xl mx-auto"
         >
-          Architecting the Future of eCommerce, Peruvian-Style
+          9+ years driving eCommerce success | 125% sales increase | 78% conversion boost
         </motion.p>
-        <p className="text-base sm:text-lg md:text-xl font-['Inter'] max-w-2xl mx-auto">
-          Crafting Digital Experiences That Drive Growth & Impact
-        </p>
-        <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 justify-center mx-auto pt-4">
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.9 }}
+          className="text-sm sm:text-base text-white/90 font-medium"
+        >
+          ⚡ Accepting 3 strategic projects per quarter
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
+          className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 justify-center mx-auto pt-4"
+        >
           <a
             href="#experience"
-            className="inline-block px-8 py-3 bg-white text-turquoise font-semibold rounded-full hover:bg-coral hover:text-white transition"
+            className="inline-block px-8 py-3 bg-white text-turquoise font-semibold rounded-full hover:bg-coral hover:text-white transition-all duration-300 hover:scale-105 shadow-lg"
             aria-label="Explore Sebastian's work experience"
-            role="button"
           >
-            Explore My Work
+            View Case Studies
           </a>
           <a
             href="#contact"
-            className="inline-block px-8 py-3 bg-transparent border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-coral transition"
+            className="inline-block px-8 py-3 bg-transparent border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-coral transition-all duration-300 hover:scale-105"
             aria-label="Contact Sebastian"
-            role="button"
           >
-            Contact Me
+            Let's Talk
           </a>
-        </div>
+        </motion.div>
       </div>
     </motion.section>
-  );
+  )
 }

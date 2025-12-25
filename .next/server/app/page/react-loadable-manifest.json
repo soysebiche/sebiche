@@ -1,0 +1,9 @@
+{
+  "[project]/components/ContactForm.tsx [app-client] (ecmascript, next/dynamic entry)": {
+    "id": "[project]/components/ContactForm.tsx [app-client] (ecmascript, next/dynamic entry)",
+    "files": [
+      "static/chunks/components_ContactForm_tsx_c0ccc04f._.js",
+      "static/chunks/components_ContactForm_tsx_d6ec11ef._.js"
+    ]
+  }
+}
