@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic'
 import Header from '../components/Header'
 import Hero from '../components/Hero'
 import TrustSignals from '../components/TrustSignals'
+import CaseStudyCard from '../components/CaseStudyCard'
 import Section from '../components/Section'
 import Footer from '../components/Footer'
 import Image from 'next/image'
@@ -154,6 +155,36 @@ export default function Home() {
                             <li>Led a team of 10 across 5 countries.</li>
                         </ul>
                     </div>
+                </div>
+            </Section>
+            <Section id="projects" title="Case Studies" delay={0.6}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                    <CaseStudyCard
+                        title="Linio Cross-Border Marketplace"
+                        company="Linio México"
+                        period="2020-2022"
+                        description="Transformed cross-border operations across 5 Latin American countries, achieving unprecedented growth through UX optimization and regional team leadership."
+                        metrics={[
+                            { value: '125%', label: 'Sales Growth' },
+                            { value: '40%', label: 'Efficiency' },
+                            { value: '5', label: 'Countries' },
+                        ]}
+                        href="/case-studies/linio"
+                        index={0}
+                    />
+                    <CaseStudyCard
+                        title="Liverpool Marketplace Launch"
+                        company="Servicios Liverpool"
+                        period="2022-2024"
+                        description="Built Liverpool's cross-border marketplace from the ground up, growing from 0 to 100+ sellers through strategic UX design and automation."
+                        metrics={[
+                            { value: '100+', label: 'Sellers' },
+                            { value: '78%', label: 'Conversion' },
+                            { value: '35%', label: 'Faster' },
+                        ]}
+                        href="/case-studies/liverpool"
+                        index={1}
+                    />
                 </div>
             </Section>
             <ContactForm />

@@ -1,3 +1,5 @@
 {
+  "/case-studies/linio/page": "app/case-studies/linio/page.js",
+  "/case-studies/liverpool/page": "app/case-studies/liverpool/page.js",
   "/page": "app/page.js"
 }
