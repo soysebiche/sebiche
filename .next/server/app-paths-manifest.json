@@ -1,7 +1,7 @@
 {
-  "/sitemap.xml/route": "app/sitemap.xml/route.js",
   "/_not-found/page": "app/_not-found/page.js",
+  "/sitemap.xml/route": "app/sitemap.xml/route.js",
   "/page": "app/page.js",
-  "/case-studies/liverpool/page": "app/case-studies/liverpool/page.js",
-  "/case-studies/linio/page": "app/case-studies/linio/page.js"
+  "/case-studies/linio/page": "app/case-studies/linio/page.js",
+  "/case-studies/liverpool/page": "app/case-studies/liverpool/page.js"
 }

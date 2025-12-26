@@ -1,0 +1,63 @@
+{
+  "pages": {
+    "/_not-found/page": [
+      "static/chunks/webpack-7a9f4390de4b6ad9.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-cb395327542b56ef.js",
+      "static/chunks/main-app-c1efc1a8eb9776cd.js",
+      "static/chunks/app/_not-found/page-3ca50622fc44c6aa.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack-7a9f4390de4b6ad9.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-cb395327542b56ef.js",
+      "static/chunks/main-app-c1efc1a8eb9776cd.js",
+      "static/css/30a7486d52ba592b.css",
+      "static/chunks/app/layout-f1cab53b676e1a61.js"
+    ],
+    "/sitemap.xml/route": [
+      "static/chunks/webpack-7a9f4390de4b6ad9.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-cb395327542b56ef.js",
+      "static/chunks/main-app-c1efc1a8eb9776cd.js",
+      "static/chunks/app/sitemap.xml/route-ef5a216a578eb7a8.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-7a9f4390de4b6ad9.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-cb395327542b56ef.js",
+      "static/chunks/main-app-c1efc1a8eb9776cd.js",
+      "static/chunks/588-8fdbc8d1ad31600a.js",
+      "static/chunks/619-9168df9c2a29b74b.js",
+      "static/chunks/239-640162831b5f60b2.js",
+      "static/chunks/app/page-754f6469c5ab4543.js"
+    ],
+    "/case-studies/layout": [
+      "static/chunks/webpack-7a9f4390de4b6ad9.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-cb395327542b56ef.js",
+      "static/chunks/main-app-c1efc1a8eb9776cd.js",
+      "static/chunks/588-8fdbc8d1ad31600a.js",
+      "static/chunks/239-640162831b5f60b2.js",
+      "static/chunks/app/case-studies/layout-52d4862ef14665b0.js"
+    ],
+    "/case-studies/linio/page": [
+      "static/chunks/webpack-7a9f4390de4b6ad9.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-cb395327542b56ef.js",
+      "static/chunks/main-app-c1efc1a8eb9776cd.js",
+      "static/chunks/588-8fdbc8d1ad31600a.js",
+      "static/chunks/619-9168df9c2a29b74b.js",
+      "static/chunks/app/case-studies/linio/page-3e8627268bb9d1ed.js"
+    ],
+    "/case-studies/liverpool/page": [
+      "static/chunks/webpack-7a9f4390de4b6ad9.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-cb395327542b56ef.js",
+      "static/chunks/main-app-c1efc1a8eb9776cd.js",
+      "static/chunks/588-8fdbc8d1ad31600a.js",
+      "static/chunks/619-9168df9c2a29b74b.js",
+      "static/chunks/app/case-studies/liverpool/page-2a136bb9135924bf.js"
+    ]
+  }
+}

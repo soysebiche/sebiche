@@ -1,0 +1,1 @@
+self.__REACT_LOADABLE_MANIFEST='{"app/page.tsx -> ../components/ContactForm":{"id":9464,"files":["static/chunks/799.73255b69ee9bbdc9.js","static/chunks/464.01cb4d2543965787.js"]}}';
