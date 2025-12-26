@@ -4,16 +4,46 @@
 
 @layer base {
   :root {
-    --font-inter: var(--font-inter);
-    --font-montserrat: var(--font-montserrat);
+    --font-inter: 'Inter', sans-serif;
+    --font-montserrat: 'Montserrat', sans-serif;
   }
-  
+
   body {
     @apply font-inter;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-montserrat;
+  }
+
+  /* Dark mode support */
+  .dark {
+    @apply bg-charcoal text-softGray;
+  }
+
+  .dark .bg-softGray {
+    @apply bg-gray-800;
+  }
+
+  .dark .bg-white {
+    @apply bg-gray-900;
+  }
+
+  .dark .text-charcoal {
+    @apply text-softGray;
+  }
+
+  .dark .text-gray-700 {
+    @apply text-gray-300;
+  }
+
+  .dark .text-gray-600 {
+    @apply text-gray-400;
   }
 }
 

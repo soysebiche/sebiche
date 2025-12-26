@@ -1,6 +1,7 @@
 import { Inter, Montserrat } from 'next/font/google'
 import Script from 'next/script'
 import StructuredData from '../components/StructuredData'
+import { ThemeProvider } from '../components/ThemeProvider'
 import './globals.css'
 import type { Metadata } from 'next'
 
@@ -69,30 +70,37 @@ export default function RootLayout({
         <html lang="es" className={`${inter.variable} ${montserrat.variable}`}>
             <head>
                 <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+                <link rel="manifest" href="/manifest.json" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <meta name="theme-color" content="#00A89A" />
+                <meta name="apple-mobile-web-app-capable" content="yes" />
+                <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+                <meta name="apple-mobile-web-app-title" content="Sebiche" />
             </head>
             <body className="antialiased">
-                {children}
-                <StructuredData
-                    type="Person"
-                    data={{
-                        name: 'Sebastian Napuri Mendoza',
-                        jobTitle: 'eCommerce UX Leader & Marketplace Expert',
-                        url: 'https://sebiche.vercel.app',
-                    }}
-                />
-                <StructuredData
-                    type="Organization"
-                    data={{
-                        name: 'Sebiche',
-                        url: 'https://sebiche.vercel.app',
-                        description: 'eCommerce UX and Marketplace Consulting',
-                    }}
-                />
-                <Script
-                    src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"
-                    strategy="lazyOnload"
-                />
+                <ThemeProvider>
+                    {children}
+                    <StructuredData
+                        type="Person"
+                        data={{
+                            name: 'Sebastian Napuri Mendoza',
+                            jobTitle: 'eCommerce UX Leader & Marketplace Expert',
+                            url: 'https://sebiche.vercel.app',
+                        }}
+                    />
+                    <StructuredData
+                        type="Organization"
+                        data={{
+                            name: 'Sebiche',
+                            url: 'https://sebiche.vercel.app',
+                            description: 'eCommerce UX and Marketplace Consulting',
+                        }}
+                    />
+                    <Script
+                        src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"
+                        strategy="lazyOnload"
+                    />
+                </ThemeProvider>
             </body>
         </html>
     )

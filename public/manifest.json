@@ -1,0 +1,32 @@
+{
+    "name": "Sebastian Napuri Mendoza | eCommerce UX Leader",
+    "short_name": "Sebiche",
+    "description": "Transforming user experience into measurable revenue growth. eCommerce UX and Marketplace Expert.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#F7F7F7",
+    "theme_color": "#00A89A",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/favicon.ico",
+            "sizes": "any",
+            "type": "image/x-icon"
+        },
+        {
+            "src": "/logo.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": [
+        "business",
+        "productivity",
+        "portfolio"
+    ],
+    "lang": "es-ES",
+    "dir": "ltr",
+    "scope": "/",
+    "screenshots": []
+}
