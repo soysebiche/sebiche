@@ -1,5 +1,6 @@
 import { Inter, Montserrat } from 'next/font/google'
 import Script from 'next/script'
+import StructuredData from '../components/StructuredData'
 import './globals.css'
 import type { Metadata } from 'next'
 
@@ -72,6 +73,22 @@ export default function RootLayout({
             </head>
             <body className="antialiased">
                 {children}
+                <StructuredData
+                    type="Person"
+                    data={{
+                        name: 'Sebastian Napuri Mendoza',
+                        jobTitle: 'eCommerce UX Leader & Marketplace Expert',
+                        url: 'https://sebiche.vercel.app',
+                    }}
+                />
+                <StructuredData
+                    type="Organization"
+                    data={{
+                        name: 'Sebiche',
+                        url: 'https://sebiche.vercel.app',
+                        description: 'eCommerce UX and Marketplace Consulting',
+                    }}
+                />
                 <Script
                     src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"
                     strategy="lazyOnload"
