@@ -1,5 +1,6 @@
 import { Inter, Montserrat } from 'next/font/google'
 import Script from 'next/script'
+import { Analytics } from '@vercel/analytics/react'
 import StructuredData from '../components/StructuredData'
 import { ThemeProvider } from '../components/ThemeProvider'
 import './globals.css'
@@ -100,6 +101,23 @@ export default function RootLayout({
                         src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"
                         strategy="lazyOnload"
                     />
+                    <Script id="sw-register" strategy="afterInteractive">
+                        {`
+                            if ('serviceWorker' in navigator) {
+                                window.addEventListener('load', function() {
+                                    navigator.serviceWorker.register('/sw.js').then(
+                                        function(registration) {
+                                            console.log('ServiceWorker registration successful');
+                                        },
+                                        function(err) {
+                                            console.log('ServiceWorker registration failed: ', err);
+                                        }
+                                    );
+                                });
+                            }
+                        `}
+                    </Script>
+                    <Analytics />
                 </ThemeProvider>
             </body>
         </html>

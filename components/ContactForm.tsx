@@ -28,8 +28,12 @@ export default function ContactForm() {
 
   const onSubmit = async (data: FormData) => {
     try {
-      // TODO: Replace with actual Formspree endpoint
-      const response = await fetch('https://formspree.io/f/xexample', {
+      // TODO: Replace with your actual Formspree endpoint
+      // Get your endpoint from https://formspree.io/
+      // Example: https://formspree.io/f/YOUR_FORM_ID
+      const FORMSPREE_ENDPOINT = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || 'https://formspree.io/f/YOUR_FORM_ID'
+
+      const response = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
