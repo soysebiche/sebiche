@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic'
 import Header from '../components/Header'
 import Hero from '../components/Hero'
 import TrustSignals from '../components/TrustSignals'
+import Skills from '../components/Skills'
 import CaseStudyCard from '../components/CaseStudyCard'
 import Section from '../components/Section'
 import Footer from '../components/Footer'
@@ -57,7 +58,12 @@ export default function Home() {
         <div className="min-h-screen bg-softGray">
             <Header />
             <Hero />
+            {/* Trust Signals */}
             <TrustSignals />
+
+            {/* Skills Section */}
+            <Skills />
+
             <Section id="about" title="About Me">
                 <div className="w-56 h-56 mx-auto mb-4 rounded-full overflow-hidden">
                     <Image

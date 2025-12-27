@@ -3,8 +3,16 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 
 const companies = [
-    { name: 'Linio', logo: '/logos/linio.svg' },
-    { name: 'Liverpool', logo: '/logos/liverpool.svg' },
+    {
+        name: 'Linio',
+        logo: '/logos/linio-real.svg',
+        metric: '125% Sales Increase',
+    },
+    {
+        name: 'Liverpool',
+        logo: '/logos/liverpool-real.svg',
+        metric: '100+ Sellers Onboarded',
+    },
 ]
 
 const metrics = [
