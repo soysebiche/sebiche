@@ -1,19 +1,18 @@
 'use client'
 import dynamic from 'next/dynamic'
-import Header from '@/components/Header'
-import Hero from '@/components/Hero'
-import TrustSignals from '@/components/TrustSignals'
-import Journey from '@/components/Journey'
-import Education from '@/components/Education'
-import Experience from '@/components/Experience'
-import ImpactMetrics from '@/components/ImpactMetrics'
-import Skills from '@/components/Skills'
-import CaseStudyCard from '@/components/CaseStudyCard'
-import ContactForm from '@/components/ContactForm'
-import Footer from '@/components/Footer'
-import Bookshelf from '@/components/Bookshelf'
+import Header from '../components/Header'
+import Hero from '../components/Hero'
+import TrustSignals from '../components/TrustSignals'
+import Journey from '../components/Journey'
+import Education from '../components/Education'
+import Experience from '../components/Experience'
+import ImpactMetrics from '../components/ImpactMetrics'
+import Skills from '../components/Skills'
+import CaseStudyCard from '../components/CaseStudyCard'
+import Footer from '../components/Footer'
+import Bookshelf from '../components/Bookshelf'
 
-const m = dynamic(() => import('../components/ContactForm'), { ssr: false })
+const ContactForm = dynamic(() => import('../components/ContactForm'), { ssr: false })
 
 const caseStudies = [
     {
