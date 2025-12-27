@@ -3,10 +3,9 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 
 const companies = [
-    {
-  { name: 'Liverpool', logo: '/logos/liverpool.svg' },
-    { name: 'Falabella', logo: '/logos/falabella.svg' },
-    { name: 'Linio', logo: '/logos/linio.svg' },
+    { name: 'Liverpool', logo: '/logos/liverpool-real.svg' },
+    { name: 'Falabella', logo: '/logos/falaaa.svg' },
+    { name: 'Linio', logo: '/logos/linio-real.svg' },
 ]
 
 export default function TrustSignals() {
