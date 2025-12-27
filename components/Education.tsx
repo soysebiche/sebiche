@@ -4,9 +4,9 @@ import { motion } from 'framer-motion'
 const education = [
     {
         degree: 'bachelor of business administration',
-        school: 'universidad del pacífico',
-        location: 'lima, peru 🇵🇪',
-        period: '2018',
+        school: 'universidad del pacífico (up)',
+        location: 'lima, pe 🇵🇪',
+        period: '2013 - 2018',
         gpa: 'gpa 3.59',
         emoji: '🎓',
         gradient: 'from-turquoise via-teal-400 to-cyan-400',
