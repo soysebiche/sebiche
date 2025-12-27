@@ -8,7 +8,8 @@ interface CaseStudyCardProps {
     company: string
     period: string
     description: string
-    metrics: {
+    metrics?: {
+        icon?: string
         value: string
         label: string
     }[]

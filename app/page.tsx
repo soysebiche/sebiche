@@ -14,20 +14,23 @@ const ContactForm = dynamic(() => import('../components/ContactForm'), { ssr: fa
 
 const caseStudies = [
     {
-        title: 'Linio Marketplace Redesign',
-        description: '125% sales increase through UX optimization',
-        image: '/linio-case.jpg',
-        link: '/case-studies/linio',
-        tags: ['UX Design', 'A/B Testing', 'Conversion Optimization'],
+        title: 'linio marketplace redesign',
+        company: 'linio',
+        period: '2020-2022',
+        description: '125% sales increase through ux optimization and data-driven design',
+        href: '/case-studies/linio',
+        index: 0
     },
     {
-        title: 'Liverpool Seller Onboarding',
-        description: '100+ sellers onboarded with streamlined UX',
-        image: '/liverpool-case.jpg',
-        link: '/case-studies/liverpool',
-        tags: ['Product Design', 'User Research', 'Marketplace'],
+        title: 'liverpool seller onboarding',
+        company: 'liverpool',
+        period: '2022-2024',
+        description: '100+ sellers onboarded with streamlined ux and automated workflows',
+        href: '/case-studies/liverpool',
+        index: 1
     },
 ]
+
 
 export default function Home() {
     return (
