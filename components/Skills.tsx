@@ -10,7 +10,8 @@ interface SkillCategory {
     title: string
     emoji: string
     skills: Skill[]
-    color: string
+    gradient: string
+    borderColor: string
 }
 
 export default function Skills() {
@@ -18,54 +19,54 @@ export default function Skills() {
         {
             title: 'UX & UI Design',
             emoji: '✨',
-            color: 'from-purple-400 to-pink-400',
+            gradient: 'from-purple-400 to-pink-400',
+            borderColor: 'border-purple-400',
             skills: [
-                { name: 'User Research', icon: '🔍' },
-                { name: 'Wireframing', icon: '📐' },
-                { name: 'Prototyping', icon: '🎨' },
-                { name: 'Usability Testing', icon: '🧪' },
-                { name: 'Design Systems', icon: '🎯' },
-                { name: 'Figma', icon: '🎭' },
-                { name: 'Adobe XD', icon: '💎' },
+                { name: 'User Research' },
+                { name: 'Wireframing' },
+                { name: 'Prototyping' },
+                { name: 'Usability Testing' },
+                { name: 'Design Systems' },
+                { name: 'Figma' },
             ],
         },
         {
             title: 'eCommerce & Marketplaces',
             emoji: '🛒',
-            color: 'from-turquoise to-blue-400',
+            gradient: 'from-turquoise to-blue-400',
+            borderColor: 'border-turquoise',
             skills: [
-                { name: 'Conversion Optimization', icon: '📈' },
-                { name: 'A/B Testing', icon: '🔬' },
-                { name: 'Customer Journey Mapping', icon: '🗺️' },
-                { name: 'Seller Onboarding', icon: '👥' },
-                { name: 'Marketplace Strategy', icon: '💼' },
-                { name: 'Product Management', icon: '📦' },
+                { name: 'Conversion Optimization' },
+                { name: 'A/B Testing' },
+                { name: 'Customer Journey Mapping' },
+                { name: 'Seller Onboarding' },
+                { name: 'Marketplace Strategy' },
             ],
         },
         {
             title: 'Data & Analytics',
             emoji: '📊',
-            color: 'from-coral to-orange-400',
+            gradient: 'from-coral to-orange-400',
+            borderColor: 'border-coral',
             skills: [
-                { name: 'Google Analytics', icon: '📉' },
-                { name: 'Hotjar', icon: '🔥' },
-                { name: 'Mixpanel', icon: '📱' },
-                { name: 'Excel', icon: '📗' },
-                { name: 'Python', icon: '🐍' },
-                { name: 'Data Visualization', icon: '📊' },
+                { name: 'Google Analytics' },
+                { name: 'Hotjar' },
+                { name: 'Excel' },
+                { name: 'Python' },
+                { name: 'Data Visualization' },
             ],
         },
         {
             title: 'Web Development',
             emoji: '💻',
-            color: 'from-yellow-400 to-amber-400',
+            gradient: 'from-yellow-400 to-amber-400',
+            borderColor: 'border-yellow-400',
             skills: [
-                { name: 'HTML/CSS', icon: '🎨' },
-                { name: 'JavaScript', icon: '⚡' },
-                { name: 'React', icon: '⚛️' },
-                { name: 'Next.js', icon: '▲' },
-                { name: 'Tailwind CSS', icon: '🌊' },
-                { name: 'Git', icon: '🔧' },
+                { name: 'HTML/CSS' },
+                { name: 'JavaScript' },
+                { name: 'React' },
+                { name: 'Next.js' },
+                { name: 'Tailwind CSS' },
             ],
         },
     ]
@@ -89,7 +90,7 @@ export default function Skills() {
                     </p>
                 </motion.div>
 
-                {/* Categories */}
+                {/* Categories Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {categories.map((category, categoryIndex) => (
                         <motion.div
@@ -98,11 +99,12 @@ export default function Skills() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: categoryIndex * 0.1 }}
+                            whileHover={{ scale: 1.05, y: -10 }}
                             className="h-full"
                         >
                             <div className={`
-                                bg-white rounded-2xl p-6 shadow-xl
-                                border-2 ${category.color.replace('from-', 'border-t-').replace('to-', 'border-b-')}
+                                bg-white rounded-2xl p-6 shadow-xl 
+                                border-2 ${category.borderColor}
                                 h-full
                             `}>
                                 {/* Icon */}
@@ -113,34 +115,31 @@ export default function Skills() {
                                 {/* Title */}
                                 <h3 className={`
                                     text-2xl font-bold mb-4
-                                    bg-gradient-to-r ${category.color} bg-clip-text text-transparent
+                                    bg-gradient-to-r ${category.gradient} bg-clip-text text-transparent
                                 `}>
                                     {category.title}
-                      `}
-                                    >
-                                    {skill.icon && <span>{skill.icon}</span>}
-                                    <span>{skill.name}</span>
-                                </motion.div>
-                                ))}
+                                </h3>
+
+                                {/* Skills */}
+                                <div className="flex flex-wrap gap-2">
+                                    {category.skills.map((skill) => (
+                                        <span
+                                            key={skill.name}
+                                            className={`
+                                                px-3 py-1.5 rounded-full text-sm font-semibold
+                                                bg-gradient-to-r ${category.gradient} text-white
+                                                shadow-md
+                                            `}
+                                        >
+                                            {skill.name}
+                                        </span>
+                                    ))}
+                                </div>
                             </div>
                         </motion.div>
                     ))}
                 </div>
-
-                {/* Fun fact */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.5 }}
-                    className="mt-16 text-center"
-                >
-                    <p className="text-lg text-gray-400 italic">
-                        💡 Always learning, always growing. Currently exploring AI-powered UX tools!
-                    </p>
-                </motion.div>
-            </motion.div>
-        </div>
-        </section >
+            </div>
+        </section>
     )
 }
