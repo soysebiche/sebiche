@@ -34,15 +34,12 @@ const caseStudies = [
 
 export default function Home() {
     return (
-        <div className="min-h-screen bg-softGray">
+        <div className="min-h-screen bg-white">
             <Header />
             <Hero />
 
             {/* Trust Signals */}
             <TrustSignals />
-
-            {/* Skills Section */}
-            <Skills />
 
             {/* Journey Timeline */}
             <Journey />
@@ -52,6 +49,9 @@ export default function Home() {
 
             {/* Experience */}
             <Experience />
+
+            {/* Skills Section */}
+            <Skills />
 
             {/* Case Studies */}
             <section id="projects" className="py-20 bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">

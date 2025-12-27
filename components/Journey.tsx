@@ -6,42 +6,37 @@ const milestones = [
         year: '2015',
         emoji: '🌱',
         title: 'started as intern',
-        company: 'linio peru',
-        color: 'from-green-400 to-emerald-500'
+        company: 'linio peru'
     },
     {
         year: '2018',
         emoji: '🎓',
         title: 'graduated bba',
-        company: 'universidad del pacífico',
-        color: 'from-blue-400 to-cyan-500'
+        company: 'universidad del pacífico'
     },
     {
         year: '2020',
         emoji: '🚀',
         title: 'ux manager',
-        company: 'linio mexico',
-        color: 'from-turquoise to-teal-500'
+        company: 'linio mexico'
     },
     {
         year: '2022',
         emoji: '💼',
         title: 'marketplace lead',
-        company: 'liverpool',
-        color: 'from-purple-400 to-pink-500'
+        company: 'liverpool'
     },
     {
         year: '2024',
         emoji: '🎯',
         title: 'madi student',
-        company: 'smu',
-        color: 'from-coral to-orange-500'
+        company: 'smu'
     }
 ]
 
 export default function Journey() {
     return (
-        <section className="py-20 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+        <section id="about" className="py-20 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
             <div className="max-w-7xl mx-auto px-4">
                 {/* Header */}
                 <motion.div
@@ -78,11 +73,7 @@ export default function Journey() {
                             >
                                 <div className="bg-white rounded-2xl p-6 shadow-xl border-2 border-purple-200 relative h-full">
                                     {/* Year badge */}
-                                    <div className={`
-                    absolute -top-4 left-1/2 -translate-x-1/2 
-                    bg-gradient-to-r ${milestone.color}
-                    text-white px-4 py-2 rounded-full font-bold shadow-lg
-                  `}>
+                                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full font-bold shadow-lg">
                                         {milestone.year}
                                     </div>
 
