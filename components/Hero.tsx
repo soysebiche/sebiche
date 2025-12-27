@@ -42,7 +42,7 @@ export default function Hero() {
               <br />
               <span className="relative">
                 <span className="bg-yellow-300 px-3 py-1 inline-block transform -rotate-1">
-                  Dallas, TX
+                  digital experiences
                 </span>
               </span>
               <span className="text-gray-900">.</span>

@@ -2,7 +2,6 @@ import { Inter, Montserrat, Caveat } from 'next/font/google'
 import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/react'
 import StructuredData from '../components/StructuredData'
-import { ThemeProvider } from '../components/ThemeProvider'
 import './globals.css'
 import type { Metadata } from 'next'
 
@@ -86,47 +85,11 @@ export default function RootLayout({
                 <meta name="apple-mobile-web-app-title" content="Sebiche" />
             </head>
             <body className="antialiased">
-                <ThemeProvider>
-                    {children}
-                    <StructuredData
-                        type="Person"
-                        data={{
-                            name: 'Sebastian Napuri Mendoza',
-                            jobTitle: 'eCommerce UX Leader & Marketplace Expert',
-                            url: 'https://sebiche.vercel.app',
-                        }}
-                    />
-                    <StructuredData
-                        type="Organization"
-                        data={{
-                            name: 'Sebiche',
-                            url: 'https://sebiche.vercel.app',
-                            description: 'eCommerce UX and Marketplace Consulting',
-                        }}
-                    />
-                    <Script
-                        src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"
-                        strategy="lazyOnload"
-                    />
-                    <Script id="sw-register" strategy="afterInteractive">
-                        {`
-                            if ('serviceWorker' in navigator) {
-                                window.addEventListener('load', function() {
-                                    navigator.serviceWorker.register('/sw.js').then(
-                                        function(registration) {
-                                            console.log('ServiceWorker registration successful');
-                                        },
-                                        function(err) {
-                                            console.log('ServiceWorker registration failed: ', err);
-                                        }
-                                    );
-                                });
-                            }
                         `}
-                    </Script>
-                    <Analytics />
-                </ThemeProvider>
-            </body>
-        </html>
+            </Script>
+            <Analytics />
+        </ThemeProvider>
+            </body >
+        </html >
     )
 }

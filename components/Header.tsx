@@ -2,7 +2,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Image from 'next/image';
-import ThemeToggle from './ThemeToggle';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -43,7 +42,6 @@ export default function Header() {
             <li><a href="/#experience" className="hover:text-turquoise transition">Experience</a></li>
             <li><a href="/#projects" className="hover:text-turquoise transition">Case Studies</a></li>
             <li><a href="/#contact" className="hover:text-turquoise transition">Contact</a></li>
-            <li><ThemeToggle /></li>
           </ul>
           <button
             className="sm:hidden text-turquoise hover:text-coral focus:outline-none focus:ring-2 focus:ring-coral"
