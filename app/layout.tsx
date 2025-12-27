@@ -85,11 +85,38 @@ export default function RootLayout({
                 <meta name="apple-mobile-web-app-title" content="Sebiche" />
             </head>
             <body className="antialiased">
-                        `}
-            </Script>
-            <Analytics />
-        </ThemeProvider>
-            </body >
-        </html >
+                {children}
+                <StructuredData
+                    type="Person"
+                    data={{
+                        name: 'Sebastian Napuri Mendoza',
+                        jobTitle: 'eCommerce UX Leader & Marketplace Expert',
+                        url: 'https://sebiche.vercel.app',
+                    }}
+                />
+                <StructuredData
+                    type="Organization"
+                    data={{
+                        name: 'Sebiche',
+                        url: 'https://sebiche.vercel.app',
+                        description: 'eCommerce UX and Marketplace Consulting',
+                    }}
+                />
+                <Script
+                    src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"
+                    strategy="lazyOnload"
+                />
+                <Script id="sw-register" strategy="afterInteractive">
+                    {`
+                        if ('serviceWorker' in navigator) {
+                            window.addEventListener('load', function() {
+                                navigator.serviceWorker.register('/sw.js');
+                            });
+                        }
+                    `}
+                </Script>
+                <Analytics />
+            </body>
+        </html>
     )
 }
