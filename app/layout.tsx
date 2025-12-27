@@ -1,4 +1,4 @@
-import { Inter, Montserrat } from 'next/font/google'
+import { Inter, Montserrat, Caveat } from 'next/font/google'
 import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/react'
 import StructuredData from '../components/StructuredData'
@@ -15,6 +15,13 @@ const inter = Inter({
 const montserrat = Montserrat({
     subsets: ['latin'],
     variable: '--font-montserrat',
+    display: 'swap',
+})
+
+const caveat = Caveat({
+    subsets: ['latin'],
+    variable: '--font-caveat',
+    weight: ['400', '700'],
     display: 'swap',
 })
 
@@ -68,7 +75,7 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <html lang="es" className={`${inter.variable} ${montserrat.variable}`}>
+        <html lang="es" className={`${inter.variable} ${montserrat.variable} ${caveat.variable}`}>
             <head>
                 <link rel="icon" href="/favicon.ico" type="image/x-icon" />
                 <link rel="manifest" href="/manifest.json" />
