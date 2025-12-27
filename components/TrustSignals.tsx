@@ -9,6 +9,11 @@ const companies = [
         metric: '125% Sales Increase',
     },
     {
+        name: 'Falabella',
+        logo: '/logos/falaaa.svg',
+        metric: 'Marketplace Growth',
+    },
+    {
         name: 'Liverpool',
         logo: '/logos/liverpool-real.svg',
         metric: '100+ Sellers Onboarded',

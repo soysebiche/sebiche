@@ -31,8 +31,8 @@ export default function Hero() {
               <span className="text-gray-900">born in</span>
               <br />
               <span className="relative inline-block">
-                <span className="text-gray-900">méxico</span>
-                <span className="text-4xl ml-2">🇲🇽</span>
+                <span className="text-gray-900">perú</span>
+                <span className="text-4xl ml-2">🇵🇪</span>
               </span>
               <span className="text-gray-900">,</span>
               <br />
@@ -42,7 +42,7 @@ export default function Hero() {
               <br />
               <span className="relative">
                 <span className="bg-yellow-300 px-3 py-1 inline-block transform -rotate-1">
-                  digital experiences
+                  Dallas, TX
                 </span>
               </span>
               <span className="text-gray-900">.</span>
@@ -153,11 +153,11 @@ export default function Hero() {
               <div className="space-y-3 text-gray-700">
                 <p className="flex items-start gap-3">
                   <span className="text-2xl">📍</span>
-                  <span>Based in <strong>Mexico</strong>, working globally</span>
+                  <span>Based in <strong>Dallas, TX</strong></span>
                 </p>
                 <p className="flex items-start gap-3">
-                  <span className="text-2xl">💼</span>
-                  <span>Currently at <strong className="text-purple-600">Servicios Liverpool</strong></span>
+                  <span className="text-2xl">🐴</span>
+                  <span>Currently at <strong className="text-purple-600">SMU</strong> (MADI program)</span>
                 </p>
                 <p className="flex items-start gap-3">
                   <span className="text-2xl">🎯</span>
@@ -165,7 +165,7 @@ export default function Hero() {
                 </p>
                 <p className="flex items-start gap-3">
                   <span className="text-2xl">🚀</span>
-                  <span>Transformed experiences for <strong className="text-turquoise">Linio</strong> & <strong className="text-coral">Liverpool</strong></span>
+                  <span>Transformed experiences for <strong className="text-turquoise">Linio</strong>, <strong className="text-purple-600">Falabella</strong> & <strong className="text-coral">Liverpool</strong></span>
                 </p>
               </div>
 
