@@ -59,8 +59,24 @@ export default function Journey() {
                     {/* Timeline line */}
                     <div className="hidden md:block absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-purple-400 via-pink-400 to-turquoise -translate-y-1/2" />
 
+                    {/* Scroll indicators for desktop */}
+                    <div className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10">
+                        <div className="bg-white rounded-full p-2 shadow-lg border-2 border-purple-300">
+                            <svg className="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10">
+                        <div className="bg-white rounded-full p-2 shadow-lg border-2 border-purple-300">
+                            <svg className="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                        </div>
+                    </div>
+
                     {/* Timeline cards */}
-                    <div className="flex flex-col md:flex-row gap-6 md:gap-4 overflow-x-auto pb-8 md:pb-0 snap-x snap-mandatory">
+                    <div className="flex flex-col md:flex-row gap-6 md:gap-4 overflow-x-auto pb-8 md:pb-4 snap-x snap-mandatory scrollbar-hide">
                         {milestones.map((milestone, index) => (
                             <motion.div
                                 key={milestone.year}
@@ -73,12 +89,12 @@ export default function Journey() {
                             >
                                 <div className="bg-white rounded-2xl p-6 shadow-xl border-2 border-purple-200 relative h-full min-h-[200px] flex flex-col">
                                     {/* Year badge */}
-                                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full font-bold shadow-lg text-sm">
+                                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1.5 rounded-full font-bold shadow-lg text-xs">
                                         {milestone.year}
                                     </div>
 
                                     {/* Icon */}
-                                    <div className="text-5xl text-center mt-6 mb-4">
+                                    <div className="text-4xl text-center mt-6 mb-3">
                                         {milestone.emoji}
                                     </div>
 
@@ -98,14 +114,20 @@ export default function Journey() {
                 </div>
 
                 {/* Scroll hint for mobile */}
-                <motion.p
+                <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1 }}
-                    className="text-center text-gray-500 text-sm mt-8 md:hidden"
+                    className="flex items-center justify-center gap-2 text-gray-500 text-sm mt-4 md:hidden"
                 >
-                    swipe to explore →
-                </motion.p>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+                    </svg>
+                    <span>swipe to explore</span>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </motion.div>
             </div>
         </section>
     )
