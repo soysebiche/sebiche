@@ -71,9 +71,9 @@ export default function Journey() {
                                 whileHover={{ scale: 1.05, y: -10 }}
                                 className="flex-1 min-w-[280px] snap-center"
                             >
-                                <div className="bg-white rounded-2xl p-6 shadow-xl border-2 border-purple-200 relative h-full">
+                                <div className="bg-white rounded-2xl p-6 shadow-xl border-2 border-purple-200 relative h-full min-h-[200px] flex flex-col">
                                     {/* Year badge */}
-                                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full font-bold shadow-lg">
+                                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full font-bold shadow-lg text-sm">
                                         {milestone.year}
                                     </div>
 
@@ -83,12 +83,14 @@ export default function Journey() {
                                     </div>
 
                                     {/* Content */}
-                                    <h3 className="text-xl font-bold text-center mb-2 text-gray-900">
-                                        {milestone.title}
-                                    </h3>
-                                    <p className="text-gray-600 text-center text-sm">
-                                        {milestone.company}
-                                    </p>
+                                    <div className="flex-1 flex flex-col justify-center">
+                                        <h3 className="text-lg font-bold text-center mb-2 text-gray-900 px-2">
+                                            {milestone.title}
+                                        </h3>
+                                        <p className="text-gray-600 text-center text-sm px-2">
+                                            {milestone.company}
+                                        </p>
+                                    </div>
                                 </div>
                             </motion.div>
                         ))}
