@@ -72,7 +72,7 @@ export default function Home() {
             </section>
 
             {/* Contact Form */}
-            <section id="contact" className="py-20 bg-white">
+            <section id="contact" className="py-20 bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
                 <div className="max-w-2xl mx-auto px-4">
                     <h2 className="text-5xl md:text-6xl font-bold text-center mb-4">
                         <span className="text-4xl mr-3">💬</span>

@@ -30,9 +30,9 @@ const education = [
 
 export default function Education() {
     return (
-        <section className="py-20 bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 relative overflow-hidden">
+        <section id="education" className="py-20 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 relative overflow-hidden">
             {/* Decorative blobs */}
-            <div className="absolute inset-0 opacity-20">
+            <div className="absolute inset-0 opacity-20 pointer-events-none">
                 <div className="absolute top-20 right-20 w-72 h-72 bg-purple-400 rounded-full blur-3xl"></div>
                 <div className="absolute bottom-20 left-20 w-80 h-80 bg-pink-400 rounded-full blur-3xl"></div>
             </div>
@@ -47,11 +47,9 @@ export default function Education() {
                 >
                     <h2 className="text-5xl md:text-6xl font-bold mb-4">
                         <span className="text-4xl mr-3">🎓</span>
-                        <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-turquoise bg-clip-text text-transparent">
-                            education
-                        </span>
+                        education
                     </h2>
-                    <p className="text-xl text-gray-700 font-medium">
+                    <p className="text-xl text-gray-600">
                         continuous learning & growth
                     </p>
                 </motion.div>
