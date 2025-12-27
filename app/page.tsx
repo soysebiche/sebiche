@@ -1,16 +1,19 @@
 'use client'
 import dynamic from 'next/dynamic'
-import Header from '../components/Header'
-import Hero from '../components/Hero'
-import TrustSignals from '../components/TrustSignals'
-import Skills from '../components/Skills'
-import Journey from '../components/Journey'
-import Education from '../components/Education'
-import Experience from '../components/Experience'
-import CaseStudyCard from '../components/CaseStudyCard'
-import Footer from '../components/Footer'
+import Header from '@/components/Header'
+import Hero from '@/components/Hero'
+import TrustSignals from '@/components/TrustSignals'
+import Journey from '@/components/Journey'
+import Education from '@/components/Education'
+import Experience from '@/components/Experience'
+import ImpactMetrics from '@/components/ImpactMetrics'
+import Skills from '@/components/Skills'
+import CaseStudyCard from '@/components/CaseStudyCard'
+import ContactForm from '@/components/ContactForm'
+import Footer from '@/components/Footer'
+import Bookshelf from '@/components/Bookshelf'
 
-const ContactForm = dynamic(() => import('../components/ContactForm'), { ssr: false })
+const m = dynamic(() => import('../components/ContactForm'), { ssr: false })
 
 const caseStudies = [
     {
@@ -50,8 +53,14 @@ export default function Home() {
             {/* Experience */}
             <Experience />
 
+            {/* Impact Metrics */}
+            <ImpactMetrics />
+
             {/* Skills Section */}
             <Skills />
+
+            {/* Bookshelf */}
+            <Bookshelf />
 
             {/* Case Studies */}
             <section id="projects" className="py-20 bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">

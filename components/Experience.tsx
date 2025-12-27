@@ -3,82 +3,90 @@ import { motion } from 'framer-motion'
 
 const experiences = [
     {
-        company: 'liverpool',
-        title: 'marketplace ux lead',
-        period: '2022 - 2024',
-        emoji: '🛍️',
-        gradient: 'from-pink-50 to-purple-50',
-        borderColor: 'border-purple-200',
+        company: 'linio peru',
+        title: 'cross-border commercial lead',
+        period: 'may 2015 - dec 2019',
+        location: 'lima, peru 🇵🇪',
+        emoji: '🌱',
+        gradient: 'from-green-50 to-emerald-50',
+        borderColor: 'border-emerald-300',
         achievements: [
-            {
-                icon: '📈',
-                metric: '100+ sellers',
-                description: 'onboarded to marketplace'
-            },
-            {
-                icon: '🎯',
-                metric: '78% conversion',
-                description: 'increase through ux optimization'
-            },
-            {
-                icon: '👥',
-                metric: 'led team',
-                description: 'cross-functional ux initiatives'
-            },
-            {
-                icon: '🚀',
-                metric: 'marketplace growth',
-                description: 'scaled platform operations'
-            }
-        ]
-    },
-    {
-        company: 'linio',
-        title: 'ux manager',
-        period: '2020 - 2022',
-        emoji: '🚀',
-        gradient: 'from-turquoise/10 to-blue-50',
-        borderColor: 'border-turquoise',
-        achievements: [
-            {
-                icon: '💰',
-                metric: '125% sales',
-                description: 'growth through redesign'
-            },
             {
                 icon: '🌎',
-                metric: 'regional lead',
-                description: 'mexico & latam markets'
+                metric: 'cross-border expansion',
+                description: 'spearheaded peru operations'
             },
             {
-                icon: '🎨',
-                metric: 'design system',
-                description: 'created scalable components'
+                icon: '🤝',
+                metric: 'vendor negotiations',
+                description: 'led pricing & marketing strategy'
             },
             {
-                icon: '📊',
-                metric: 'data-driven',
-                description: 'a/b testing & analytics'
+                icon: '📦',
+                metric: 'product lifecycle',
+                description: 'managed international sellers'
             }
         ]
     },
     {
         company: 'falabella',
-        title: 'product owner',
-        period: '2018 - 2020',
-        emoji: '💼',
-        gradient: 'from-yellow-50 to-orange-50',
-        borderColor: 'border-yellow-300',
+        title: 'regional hardlines cross-border commercial manager',
+        period: 'jan 2020 - may 2022',
+        location: 'mexico city, mexico 🇲🇽',
+        emoji: '🚀',
+        gradient: 'from-orange-50 to-yellow-50',
+        borderColor: 'border-orange-300',
         achievements: [
             {
-                icon: '🛒',
-                metric: 'ecommerce',
-                description: 'led product development'
+                icon: '📈',
+                metric: '125% sales growth',
+                description: 'yoy across 5 countries'
+            },
+            {
+                icon: '🌎',
+                metric: '5 countries',
+                description: 'mexico, colombia, chile, peru, argentina'
+            },
+            {
+                icon: '✅',
+                metric: '98% fulfillment',
+                description: 'optimized catalog algorithm'
+            },
+            {
+                icon: '📊',
+                metric: '40% efficiency',
+                description: 'improved seller dashboards'
+            }
+        ]
+    },
+    {
+        company: 'liverpool',
+        title: 'marketplace bu manager',
+        period: 'jun 2022 - jul 2024',
+        location: 'mexico city, mexico 🇲🇽',
+        emoji: '💼',
+        gradient: 'from-purple-50 to-pink-50',
+        borderColor: 'border-purple-300',
+        achievements: [
+            {
+                icon: '🛍️',
+                metric: '100+ sellers',
+                description: 'onboarded to crossborder marketplace'
             },
             {
                 icon: '⚡',
-                metric: 'agile',
-                description: 'scrum master certified'
+                metric: '50% faster',
+                description: 'reduced onboarding time'
+            },
+            {
+                icon: '📊',
+                metric: '24% engagement',
+                description: 'increased through dashboard redesign'
+            },
+            {
+                icon: '🤖',
+                metric: '35% faster',
+                description: 'response times via automation'
             }
         ]
     }
@@ -86,7 +94,7 @@ const experiences = [
 
 export default function Experience() {
     return (
-        <section className="py-20 bg-white">
+        <section id="experience" className="py-20 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
             <div className="max-w-6xl mx-auto px-4">
                 {/* Header */}
                 <motion.div
@@ -100,7 +108,7 @@ export default function Experience() {
                         experience
                     </h2>
                     <p className="text-xl text-gray-600">
-                        driving growth through design
+                        10+ years driving growth through product & ux
                     </p>
                 </motion.div>
 
@@ -109,39 +117,38 @@ export default function Experience() {
                     {experiences.map((exp, index) => (
                         <motion.div
                             key={exp.company}
-                            initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            whileHover={{ scale: 1.01 }}
-                            className="relative"
+                            whileHover={{ scale: 1.01, y: -5 }}
                         >
-                            {/* Company card */}
                             <div className={`
-                bg-gradient-to-br ${exp.gradient}
-                rounded-2xl p-8 shadow-xl
-                border-2 ${exp.borderColor}
-              `}>
+                                bg-white rounded-2xl p-8 shadow-xl
+                                border-2 ${exp.borderColor}
+                            `}>
                                 <div className="flex flex-col md:flex-row items-start gap-6">
-                                    {/* Logo/Icon */}
+                                    {/* Icon */}
                                     <div className="text-6xl flex-shrink-0">
                                         {exp.emoji}
                                     </div>
 
                                     {/* Content */}
                                     <div className="flex-1 w-full">
-                                        <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-6">
-                                            <div>
-                                                <h3 className="text-3xl font-bold text-gray-900 mb-2">
-                                                    {exp.title}
-                                                </h3>
-                                                <p className="text-xl text-gray-700 font-medium">
-                                                    {exp.company}
-                                                </p>
+                                        <div className="mb-6">
+                                            <h3 className="text-3xl font-bold text-gray-900 mb-2">
+                                                {exp.title}
+                                            </h3>
+                                            <p className="text-xl text-gray-700 font-medium mb-1">
+                                                {exp.company}
+                                            </p>
+                                            <div className="flex flex-wrap gap-3 text-sm text-gray-600">
+                                                <span className="flex items-center gap-1">
+                                                    📅 {exp.period}
+                                                </span>
+                                                <span>•</span>
+                                                <span>{exp.location}</span>
                                             </div>
-                                            <span className="mt-2 md:mt-0 px-4 py-2 bg-white/80 rounded-full text-sm font-semibold text-gray-700 shadow-sm">
-                                                {exp.period}
-                                            </span>
                                         </div>
 
                                         {/* Achievements */}
@@ -150,7 +157,12 @@ export default function Experience() {
                                                 <motion.div
                                                     key={achievement.metric}
                                                     whileHover={{ scale: 1.05 }}
-                                                    className="flex items-start gap-3 bg-white/70 backdrop-blur-sm rounded-xl p-4 shadow-md"
+                                                    className={`
+                                                        flex items-start gap-3 
+                                                        bg-gradient-to-br ${exp.gradient}
+                                                        rounded-xl p-4 shadow-md
+                                                        border border-gray-200
+                                                    `}
                                                 >
                                                     <span className="text-2xl flex-shrink-0">
                                                         {achievement.icon}
