@@ -3,8 +3,21 @@ import { motion } from 'framer-motion'
 
 const education = [
     {
-        degree: 'master of arts in data & innovation',
+        degree: 'bachelor of business administration',
+        school: 'universidad del pacífico',
+        location: 'lima, peru 🇵🇪',
+        period: '2018',
+        gpa: 'gpa 3.59',
+        emoji: '🎓',
+        gradient: 'from-turquoise via-teal-400 to-cyan-400',
+        borderColor: 'border-turquoise',
+        accentGradient: 'from-turquoise to-teal-600',
+        tags: ['business strategy', 'marketing', 'finance', 'operations']
+    },
+    {
+        degree: 'master of arts in design & innovation',
         school: 'southern methodist university (smu)',
+        location: 'dallas, us 🇺🇸',
         period: '2024 - present',
         gpa: 'gpa 4.0',
         emoji: '🐴',
@@ -12,17 +25,6 @@ const education = [
         borderColor: 'border-purple-400',
         accentGradient: 'from-purple-600 to-pink-600',
         tags: ['data analytics', 'ai/ml', 'innovation', 'business strategy', 'ux/ui design']
-    },
-    {
-        degree: 'bachelor of business administration',
-        school: 'universidad del pacífico',
-        period: '2018',
-        gpa: '',
-        emoji: '🎓',
-        gradient: 'from-turquoise via-teal-400 to-cyan-400',
-        borderColor: 'border-turquoise',
-        accentGradient: 'from-turquoise to-teal-600',
-        tags: ['business strategy', 'marketing', 'finance', 'operations']
     }
 ]
 
@@ -87,6 +89,9 @@ export default function Education() {
                                     </h3>
                                     <p className="text-xl text-white/95 mb-2 font-semibold drop-shadow">
                                         {edu.school}
+                                    </p>
+                                    <p className="text-lg text-white/90 mb-2 font-medium">
+                                        {edu.location}
                                     </p>
                                     <div className="flex items-center gap-3 mb-6">
                                         <p className="text-white/90 font-medium">
