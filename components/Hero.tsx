@@ -14,15 +14,7 @@ export default function Hero() {
             transition={{ duration: 0.8 }}
             className="space-y-6"
           >
-            {/* Handwritten style accent */}
-            <motion.div
-              initial={{ opacity: 0, rotate: -5 }}
-              animate={{ opacity: 1, rotate: -3 }}
-              transition={{ delay: 0.3 }}
-              className="inline-block"
-            >
-              <span className="text-coral font-handwriting text-2xl">hola! 👋</span>
-            </motion.div>
+
 
             {/* Main Headline */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
@@ -36,13 +28,13 @@ export default function Hero() {
               </span>
               <span className="text-gray-900">,</span>
               <br />
-              <span className="text-blue-600">raised in eCommerce,</span>
+              <span className="text-gray-900">raised in ecommerce,</span>
               <br />
               <span className="text-gray-900">based in</span>
               <br />
               <span className="relative">
                 <span className="bg-yellow-300 px-3 py-1 inline-block transform -rotate-1">
-                  digital experiences
+                  dallas, tx
                 </span>
               </span>
               <span className="text-gray-900">.</span>
@@ -64,8 +56,7 @@ export default function Hero() {
                   <path d="M0,2 Q25,0 50,2 T100,2" stroke="currentColor" strokeWidth="2" fill="none" className="text-turquoise" />
                 </svg>
               </span>
-              {' '}📈 and drinking{' '}
-              <span className="inline-block">boba 🧋</span>
+              {' '}📈 and drinking boba 🧋
             </p>
 
             {/* Fun stats */}
