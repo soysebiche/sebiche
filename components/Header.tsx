@@ -1,17 +1,18 @@
-'use client';
-import { motion } from 'framer-motion';
-import { useState } from 'react';
-import Image from 'next/image';
+'use client'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
-  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
+  const navItems = [
+    { name: 'about', href: '/#about' },
+    { name: 'experience', href: '/#experience' },
+    { name: 'case studies', href: '/#projects' },
+    { name: 'contact', href: '/#contact' },
+  ]
 
   return (
-    <motion.header
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
@@ -24,8 +25,8 @@ export default function Header() {
           <ul className="hidden md:flex space-x-6 items-center">
             {navItems.map((item) => (
               <li key={item.name}>
-                <a 
-                  href={item.href} 
+                <a
+                  href={item.href}
                   className="text-gray-700 hover:text-turquoise transition font-medium"
                 >
                   {item.name}
