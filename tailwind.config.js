@@ -16,8 +16,10 @@ module.exports = {
       fontFamily: {
         inter: ['var(--font-inter)', 'sans-serif'],
         montserrat: ['var(--font-montserrat)', 'sans-serif'],
+        handwriting: ['Caveat', 'cursive'],
       },
     },
   },
+},
   plugins: [],
 };
