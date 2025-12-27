@@ -10,7 +10,6 @@ import ImpactMetrics from '../components/ImpactMetrics'
 import Skills from '../components/Skills'
 import CaseStudyCard from '../components/CaseStudyCard'
 import Footer from '../components/Footer'
-import Bookshelf from '../components/Bookshelf'
 
 const ContactForm = dynamic(() => import('../components/ContactForm'), { ssr: false })
 
@@ -57,9 +56,6 @@ export default function Home() {
 
             {/* Skills Section */}
             <Skills />
-
-            {/* Bookshelf */}
-            <Bookshelf />
 
             {/* Case Studies */}
             <section id="projects" className="py-20 bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
