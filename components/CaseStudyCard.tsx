@@ -45,14 +45,20 @@ export default function CaseStudyCard({
 
                 <p className="text-gray-700 mb-6">{description}</p>
 
-                <div className="grid grid-cols-3 gap-4 mb-6">
-                    {metrics.map((metric, idx) => (
-                        <div key={idx} className="text-center">
-                            <div className="text-2xl font-bold text-coral mb-1">{metric.value}</div>
-                            <div className="text-xs text-gray-600">{metric.label}</div>
-                        </div>
-                    ))}
-                </div>
+                {/* Metrics */}
+                {metrics && metrics.length > 0 && (
+                    <div className="flex flex-wrap gap-4 mb-4">
+                        {metrics.map((metric, index) => (
+                            <div key={index} className="flex items-center gap-2">
+                                <span className="text-2xl">{metric.icon}</span>
+                                <div>
+                                    <p className="font-bold text-gray-900">{metric.value}</p>
+                                    <p className="text-xs text-gray-600">{metric.label}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )}
 
                 <Link
                     href={href}
