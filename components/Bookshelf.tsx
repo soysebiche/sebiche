@@ -116,7 +116,7 @@ export default function Bookshelf() {
                     className="text-center mt-12"
                 >
                     <a
-                        href="https://www.goodreads.com/user/show/YOUR_GOODREADS_ID"
+                        href="https://www.goodreads.com/sebiche"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-6 py-3 bg-orange-600 text-white font-semibold rounded-full hover:bg-orange-700 transition"
