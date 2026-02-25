@@ -1,12 +1,10 @@
-'use client'
-
 interface StructuredDataProps {
-    type: 'Person' | 'Organization' | 'Article'
-    data: any
+    type: 'Person' | 'Article'
+    data: Record<string, unknown>
 }
 
 export default function StructuredData({ type, data }: StructuredDataProps) {
-    let structuredData: any = {}
+    let structuredData: Record<string, unknown> = {}
 
     switch (type) {
         case 'Person':
@@ -14,44 +12,30 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
                 '@context': 'https://schema.org',
                 '@type': 'Person',
                 name: data.name || 'Sebastian Napuri Mendoza',
-                jobTitle: data.jobTitle || 'eCommerce UX Leader & Marketplace Expert',
+                jobTitle: data.jobTitle || 'Product Designer & eCommerce Strategist',
                 url: data.url || 'https://sebiche.vercel.app',
-                sameAs: data.sameAs || [
+                sameAs: [
                     'https://www.linkedin.com/in/sebastian-napuri',
                     'https://github.com/soysebiche',
                 ],
-                alumniOf: {
-                    '@type': 'EducationalOrganization',
-                    name: 'Universidad del Pacífico',
-                },
-                worksFor: data.worksFor || [
+                alumniOf: [
                     {
-                        '@type': 'Organization',
-                        name: 'Servicios Liverpool',
+                        '@type': 'EducationalOrganization',
+                        name: 'Universidad del Pacífico',
+                    },
+                    {
+                        '@type': 'EducationalOrganization',
+                        name: 'Southern Methodist University',
                     },
                 ],
                 knowsAbout: [
-                    'eCommerce',
+                    'Product Design',
                     'UX Design',
+                    'eCommerce',
                     'Marketplace Management',
                     'Cross-Border Commerce',
-                    'Product Management',
+                    'Data Analytics',
                 ],
-            }
-            break
-
-        case 'Organization':
-            structuredData = {
-                '@context': 'https://schema.org',
-                '@type': 'Organization',
-                name: data.name || 'Sebiche',
-                url: data.url || 'https://sebiche.vercel.app',
-                logo: data.logo || 'https://sebiche.vercel.app/logo.svg',
-                description: data.description || 'eCommerce UX and Marketplace Consulting',
-                founder: {
-                    '@type': 'Person',
-                    name: 'Sebastian Napuri Mendoza',
-                },
             }
             break
 
@@ -67,18 +51,6 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
                 },
                 datePublished: data.datePublished || new Date().toISOString(),
                 dateModified: data.dateModified || new Date().toISOString(),
-                publisher: {
-                    '@type': 'Organization',
-                    name: 'Sebiche',
-                    logo: {
-                        '@type': 'ImageObject',
-                        url: 'https://sebiche.vercel.app/logo.svg',
-                    },
-                },
-                mainEntityOfPage: {
-                    '@type': 'WebPage',
-                    '@id': data.url,
-                },
             }
             break
     }

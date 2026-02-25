@@ -1,5 +1,4 @@
-import { Inter, Montserrat, Caveat } from 'next/font/google'
-import Script from 'next/script'
+import { Inter, Montserrat } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
 import StructuredData from '../components/StructuredData'
 import './globals.css'
@@ -17,39 +16,32 @@ const montserrat = Montserrat({
     display: 'swap',
 })
 
-const caveat = Caveat({
-    subsets: ['latin'],
-    variable: '--font-caveat',
-    weight: ['400', '700'],
-    display: 'swap',
-})
-
 export const metadata: Metadata = {
-    title: 'Sebastian Napuri Mendoza | eCommerce UX Leader',
-    description: 'Transforming user experience into measurable revenue growth. 9+ years driving eCommerce success with proven results: 125% sales increase, 78% conversion boost.',
-    keywords: ['Sebastian Napuri', 'UX', 'UI', 'eCommerce', 'Marketplace', 'Product Manager', 'Peru', 'Linio', 'Liverpool'],
+    title: 'Sebastian Napuri Mendoza | Product Designer & eCommerce Strategist',
+    description: 'Product designer with 10+ years transforming eCommerce experiences across Latin America. 125% sales growth, 100+ sellers onboarded, 5 countries.',
+    keywords: ['Sebastian Napuri', 'Product Designer', 'UX Design', 'eCommerce', 'Marketplace', 'LATAM', 'Linio', 'Falabella', 'Liverpool', 'SMU'],
     authors: [{ name: 'Sebastian Napuri Mendoza' }],
     creator: 'Sebastian Napuri Mendoza',
     openGraph: {
         type: 'website',
-        locale: 'es_ES',
+        locale: 'en_US',
         url: 'https://sebiche.vercel.app',
-        siteName: 'Sebiche',
-        title: 'Sebastian Napuri Mendoza | eCommerce UX Leader',
-        description: 'Transforming user experience into measurable revenue growth',
+        siteName: 'Sebastian Napuri',
+        title: 'Sebastian Napuri Mendoza | Product Designer & eCommerce Strategist',
+        description: 'Turning user frustration into revenue growth across Latin America\'s largest retailers.',
         images: [
             {
                 url: '/og-image.jpg',
                 width: 1200,
                 height: 630,
-                alt: 'Sebastian Napuri Mendoza - eCommerce UX Leader',
+                alt: 'Sebastian Napuri Mendoza - Product Designer & eCommerce Strategist',
             },
         ],
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Sebastian Napuri Mendoza | eCommerce UX Leader',
-        description: 'Transforming user experience into measurable revenue growth',
+        title: 'Sebastian Napuri Mendoza | Product Designer & eCommerce Strategist',
+        description: 'Turning user frustration into revenue growth across Latin America\'s largest retailers.',
         images: ['/og-image.jpg'],
     },
     robots: {
@@ -63,9 +55,6 @@ export const metadata: Metadata = {
             'max-snippet': -1,
         },
     },
-    verification: {
-        google: 'your-google-verification-code', // TODO: Add actual verification code
-    },
 }
 
 export default function RootLayout({
@@ -74,47 +63,27 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <html lang="es" className={`${inter.variable} ${montserrat.variable} ${caveat.variable}`}>
+        <html lang="en" className={`${inter.variable} ${montserrat.variable}`}>
             <head>
                 <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-                <link rel="manifest" href="/manifest.json" />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <meta name="theme-color" content="#00A89A" />
-                <meta name="apple-mobile-web-app-capable" content="yes" />
-                <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-                <meta name="apple-mobile-web-app-title" content="Sebiche" />
+                <meta name="theme-color" content="#1A1A2E" />
             </head>
             <body className="antialiased">
+                <a
+                    href="#main"
+                    className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-charcoal focus:text-white focus:rounded-lg focus:text-sm focus:font-medium"
+                >
+                    Skip to content
+                </a>
                 {children}
                 <StructuredData
                     type="Person"
                     data={{
                         name: 'Sebastian Napuri Mendoza',
-                        jobTitle: 'eCommerce UX Leader & Marketplace Expert',
+                        jobTitle: 'Product Designer & eCommerce Strategist',
                         url: 'https://sebiche.vercel.app',
                     }}
                 />
-                <StructuredData
-                    type="Organization"
-                    data={{
-                        name: 'Sebiche',
-                        url: 'https://sebiche.vercel.app',
-                        description: 'eCommerce UX and Marketplace Consulting',
-                    }}
-                />
-                <Script
-                    src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"
-                    strategy="lazyOnload"
-                />
-                <Script id="sw-register" strategy="afterInteractive">
-                    {`
-                        if ('serviceWorker' in navigator) {
-                            window.addEventListener('load', function() {
-                                navigator.serviceWorker.register('/sw.js');
-                            });
-                        }
-                    `}
-                </Script>
                 <Analytics />
             </body>
         </html>

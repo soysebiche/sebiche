@@ -1,119 +1,65 @@
 'use client'
 import { motion } from 'framer-motion'
+import { TrendingUp, ShoppingBag, Zap, Globe, CheckCircle, BarChart3 } from 'lucide-react'
+import { type LucideIcon } from 'lucide-react'
 
-const metrics = [
-    {
-        icon: '📈',
-        value: '125%',
-        label: 'sales growth',
-        sublabel: 'yoy at falabella',
-        gradient: 'from-green-400 to-emerald-500',
-        borderColor: 'border-green-300'
-    },
-    {
-        icon: '🛍️',
-        value: '100+',
-        label: 'sellers onboarded',
-        sublabel: 'liverpool marketplace',
-        gradient: 'from-purple-400 to-pink-500',
-        borderColor: 'border-purple-300'
-    },
-    {
-        icon: '⚡',
-        value: '50%',
-        label: 'faster onboarding',
-        sublabel: 'through automation',
-        gradient: 'from-yellow-400 to-orange-500',
-        borderColor: 'border-orange-300'
-    },
-    {
-        icon: '🌎',
-        value: '5',
-        label: 'countries',
-        sublabel: 'latam expansion',
-        gradient: 'from-blue-400 to-cyan-500',
-        borderColor: 'border-blue-300'
-    },
-    {
-        icon: '✅',
-        value: '98%',
-        label: 'fulfillment rate',
-        sublabel: 'catalog optimization',
-        gradient: 'from-teal-400 to-green-500',
-        borderColor: 'border-teal-300'
-    },
-    {
-        icon: '📊',
-        value: '40%',
-        label: 'efficiency gain',
-        sublabel: 'seller dashboards',
-        gradient: 'from-indigo-400 to-purple-500',
-        borderColor: 'border-indigo-300'
-    }
+const metrics: { icon: LucideIcon; value: string; label: string; sublabel: string }[] = [
+    { icon: TrendingUp, value: '125%', label: 'Sales Growth', sublabel: 'YoY at Falabella' },
+    { icon: ShoppingBag, value: '100+', label: 'Sellers Onboarded', sublabel: 'Liverpool Marketplace' },
+    { icon: Zap, value: '50%', label: 'Faster Onboarding', sublabel: 'Through automation' },
+    { icon: Globe, value: '5', label: 'Countries', sublabel: 'LATAM expansion' },
+    { icon: CheckCircle, value: '98%', label: 'Fulfillment Rate', sublabel: 'Catalog optimization' },
+    { icon: BarChart3, value: '40%', label: 'Efficiency Gain', sublabel: 'Seller dashboards' },
 ]
 
 export default function ImpactMetrics() {
     return (
-        <section className="py-20 bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
-            <div className="max-w-7xl mx-auto px-4">
-                {/* Header */}
+        <section className="py-16 bg-softGray">
+            <div className="max-w-6xl mx-auto px-4">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16"
+                    className="text-center mb-12"
                 >
-                    <h2 className="text-5xl md:text-6xl font-bold mb-4">
-                        <span className="text-4xl mr-3">🚀</span>
-                        impact metrics
+                    <h2 className="text-3xl md:text-4xl font-bold mb-3 text-charcoal">
+                        Impact Metrics
                     </h2>
-                    <p className="text-xl text-gray-600">
-                        measurable results across latam's largest retailers
+                    <p className="text-gray-500">
+                        Measurable results across LATAM's largest retailers
                     </p>
                 </motion.div>
 
-                {/* Metrics Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {metrics.map((metric, index) => (
-                        <motion.div
-                            key={metric.label}
-                            initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            whileHover={{ scale: 1.05, y: -10 }}
-                        >
-                            <div className={`
-                bg-white rounded-2xl p-8 shadow-xl
-                border-2 ${metric.borderColor}
-                h-full
-                flex flex-col items-center text-center
-              `}>
-                                {/* Icon */}
-                                <div className="text-5xl mb-4">
-                                    {metric.icon}
+                <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+                    {metrics.map((metric, index) => {
+                        const Icon = metric.icon
+                        return (
+                            <motion.div
+                                key={metric.label}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.06 }}
+                                whileHover={{ y: -3 }}
+                                className="transition-all duration-200"
+                            >
+                                <div className="bg-white rounded-xl p-6 border border-gray-100 h-full flex flex-col items-center text-center">
+                                    <div className="w-10 h-10 rounded-lg bg-turquoise/10 flex items-center justify-center mb-3">
+                                        <Icon className="w-5 h-5 text-turquoise" />
+                                    </div>
+                                    <div className="text-3xl md:text-4xl font-bold text-charcoal mb-1">
+                                        {metric.value}
+                                    </div>
+                                    <div className="text-sm font-semibold text-charcoal mb-0.5">
+                                        {metric.label}
+                                    </div>
+                                    <div className="text-xs text-gray-400">
+                                        {metric.sublabel}
+                                    </div>
                                 </div>
-
-                                {/* Value */}
-                                <div className={`
-                  text-5xl font-bold mb-2
-                  bg-gradient-to-r ${metric.gradient} bg-clip-text text-transparent
-                `}>
-                                    {metric.value}
-                                </div>
-
-                                {/* Label */}
-                                <div className="text-xl font-semibold text-gray-900 mb-1">
-                                    {metric.label}
-                                </div>
-
-                                {/* Sublabel */}
-                                <div className="text-sm text-gray-600">
-                                    {metric.sublabel}
-                                </div>
-                            </div>
-                        </motion.div>
-                    ))}
+                            </motion.div>
+                        )
+                    })}
                 </div>
             </div>
         </section>

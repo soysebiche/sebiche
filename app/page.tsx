@@ -6,7 +6,6 @@ import TrustSignals from '../components/TrustSignals'
 import Journey from '../components/Journey'
 import Education from '../components/Education'
 import Experience from '../components/Experience'
-import ImpactMetrics from '../components/ImpactMetrics'
 import Skills from '../components/Skills'
 import CaseStudyCard from '../components/CaseStudyCard'
 import Footer from '../components/Footer'
@@ -15,59 +14,46 @@ const ContactForm = dynamic(() => import('../components/ContactForm'), { ssr: fa
 
 const caseStudies = [
     {
-        title: 'linio marketplace redesign',
-        company: 'linio',
-        period: '2020-2022',
-        description: '125% sales increase through ux optimization and data-driven design',
+        title: 'Linio Marketplace Redesign',
+        company: 'Linio',
+        period: '2020–2022',
+        description: '125% sales increase through UX optimization and data-driven design across 5 LATAM countries.',
         href: '/case-studies/linio',
-        index: 0
+        image: '/projects/linio.webp',
+        index: 0,
     },
     {
-        title: 'liverpool seller onboarding',
-        company: 'liverpool',
-        period: '2022-2024',
-        description: '100+ sellers onboarded with streamlined ux and automated workflows',
+        title: 'Liverpool Seller Onboarding',
+        company: 'Liverpool',
+        period: '2022–2024',
+        description: '100+ sellers onboarded with streamlined UX and automated workflows, reducing onboarding time by 50%.',
         href: '/case-studies/liverpool',
-        index: 1
+        image: '/projects/liverpool.webp',
+        index: 1,
     },
 ]
 
-
 export default function Home() {
     return (
-        <div className="min-h-screen bg-white">
+        <main id="main" className="min-h-screen bg-white">
             <Header />
             <Hero />
-
-            {/* Trust Signals */}
             <TrustSignals />
-
-            {/* Journey Timeline */}
             <Journey />
-
-            {/* Education */}
             <Education />
-
-            {/* Experience */}
             <Experience />
-
-            {/* Impact Metrics */}
-            <ImpactMetrics />
-
-            {/* Skills Section */}
             <Skills />
 
             {/* Case Studies */}
-            <section id="projects" className="py-20 bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
+            <section id="projects" className="py-16 bg-softGray">
                 <div className="max-w-6xl mx-auto px-4">
-                    <h2 className="text-5xl md:text-6xl font-bold text-center mb-4">
-                        <span className="text-4xl mr-3">📂</span>
-                        case studies
+                    <h2 className="text-3xl md:text-4xl font-bold text-center mb-3 text-charcoal">
+                        Case Studies
                     </h2>
-                    <p className="text-xl text-gray-600 text-center mb-12">
-                        real impact, real results
+                    <p className="text-gray-500 text-center mb-10">
+                        Real impact, real results
                     </p>
-                    <div className="grid md:grid-cols-2 gap-8">
+                    <div className="grid md:grid-cols-2 gap-6">
                         {caseStudies.map((study) => (
                             <CaseStudyCard key={study.title} {...study} />
                         ))}
@@ -76,20 +62,19 @@ export default function Home() {
             </section>
 
             {/* Contact Form */}
-            <section id="contact" className="py-20 bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
-                <div className="max-w-2xl mx-auto px-4">
-                    <h2 className="text-5xl md:text-6xl font-bold text-center mb-4">
-                        <span className="text-4xl mr-3">💬</span>
-                        let's talk
+            <section id="contact" className="py-16 bg-white">
+                <div className="max-w-xl mx-auto px-4">
+                    <h2 className="text-3xl md:text-4xl font-bold text-center mb-3 text-charcoal">
+                        Let's Talk
                     </h2>
-                    <p className="text-xl text-gray-600 text-center mb-12">
-                        ready to transform your ux?
+                    <p className="text-gray-500 text-center mb-10">
+                        Ready to transform your UX?
                     </p>
                     <ContactForm />
                 </div>
             </section>
 
             <Footer />
-        </div>
+        </main>
     )
 }

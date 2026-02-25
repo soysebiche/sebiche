@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { CheckCircle, XCircle, ArrowRight, Loader2 } from 'lucide-react'
 
 const schema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -42,15 +43,6 @@ export default function ContactForm() {
       if (response.ok) {
         setIsSuccess(true)
         setIsError(false)
-
-        if (typeof window !== 'undefined' && window.confetti) {
-          window.confetti({
-            particleCount: 100,
-            spread: 70,
-            origin: { y: 0.6 }
-          })
-        }
-
         reset()
         setTimeout(() => setIsSuccess(false), 5000)
       } else {
@@ -70,7 +62,7 @@ export default function ContactForm() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-white rounded-3xl p-8 shadow-xl border-2 border-purple-200"
+      className="bg-white rounded-xl p-6 md:p-8 border border-gray-200"
     >
       <AnimatePresence mode="wait">
         {isSuccess && (
@@ -78,14 +70,12 @@ export default function ContactForm() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="mb-6 p-4 bg-green-500/20 border border-green-500 rounded-lg flex items-start gap-3"
+            className="mb-6 p-4 bg-emerald-50 border border-emerald-200 rounded-lg flex items-start gap-3"
           >
-            <svg className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
+            <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
             <div>
-              <p className="font-semibold text-green-800">Message sent successfully!</p>
-              <p className="text-sm text-green-700">I'll respond within 24 hours.</p>
+              <p className="font-semibold text-emerald-800 text-sm">Message sent successfully!</p>
+              <p className="text-xs text-emerald-600">I'll respond within 24 hours.</p>
             </div>
           </motion.div>
         )}
@@ -95,45 +85,40 @@ export default function ContactForm() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="mb-6 p-4 bg-red-500/20 border border-red-500 rounded-lg flex items-start gap-3"
+            className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3"
           >
-            <svg className="w-6 h-6 text-red-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            <XCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
             <div>
-              <p className="font-semibold text-red-800">Something went wrong</p>
-              <p className="text-sm text-red-700">Please try again or email me directly</p>
+              <p className="font-semibold text-red-800 text-sm">Something went wrong</p>
+              <p className="text-xs text-red-600">Please try again or email me directly.</p>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      <div className="space-y-6">
+      <div className="space-y-5">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium mb-2 text-gray-700">
+          <label htmlFor="name" className="block text-sm font-medium mb-1.5 text-charcoal">
             Your Name *
           </label>
           <input
             id="name"
             {...register('name')}
             placeholder="John Doe"
-            className={`w-full px-4 py-3 rounded-md bg-gray-100 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 transition ${errors.name ? 'ring-2 ring-red-500' : 'focus:ring-purple-500'
+            className={`w-full px-4 py-3 rounded-lg bg-softGray text-charcoal placeholder-gray-400 focus:outline-none focus:ring-2 transition text-sm ${errors.name ? 'ring-2 ring-red-400' : 'focus:ring-turquoise'
               }`}
             aria-invalid={errors.name ? 'true' : 'false'}
             aria-describedby={errors.name ? 'name-error' : undefined}
           />
           {errors.name && (
-            <p id="name-error" className="text-red-600 text-sm mt-1 flex items-center gap-1">
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-              </svg>
+            <p id="name-error" className="text-red-500 text-xs mt-1">
               {errors.name.message}
             </p>
           )}
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium mb-2 text-gray-700">
+          <label htmlFor="email" className="block text-sm font-medium mb-1.5 text-charcoal">
             Your Email *
           </label>
           <input
@@ -141,40 +126,34 @@ export default function ContactForm() {
             type="email"
             {...register('email')}
             placeholder="john@example.com"
-            className={`w-full px-4 py-3 rounded-md bg-gray-100 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 transition ${errors.email ? 'ring-2 ring-red-500' : 'focus:ring-purple-500'
+            className={`w-full px-4 py-3 rounded-lg bg-softGray text-charcoal placeholder-gray-400 focus:outline-none focus:ring-2 transition text-sm ${errors.email ? 'ring-2 ring-red-400' : 'focus:ring-turquoise'
               }`}
             aria-invalid={errors.email ? 'true' : 'false'}
             aria-describedby={errors.email ? 'email-error' : undefined}
           />
           {errors.email && (
-            <p id="email-error" className="text-red-600 text-sm mt-1 flex items-center gap-1">
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-              </svg>
+            <p id="email-error" className="text-red-500 text-xs mt-1">
               {errors.email.message}
             </p>
           )}
         </div>
 
         <div>
-          <label htmlFor="message" className="block text-sm font-medium mb-2 text-gray-700">
+          <label htmlFor="message" className="block text-sm font-medium mb-1.5 text-charcoal">
             Tell me about your eCommerce challenge *
           </label>
           <textarea
             id="message"
             {...register('message')}
             placeholder="I'm looking to improve our marketplace conversion rate..."
-            rows={5}
-            className={`w-full px-4 py-3 rounded-md bg-gray-100 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 transition resize-none ${errors.message ? 'ring-2 ring-red-500' : 'focus:ring-purple-500'
+            rows={4}
+            className={`w-full px-4 py-3 rounded-lg bg-softGray text-charcoal placeholder-gray-400 focus:outline-none focus:ring-2 transition resize-none text-sm ${errors.message ? 'ring-2 ring-red-400' : 'focus:ring-turquoise'
               }`}
             aria-invalid={errors.message ? 'true' : 'false'}
             aria-describedby={errors.message ? 'message-error' : undefined}
           />
           {errors.message && (
-            <p id="message-error" className="text-red-600 text-sm mt-1 flex items-center gap-1">
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-              </svg>
+            <p id="message-error" className="text-red-500 text-xs mt-1">
               {errors.message.message}
             </p>
           )}
@@ -183,37 +162,26 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full px-8 py-4 bg-purple-600 text-white font-semibold rounded-full hover:bg-purple-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className="w-full px-6 py-3 bg-charcoal text-white font-medium rounded-lg hover:bg-charcoal-light transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm"
           aria-label="Send message"
         >
           {isSubmitting ? (
             <>
-              <svg className="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-              </svg>
+              <Loader2 className="w-4 h-4 animate-spin" />
               Sending...
             </>
           ) : (
             <>
               Send Message
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
+              <ArrowRight className="w-4 h-4" />
             </>
           )}
         </button>
 
-        <p className="text-sm text-gray-500 text-center">
+        <p className="text-xs text-gray-400 text-center">
           * Required fields. Your information will be kept confidential.
         </p>
       </div>
     </motion.form>
   )
-}
-
-declare global {
-  interface Window {
-    confetti: any
-  }
 }

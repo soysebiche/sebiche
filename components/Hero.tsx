@@ -1,178 +1,84 @@
 'use client'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { MapPin, GraduationCap, Target, Rocket } from 'lucide-react'
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex items-center bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 px-4 pt-24 pb-16">
-      <div className="max-w-7xl mx-auto w-full">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Left Column - Text */}
+    <section className="flex items-center bg-softGray px-4 pt-28 pb-16 md:pt-32 md:pb-20">
+      <div className="max-w-6xl mx-auto w-full">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7 }}
             className="space-y-6"
           >
-
-
-            {/* Main Headline */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-              <span className="text-gray-900">product designer.</span>
-              <br />
-              <span className="text-gray-900">born in</span>
-              <br />
-              <span className="relative inline-block">
-                <span className="text-gray-900">perú</span>
-                <span className="text-4xl ml-2">🇵🇪</span>
-              </span>
-              <span className="text-gray-900">,</span>
-              <br />
-              <span className="text-gray-900">raised in ecommerce,</span>
-              <br />
-              <span className="text-gray-900">based in</span>
-              <br />
-              <span className="relative">
-                <span className="bg-yellow-300 px-3 py-1 inline-block transform -rotate-1">
-                  digital experiences.
-                </span>
-              </span>
+            <h1 className="text-4xl md:text-5xl font-bold leading-[1.1] text-charcoal">
+              Turning User Frustration Into{' '}
+              <span className="text-turquoise">Revenue Growth</span>
             </h1>
 
-            {/* Subtext with personality */}
-            <p className="text-xl text-gray-700 max-w-lg">
-              loves transforming{' '}
-              <span className="relative inline-block">
-                <span className="text-purple-600 font-semibold">user frustration</span>
-                <svg className="absolute -bottom-1 left-0 w-full" height="4" viewBox="0 0 100 4" preserveAspectRatio="none">
-                  <path d="M0,2 Q25,0 50,2 T100,2" stroke="currentColor" strokeWidth="2" fill="none" className="text-purple-400" />
-                </svg>
-              </span>
-              {' '}into{' '}
-              <span className="relative inline-block">
-                <span className="text-turquoise font-semibold">revenue growth</span>
-                <svg className="absolute -bottom-1 left-0 w-full" height="4" viewBox="0 0 100 4" preserveAspectRatio="none">
-                  <path d="M0,2 Q25,0 50,2 T100,2" stroke="currentColor" strokeWidth="2" fill="none" className="text-turquoise" />
-                </svg>
-              </span>
-              {' '}📈 and drinking boba 🧋
+            <p className="text-lg text-gray-500 max-w-md leading-relaxed">
+              Product designer with 10+ years transforming eCommerce experiences across Latin America's largest retailers.
             </p>
 
-            {/* Fun stats */}
-            <div className="flex flex-wrap gap-4 pt-4">
-              <motion.div
-                whileHover={{ scale: 1.05, rotate: 2 }}
-                className="bg-white px-6 py-3 rounded-full shadow-md border-2 border-purple-200"
+            <div className="flex gap-4 pt-1">
+              <a
+                href="#projects"
+                className="px-7 py-3.5 bg-charcoal text-white font-semibold rounded-lg hover:bg-charcoal-light transition-colors text-sm"
               >
-                <span className="text-2xl mr-2">📚</span>
-                <span className="font-semibold text-gray-800">131 books</span>
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.05, rotate: -2 }}
-                className="bg-white px-6 py-3 rounded-full shadow-md border-2 border-turquoise"
+                View Case Studies
+              </a>
+              <a
+                href="#contact"
+                className="px-7 py-3.5 bg-white border border-gray-300 text-charcoal font-semibold rounded-lg hover:border-turquoise hover:text-turquoise transition-colors text-sm"
               >
-                <span className="text-2xl mr-2">💼</span>
-                <span className="font-semibold text-gray-800">9+ years</span>
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.05, rotate: 2 }}
-                className="bg-white px-6 py-3 rounded-full shadow-md border-2 border-coral"
-              >
-                <span className="text-2xl mr-2">📈</span>
-                <span className="font-semibold text-gray-800">125% growth</span>
-              </motion.div>
+                Get in Touch
+              </a>
             </div>
-
-            {/* Scroll indicator */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.5 }}
-              className="pt-8"
-            >
-              <p className="text-sm text-gray-500 flex items-center gap-2">
-                scroll to explore
-                <motion.span
-                  animate={{ y: [0, 5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  ↓
-                </motion.span>
-              </p>
-            </motion.div>
           </motion.div>
 
-          {/* Right Column - Image & About */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="space-y-8"
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="space-y-5"
           >
-            {/* Profile Image */}
-            <div className="relative">
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                className="relative rounded-3xl overflow-hidden shadow-2xl"
-              >
-                <Image
-                  src="/sebastian.webp"
-                  alt="Sebastian Napuri"
-                  width={600}
-                  height={700}
-                  className="w-full h-auto"
-                  priority
-                />
-                {/* Decorative elements */}
-                <div className="absolute top-4 right-4 bg-yellow-300 text-4xl p-3 rounded-full shadow-lg transform rotate-12">
-                  ✨
-                </div>
-              </motion.div>
+            <div className="relative rounded-2xl overflow-hidden shadow-lg">
+              <Image
+                src="/sebastian.webp"
+                alt="Sebastian Napuri"
+                width={600}
+                height={700}
+                className="w-full h-auto"
+                priority
+              />
             </div>
 
-            {/* About Card */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="bg-white rounded-2xl p-8 shadow-xl border-2 border-purple-100"
+              transition={{ delay: 0.5 }}
+              className="bg-white rounded-xl p-5 border border-gray-200"
             >
-              <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span>👋</span> nice to meet you!
-              </h3>
-              <div className="space-y-3 text-gray-700">
-                <p className="flex items-start gap-3">
-                  <span className="text-2xl">📍</span>
-                  <span>Based in <strong>Dallas, TX</strong></span>
+              <div className="grid grid-cols-2 gap-3 text-sm text-gray-500">
+                <p className="flex items-center gap-2.5">
+                  <MapPin className="w-4 h-4 text-turquoise flex-shrink-0" />
+                  <span>Dallas, TX</span>
                 </p>
-                <p className="flex items-start gap-3">
-                  <span className="text-2xl">🐴</span>
-                  <span>Currently at <strong className="text-purple-600">SMU</strong> (MADI program)</span>
+                <p className="flex items-center gap-2.5">
+                  <GraduationCap className="w-4 h-4 text-turquoise flex-shrink-0" />
+                  <span>SMU MADI</span>
                 </p>
-                <p className="flex items-start gap-3">
-                  <span className="text-2xl">🎯</span>
-                  <span>Passionate about <strong>UX, data, and business impact</strong></span>
+                <p className="flex items-center gap-2.5">
+                  <Target className="w-4 h-4 text-turquoise flex-shrink-0" />
+                  <span>UX & Data</span>
                 </p>
-                <p className="flex items-start gap-3">
-                  <span className="text-2xl">🚀</span>
-                  <span>Transformed experiences for <strong className="text-turquoise">Linio</strong>, <strong className="text-purple-600">Falabella</strong> & <strong className="text-coral">Liverpool</strong></span>
+                <p className="flex items-center gap-2.5">
+                  <Rocket className="w-4 h-4 text-turquoise flex-shrink-0" />
+                  <span>Linio, Falabella, Liverpool</span>
                 </p>
-              </div>
-
-              {/* CTA Buttons */}
-              <div className="flex gap-4 mt-6">
-                <a
-                  href="#projects"
-                  className="flex-1 text-center px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-full hover:shadow-lg transition-all hover:scale-105"
-                >
-                  View Work 🎨
-                </a>
-                <a
-                  href="#contact"
-                  className="flex-1 text-center px-6 py-3 bg-white border-2 border-purple-500 text-purple-600 font-semibold rounded-full hover:bg-purple-50 transition-all hover:scale-105"
-                >
-                  Say Hi 👋
-                </a>
               </div>
             </motion.div>
           </motion.div>

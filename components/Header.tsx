@@ -6,30 +6,28 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
 
   const navItems = [
-    { name: 'journey', href: '/#about' },
-    { name: 'education', href: '/#education' },
-    { name: 'experience', href: '/#experience' },
-    { name: 'skills', href: '/#skills' },
-    { name: 'case studies', href: '/#projects' },
-    { name: 'contact', href: '/#contact' },
+    { name: 'Journey', href: '/#about' },
+    { name: 'Education', href: '/#education' },
+    { name: 'Experience', href: '/#experience' },
+    { name: 'Skills', href: '/#skills' },
+    { name: 'Case Studies', href: '/#projects' },
+    { name: 'Contact', href: '/#contact' },
   ]
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+      <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Name/Logo */}
-          <a href="/" className="text-xl font-bold text-gray-900 hover:text-turquoise transition">
-            sebastian napuri
+          <a href="/" className="text-lg font-bold text-charcoal hover:text-turquoise transition">
+            Sebastian Napuri
           </a>
 
-          {/* Desktop Navigation */}
-          <ul className="hidden md:flex space-x-6 items-center">
+          <ul className="hidden md:flex space-x-8 items-center">
             {navItems.map((item) => (
               <li key={item.name}>
                 <a
                   href={item.href}
-                  className="text-gray-700 hover:text-turquoise transition font-medium"
+                  className="text-sm text-gray-500 hover:text-charcoal transition font-medium tracking-wide"
                 >
                   {item.name}
                 </a>
@@ -37,7 +35,6 @@ export default function Header() {
             ))}
           </ul>
 
-          {/* Mobile menu button */}
           <button
             className="md:hidden text-gray-700 hover:text-turquoise focus:outline-none focus:ring-2 focus:ring-turquoise rounded"
             onClick={() => setIsOpen(!isOpen)}
@@ -54,7 +51,6 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -63,12 +59,12 @@ export default function Header() {
               exit={{ opacity: 0, height: 0 }}
               className="md:hidden overflow-hidden"
             >
-              <ul className="py-4 space-y-2">
+              <ul className="py-4 space-y-1">
                 {navItems.map((item) => (
                   <li key={item.name}>
                     <a
                       href={item.href}
-                      className="block py-2 text-gray-700 hover:text-turquoise transition font-medium"
+                      className="block py-2.5 text-gray-600 hover:text-turquoise transition font-medium"
                       onClick={() => setIsOpen(false)}
                     >
                       {item.name}

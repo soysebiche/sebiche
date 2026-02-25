@@ -1,128 +1,99 @@
 'use client'
 import { motion } from 'framer-motion'
+import { GraduationCap, BookOpen } from 'lucide-react'
 
 const education = [
     {
-        degree: 'bachelor of business administration',
-        school: 'universidad del pacífico (up)',
-        location: 'lima, pe 🇵🇪',
+        degree: 'Bachelor of Business Administration',
+        school: 'Universidad del Pacífico (UP)',
+        location: 'Lima, Peru',
         period: '2013 - 2018',
-        gpa: 'gpa 3.59',
-        emoji: '🎓',
-        gradient: 'from-turquoise via-teal-400 to-cyan-400',
-        borderColor: 'border-turquoise',
-        accentGradient: 'from-turquoise to-teal-600',
-        tags: ['business strategy', 'marketing', 'finance', 'operations']
+        gpa: 'GPA 3.59',
+        icon: GraduationCap,
+        tags: ['Business Strategy', 'Marketing', 'Finance', 'Operations'],
     },
     {
-        degree: 'master of arts in design & innovation',
-        school: 'southern methodist university (smu)',
-        location: 'dallas, us 🇺🇸',
-        period: '2024 - present',
-        gpa: 'gpa 4.0',
-        emoji: '🐴',
-        gradient: 'from-purple-400 via-pink-400 to-rose-400',
-        borderColor: 'border-purple-400',
-        accentGradient: 'from-purple-600 to-pink-600',
-        tags: ['data analytics', 'ai/ml', 'innovation', 'business strategy', 'ux/ui design']
-    }
+        degree: 'Master of Arts in Design & Innovation',
+        school: 'Southern Methodist University (SMU)',
+        location: 'Dallas, US',
+        period: '2024 - Present',
+        gpa: 'GPA 4.0',
+        icon: BookOpen,
+        tags: ['Data Analytics', 'AI/ML', 'Innovation', 'Business Strategy', 'UX/UI Design'],
+    },
 ]
 
 export default function Education() {
     return (
-        <section id="education" className="py-20 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 relative overflow-hidden">
-            {/* Decorative blobs */}
-            <div className="absolute inset-0 opacity-20 pointer-events-none">
-                <div className="absolute top-20 right-20 w-72 h-72 bg-purple-400 rounded-full blur-3xl"></div>
-                <div className="absolute bottom-20 left-20 w-80 h-80 bg-pink-400 rounded-full blur-3xl"></div>
-            </div>
-
-            <div className="max-w-6xl mx-auto px-4 relative z-10">
-                {/* Header */}
+        <section id="education" className="py-16 bg-softGray">
+            <div className="max-w-6xl mx-auto px-4">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16"
+                    className="text-center mb-12"
                 >
-                    <h2 className="text-5xl md:text-6xl font-bold mb-4">
-                        <span className="text-4xl mr-3">🎓</span>
-                        education
+                    <h2 className="text-3xl md:text-4xl font-bold mb-3 text-charcoal">
+                        Education
                     </h2>
-                    <p className="text-xl text-gray-600">
-                        continuous learning & growth
+                    <p className="text-gray-500">
+                        Continuous learning & growth
                     </p>
                 </motion.div>
 
-                {/* Education cards */}
-                <div className="grid md:grid-cols-2 gap-8">
-                    {education.map((edu, index) => (
-                        <motion.div
-                            key={edu.school}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.2 }}
-                            whileHover={{ scale: 1.03, y: -8, rotate: index % 2 === 0 ? 1 : -1 }}
-                            className="h-full"
-                        >
-                            <div className={`
-                bg-gradient-to-br ${edu.gradient}
-                rounded-3xl p-8 shadow-2xl 
-                border-4 border-white
-                h-full
-                relative
-              `}>
-                                {/* Emoji */}
-                                <div className="text-6xl mb-6 drop-shadow-lg">
-                                    {edu.emoji}
-                                </div>
+                <div className="grid md:grid-cols-2 gap-6">
+                    {education.map((edu, index) => {
+                        const Icon = edu.icon
+                        return (
+                            <motion.div
+                                key={edu.school}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.15 }}
+                                whileHover={{ y: -4 }}
+                                className="h-full transition-all duration-200"
+                            >
+                                <div className="bg-white rounded-xl p-6 border border-gray-200 h-full">
+                                    <div className="w-10 h-10 rounded-lg bg-turquoise/10 flex items-center justify-center mb-4">
+                                        <Icon className="w-5 h-5 text-turquoise" />
+                                    </div>
 
-                                {/* Content */}
-                                <div>
-                                    <h3 className={`
-                    text-3xl font-bold mb-3 text-white drop-shadow-md
-                  `}>
+                                    <h3 className="text-xl font-bold text-charcoal mb-2">
                                         {edu.degree}
                                     </h3>
-                                    <p className="text-xl text-white/95 mb-2 font-semibold drop-shadow">
+                                    <p className="text-gray-600 font-medium mb-1">
                                         {edu.school}
                                     </p>
-                                    <p className="text-lg text-white/90 mb-2 font-medium">
+                                    <p className="text-gray-400 text-sm mb-1">
                                         {edu.location}
                                     </p>
-                                    <div className="flex items-center gap-3 mb-6">
-                                        <p className="text-white/90 font-medium">
-                                            {edu.period}
-                                        </p>
+                                    <div className="flex items-center gap-2 mb-4 text-sm">
+                                        <span className="text-gray-400">{edu.period}</span>
                                         {edu.gpa && (
                                             <>
-                                                <span className="text-white/60">•</span>
-                                                <span className="px-3 py-1 bg-white/30 backdrop-blur-sm rounded-full text-white font-bold text-sm">
+                                                <span className="text-gray-300">·</span>
+                                                <span className="px-2 py-0.5 bg-turquoise/10 text-turquoise rounded font-semibold text-xs">
                                                     {edu.gpa}
                                                 </span>
                                             </>
                                         )}
                                     </div>
 
-                                    {/* Tags */}
-                                    <div className="flex flex-wrap gap-2">
+                                    <div className="flex flex-wrap gap-1.5">
                                         {edu.tags.map((tag) => (
                                             <span
                                                 key={tag}
-                                                className="px-3 py-1.5 rounded-full text-sm font-semibold bg-white/25 backdrop-blur-sm text-white border-2 border-white/30"
+                                                className="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-100 text-gray-600"
                                             >
                                                 {tag}
                                             </span>
                                         ))}
                                     </div>
                                 </div>
-
-                                {/* Decorative corner */}
-                                <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-white/40 rounded-tr-lg"></div>
-                            </div>
-                        </motion.div>
-                    ))}
+                            </motion.div>
+                        )
+                    })}
                 </div>
             </div>
         </section>
