@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    --font-inter: 'Inter', sans-serif;
-    --font-montserrat: 'Montserrat', sans-serif;
+    --font-sans: 'Manrope', sans-serif;
+    --font-editorial: 'Cormorant Garamond', serif;
   }
 
   html {
@@ -13,7 +13,10 @@
   }
 
   body {
-    @apply font-inter text-gray-900 antialiased;
+    @apply antialiased;
+    font-family: var(--font-sans);
+    color: #f1eee7;
+    background: #090909;
   }
 
   h1,
@@ -22,15 +25,17 @@
   h4,
   h5,
   h6 {
-    @apply font-montserrat;
+    font-family: inherit;
   }
 
   ::selection {
-    @apply bg-turquoise/20 text-charcoal;
+    background: rgba(189, 87, 39, 0.22);
+    color: #f1eee7;
   }
 
   *:focus-visible {
-    @apply outline-2 outline-offset-2 outline-turquoise;
+    outline: 2px solid #bd5727;
+    outline-offset: 3px;
   }
 }
 

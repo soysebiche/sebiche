@@ -1,90 +1,89 @@
-import { Inter, Montserrat } from 'next/font/google'
+import { Cormorant_Garamond, Manrope } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
-import StructuredData from '../components/StructuredData'
 import './globals.css'
+import './holding.css'
 import type { Metadata } from 'next'
 
-const inter = Inter({
+const manrope = Manrope({
     subsets: ['latin'],
-    variable: '--font-inter',
+    variable: '--font-sans',
     display: 'swap',
 })
 
-const montserrat = Montserrat({
+const cormorant = Cormorant_Garamond({
     subsets: ['latin'],
-    variable: '--font-montserrat',
+    variable: '--font-editorial',
     display: 'swap',
+    weight: ['400', '500', '600'],
 })
 
 export const metadata: Metadata = {
-    title: 'Sebastian Napuri Mendoza | Product Designer & eCommerce Strategist',
-    description: 'Product designer with 10+ years transforming eCommerce experiences across Latin America. 125% sales growth, 100+ sellers onboarded, 5 countries.',
-    keywords: ['Sebastian Napuri', 'Product Designer', 'UX Design', 'eCommerce', 'Marketplace', 'LATAM', 'Linio', 'Falabella', 'Liverpool', 'SMU'],
-    authors: [{ name: 'Sebastian Napuri Mendoza' }],
-    creator: 'Sebastian Napuri Mendoza',
+    metadataBase: new URL('https://sebiche.com'),
+    title: 'Sebiche | Restaurant Technology',
+    description: 'Connected restaurant technology for orders, delivery, inventory, purchasing and forecasting.',
+    keywords: ['restaurant technology', 'restaurant operations', 'POS', 'delivery management', 'restaurant inventory'],
+    authors: [{ name: 'Sebiche' }],
+    creator: 'Sebiche',
     openGraph: {
         type: 'website',
         locale: 'en_US',
-        url: 'https://sebiche.vercel.app',
-        siteName: 'Sebastian Napuri',
-        title: 'Sebastian Napuri Mendoza | Product Designer & eCommerce Strategist',
-        description: 'Turning user frustration into revenue growth across Latin America\'s largest retailers.',
-        images: [
-            {
-                url: '/og-image.jpg',
-                width: 1200,
-                height: 630,
-                alt: 'Sebastian Napuri Mendoza - Product Designer & eCommerce Strategist',
-            },
-        ],
+        alternateLocale: ['es_419'],
+        url: 'https://sebiche.com',
+        siteName: 'Sebiche',
+        title: 'Sebiche | Restaurant Technology',
+        description: 'Your restaurant, connected end to end.',
+        images: [{
+            url: '/holding/hero-editorial.jpg',
+            width: 1200,
+            height: 630,
+            alt: 'Chef finishing a dish on the restaurant pass',
+        }],
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Sebastian Napuri Mendoza | Product Designer & eCommerce Strategist',
-        description: 'Turning user frustration into revenue growth across Latin America\'s largest retailers.',
-        images: ['/og-image.jpg'],
+        title: 'Sebiche | Restaurant Technology',
+        description: 'Your restaurant, connected end to end.',
+        images: ['/holding/hero-editorial.jpg'],
     },
     robots: {
         index: true,
         follow: true,
-        googleBot: {
-            index: true,
-            follow: true,
-            'max-video-preview': -1,
-            'max-image-preview': 'large',
-            'max-snippet': -1,
+    },
+}
+
+const organizationJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Sebiche',
+    url: 'https://sebiche.com',
+    email: 's@sebiche.com',
+    description: 'Connected restaurant technology for independent restaurants.',
+    location: {
+        '@type': 'Place',
+        address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Dallas',
+            addressRegion: 'TX',
+            addressCountry: 'US',
         },
     },
 }
 
-export default function RootLayout({
-    children,
-}: {
-    children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en" className={`${inter.variable} ${montserrat.variable}`}>
+        <html lang="en" className={`${manrope.variable} ${cormorant.variable}`}>
             <head>
                 <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-                <meta name="theme-color" content="#1A1A2E" />
-            </head>
-            <body className="antialiased">
-                <a
-                    href="#main"
-                    className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-charcoal focus:text-white focus:rounded-lg focus:text-sm focus:font-medium"
-                >
-                    Skip to content
-                </a>
-                {children}
-                <StructuredData
-                    type="Person"
-                    data={{
-                        name: 'Sebastian Napuri Mendoza',
-                        jobTitle: 'Product Designer & eCommerce Strategist',
-                        url: 'https://sebiche.vercel.app',
-                    }}
+                <meta name="theme-color" content="#11110f" />
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
                 />
-                <Analytics />
+            </head>
+            <body>
+                <a href="#main" className="holding-skip-link">Skip to content</a>
+                {children}
+                {process.env.VERCEL ? <Analytics /> : null}
             </body>
         </html>
     )
