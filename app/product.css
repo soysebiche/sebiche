@@ -207,6 +207,7 @@
 }
 
 .product-screen-frame img { object-fit: cover; object-position: top center; }
+.product-site.is-orange .product-screen-frame { min-height: 0; aspect-ratio: 2368 / 1640; }
 
 .product-proof {
   display: flex;
@@ -221,6 +222,65 @@
 .product-proof strong { color: var(--accent); font-family: var(--font-editorial); font-size: clamp(5rem, 9vw, 10rem); font-weight: 500; line-height: 0.75; letter-spacing: -0.07em; }
 .product-proof > span { margin-top: 1.5rem; font-size: 0.88rem; font-weight: 700; }
 .product-proof small { margin-top: 1rem; color: var(--muted); line-height: 1.65; }
+
+.product-scenes {
+  padding: clamp(5rem, 9vw, 9rem) 3.5vw;
+  border-bottom: 1px solid var(--rule);
+  background: #0d0d0c;
+}
+
+.product-scenes-lead {
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.6fr) minmax(0, 1.4fr);
+  align-items: end;
+  gap: 2rem;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.product-scenes-lead > p {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.product-scenes-lead h2 {
+  margin: 0;
+  font-size: clamp(2.5rem, 4.5vw, 5rem);
+  font-weight: 450;
+  letter-spacing: -0.055em;
+  line-height: 0.92;
+}
+
+.product-scenes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 3rem);
+}
+
+.product-scenes figure { min-width: 0; margin: 0; }
+
+.product-scene-frame {
+  position: relative;
+  aspect-ratio: 2368 / 1672;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  background: #161716;
+}
+
+.product-scene-frame img { object-fit: cover; object-position: top center; }
+
+.product-scenes figcaption {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 1.25rem;
+  padding-top: 1.5rem;
+}
+
+.product-scenes figcaption > span { padding-top: 0.25rem; color: var(--accent); font-size: 0.7rem; }
+.product-scenes h3 { margin: 0 0 0.65rem; font-size: clamp(1.25rem, 1.8vw, 1.8rem); font-weight: 500; letter-spacing: -0.04em; }
+.product-scenes figcaption p { max-width: 34rem; margin: 0; color: var(--muted); font-size: 0.88rem; line-height: 1.65; }
 
 .product-boundaries { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--rule); }
 .product-boundaries article { min-height: 30rem; padding: clamp(3rem, 5vw, 5rem) 3.5vw; }
@@ -256,6 +316,7 @@
   .product-hero-identity { min-height: 16rem; border-top: 1px solid var(--rule); border-left: 0; }
   .product-hero-identity strong { writing-mode: initial; transform: none; }
   .product-section-lead { grid-template-columns: 1fr; }
+  .product-scenes-lead { grid-template-columns: 1fr; }
   .product-workflow ol,
   .product-capability-grid { grid-template-columns: repeat(2, 1fr); }
   .product-workflow li:nth-child(3),
@@ -277,6 +338,7 @@
   .product-workflow,
   .product-capabilities,
   .product-screen,
+  .product-scenes,
   .product-final-cta { padding-right: 1.25rem; padding-left: 1.25rem; }
   .product-workflow ol,
   .product-capability-grid { grid-template-columns: 1fr; }
@@ -287,6 +349,7 @@
   .product-workflow h3,
   .product-capability-grid h3 { margin-top: 3rem; }
   .product-screen-frame { min-height: 18rem; }
+  .product-scenes-grid { grid-template-columns: 1fr; gap: 3.5rem; }
   .product-boundaries article { padding: 4rem 1.25rem; }
   .product-footer { align-items: flex-start; flex-direction: column; padding-right: 1.25rem; padding-left: 1.25rem; }
   .product-footer nav { flex-wrap: wrap; }

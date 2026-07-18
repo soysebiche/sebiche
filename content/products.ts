@@ -38,6 +38,11 @@ export type Product = {
     accent: 'copper' | 'violet' | 'orange'
     icon: string
     proofMetric: string
+    scenes?: Array<{
+        image: string
+        en: { title: string; body: string; alt: string }
+        es: { title: string; body: string; alt: string }
+    }>
     en: LocalizedProduct
     es: LocalizedProduct
 }
@@ -208,7 +213,35 @@ export const products: Record<ProductSlug, Product> = {
         image: '/holding/86mise.png',
         accent: 'orange',
         icon: '▤',
-        proofMetric: '101 + 15',
+        proofMetric: '8.4/10',
+        scenes: [
+            {
+                image: '/holding/86mise-inventory.png',
+                en: {
+                    title: 'Count what is physically there',
+                    body: 'A focused count turns shelf life and on-hand quantity into visible, actionable facts.',
+                    alt: '86MISE inventory count showing TCS expiry alerts and editable on-hand quantities',
+                },
+                es: {
+                    title: 'Contar lo que realmente existe',
+                    body: 'Un conteo enfocado convierte vida útil y existencias en hechos visibles para actuar.',
+                    alt: 'Conteo de inventario de 86MISE con alertas TCS y existencias editables',
+                },
+            },
+            {
+                image: '/holding/86mise-purchasing.png',
+                en: {
+                    title: 'Turn the decision into a controlled purchase',
+                    body: 'Supplier, amount and approval state stay together from draft through receipt.',
+                    alt: '86MISE purchase order list showing suppliers, totals and approval states',
+                },
+                es: {
+                    title: 'Convertir la decisión en una compra controlada',
+                    body: 'Proveedor, importe y estado de aprobación permanecen unidos desde borrador hasta recepción.',
+                    alt: 'Lista de órdenes de compra de 86MISE con proveedores, totales y estados de aprobación',
+                },
+            },
+        ],
         en: {
             eyebrow: 'Inventory · Purchasing · Forecasting',
             headline: 'Know what is on hand, what is at risk and what to buy next.',
@@ -218,12 +251,12 @@ export const products: Record<ProductSlug, Product> = {
             audienceTitle: 'Designed for',
             audience: 'Independent restaurant teams that need practical inventory control, food-safety visibility and purchasing guidance without an enterprise implementation.',
             workflowTitle: 'The inventory flow',
-            workflowIntro: 'Operational facts move from the shelf into the next purchasing decision.',
+            workflowIntro: 'One decision loop connects today’s exceptions to the next controlled purchase.',
             workflow: [
-                { title: 'Define', body: 'Connect ingredients, recipes, units, shelf life and preferred suppliers.' },
-                { title: 'Count', body: 'Record on-hand quantities from a tablet-focused inventory workflow.' },
-                { title: 'Prioritize', body: 'Surface low stock, TCS expiry risk and the work that needs attention first.' },
-                { title: 'Purchase', body: 'Translate current inventory and forecast context into reviewable orders.' },
+                { title: 'Detect', body: 'Open with the stock, expiry and purchasing exception that can change today’s service.' },
+                { title: 'Count', body: 'Confirm on-hand quantities from a tablet-focused inventory workflow.' },
+                { title: 'Decide', body: 'Combine shelf life, recipe demand and forecast context before committing spend.' },
+                { title: 'Purchase', body: 'Translate the decision into a reviewable order with approval and receipt states.' },
             ],
             capabilitiesTitle: 'Current product surface',
             capabilities: [
@@ -233,16 +266,16 @@ export const products: Record<ProductSlug, Product> = {
                 { title: 'Forecast context', body: 'Baseline predictions and feedback paths clearly separated from demo-only models.' },
             ],
             integrationsTitle: 'Integration boundary',
-            integrations: ['Clerk authentication and restaurant roles', 'PostgreSQL API data layer', 'Square OAuth and sync in beta hardening'],
+            integrations: ['Clerk authentication and restaurant roles', 'PostgreSQL API data layer', 'Square remains disabled until real-traffic validation'],
             requirementsTitle: 'Beta requirements',
             requirements: ['Modern desktop or tablet browser', 'Restaurant and location assignment', 'Initial ingredient, recipe and supplier setup'],
             statusLabel: 'Real product status',
-            statusTitle: 'Authenticated technical beta',
-            statusBody: 'Core inventory and purchasing flows are implemented and the authenticated beta is deployed. Full production readiness, real Square traffic and complete recovery-state coverage are not claimed.',
-            evidenceLabel: 'backend checks + Playwright/Axe journeys',
-            evidenceBody: 'The current audit records 101 compatible backend tests and 15 end-to-end accessibility journeys passing, with legacy contracts reported separately.',
+            statusTitle: 'Limited operational beta',
+            statusBody: 'The authenticated inventory and purchasing beta is deployed and its technical pilot is complete. General availability, real Square traffic and operator-validated readiness are not claimed.',
+            evidenceLabel: 'confirmed technical audit score',
+            evidenceBody: 'The current audit records 131 backend tests, 15 unit tests and 18 end-to-end journeys passing. An operator session and SUS score remain the gate to 8.5/10.',
             cta: 'Explore an 86MISE beta',
-            imageAlt: '86MISE inventory and purchasing dashboard',
+            imageAlt: '86MISE dashboard prioritizing expiry, low stock and pending purchase decisions',
         },
         es: {
             eyebrow: 'Inventario · Compras · Pronóstico',
@@ -253,12 +286,12 @@ export const products: Record<ProductSlug, Product> = {
             audienceTitle: 'Diseñado para',
             audience: 'Equipos de restaurantes independientes que necesitan control práctico, visibilidad sanitaria y orientación de compras sin una implementación empresarial.',
             workflowTitle: 'El flujo de inventario',
-            workflowIntro: 'Los hechos de la operación pasan del anaquel a la siguiente decisión de compra.',
+            workflowIntro: 'Un solo ciclo conecta las excepciones de hoy con la siguiente compra controlada.',
             workflow: [
-                { title: 'Definir', body: 'Conectar ingredientes, recetas, unidades, vida útil y proveedores preferidos.' },
-                { title: 'Contar', body: 'Registrar existencias desde un flujo de inventario optimizado para tablet.' },
-                { title: 'Priorizar', body: 'Mostrar stock bajo, riesgo de vencimiento TCS y el trabajo más urgente.' },
-                { title: 'Comprar', body: 'Convertir inventario y contexto de pronóstico en órdenes revisables.' },
+                { title: 'Detectar', body: 'Abrir con la excepción de stock, vencimiento o compra que puede cambiar el servicio de hoy.' },
+                { title: 'Contar', body: 'Confirmar existencias desde un flujo de inventario optimizado para tablet.' },
+                { title: 'Decidir', body: 'Combinar vida útil, demanda de recetas y pronóstico antes de comprometer gasto.' },
+                { title: 'Comprar', body: 'Convertir la decisión en una orden revisable con estados de aprobación y recepción.' },
             ],
             capabilitiesTitle: 'Superficie actual',
             capabilities: [
@@ -268,16 +301,16 @@ export const products: Record<ProductSlug, Product> = {
                 { title: 'Contexto de pronóstico', body: 'Predicción base y feedback separados claramente de modelos sólo demo.' },
             ],
             integrationsTitle: 'Límite de integración',
-            integrations: ['Autenticación Clerk y roles por restaurante', 'Capa API sobre PostgreSQL', 'OAuth y sincronización Square en beta endurecida'],
+            integrations: ['Autenticación Clerk y roles por restaurante', 'Capa API sobre PostgreSQL', 'Square permanece deshabilitado hasta validar tráfico real'],
             requirementsTitle: 'Requisitos de beta',
             requirements: ['Navegador moderno en desktop o tablet', 'Asignación de restaurante y local', 'Configuración inicial de ingredientes, recetas y proveedores'],
             statusLabel: 'Estado real del producto',
-            statusTitle: 'Beta técnica autenticada',
-            statusBody: 'Los flujos centrales de inventario y compras están implementados y la beta autenticada está desplegada. No se declara preparación total para producción, tráfico Square real ni cobertura completa de recuperación.',
-            evidenceLabel: 'pruebas backend + recorridos Playwright/Axe',
-            evidenceBody: 'La auditoría vigente registra 101 pruebas backend compatibles y 15 recorridos E2E de accesibilidad aprobados, con contratos legacy reportados por separado.',
+            statusTitle: 'Beta operativa limitada',
+            statusBody: 'La beta autenticada de inventario y compras está desplegada y su piloto técnico terminó. No se declara disponibilidad general, tráfico Square real ni preparación validada por operadores.',
+            evidenceLabel: 'de puntaje técnico confirmado',
+            evidenceBody: 'La auditoría vigente registra 131 pruebas backend, 15 unitarias y 18 recorridos E2E aprobados. La sesión con operador y el SUS siguen siendo el gate para 8.5/10.',
             cta: 'Explorar una beta de 86MISE',
-            imageAlt: 'Dashboard de inventario y compras de 86MISE',
+            imageAlt: 'Dashboard de 86MISE que prioriza vencimientos, stock bajo y compras pendientes',
         },
     },
 }

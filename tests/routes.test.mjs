@@ -124,7 +124,7 @@ test('product pages expose specific canonical metadata and honest status', async
   const products = [
     ['/productos/restos', 'RestOS', 'Private pilot'],
     ['/productos/tiptrack', 'TipTrack', 'Operational PWA'],
-    ['/productos/86mise', '86MISE', 'Authenticated technical beta'],
+    ['/productos/86mise', '86MISE', 'Limited operational beta'],
   ]
 
   for (const [route, name, status] of products) {

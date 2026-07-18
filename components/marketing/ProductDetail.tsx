@@ -10,8 +10,8 @@ import { useLanguageSelection } from '../../lib/use-language-selection'
 import MarketingHeader from './MarketingHeader'
 
 const commonCopy = {
-    en: { back: 'All products', proof: 'Verified product evidence', related: 'Other Sebiche products', contact: 'Contact', screen: 'product screen' },
-    es: { back: 'Todos los productos', proof: 'Evidencia verificada del producto', related: 'Otros productos Sebiche', contact: 'Contacto', screen: 'pantalla del producto' },
+    en: { back: 'All products', proof: 'Verified product evidence', related: 'Other Sebiche products', contact: 'Contact', screen: 'product screen', scenes: 'Inside the product', scenesTitle: 'From operational signal to controlled action.' },
+    es: { back: 'Todos los productos', proof: 'Evidencia verificada del producto', related: 'Otros productos Sebiche', contact: 'Contacto', screen: 'pantalla del producto', scenes: 'Dentro del producto', scenesTitle: 'De la señal operativa a la acción controlada.' },
 } as const
 
 export default function ProductDetail({ product, initialLanguage }: { product: Product, initialLanguage: Language }) {
@@ -84,6 +84,7 @@ export default function ProductDetail({ product, initialLanguage }: { product: P
                         src={product.image}
                         alt={copy.imageAlt}
                         fill
+                        loading="eager"
                         sizes="(max-width: 760px) 92vw, 74vw"
                     />
                 </div>
@@ -94,6 +95,40 @@ export default function ProductDetail({ product, initialLanguage }: { product: P
                     <small>{copy.evidenceBody}</small>
                 </div>
             </section>
+
+            {product.scenes && product.scenes.length > 0 && (
+                <section className="product-scenes" aria-labelledby="product-scenes-title">
+                    <div className="product-scenes-lead">
+                        <p>{product.name} / {common.scenes}</p>
+                        <h2 id="product-scenes-title">{common.scenesTitle}</h2>
+                    </div>
+                    <div className="product-scenes-grid">
+                        {product.scenes.map((scene, index) => {
+                            const sceneCopy = scene[language]
+
+                            return (
+                                <figure key={scene.image}>
+                                    <div className="product-scene-frame">
+                                        <Image
+                                            src={scene.image}
+                                            alt={sceneCopy.alt}
+                                            fill
+                                            sizes="(max-width: 760px) 92vw, 46vw"
+                                        />
+                                    </div>
+                                    <figcaption>
+                                        <span>0{index + 1}</span>
+                                        <div>
+                                            <h3>{sceneCopy.title}</h3>
+                                            <p>{sceneCopy.body}</p>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                            )
+                        })}
+                    </div>
+                </section>
+            )}
 
             <section className="product-capabilities" aria-labelledby="capabilities-title">
                 <div className="product-section-lead">
