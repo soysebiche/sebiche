@@ -319,6 +319,13 @@
   color: var(--copper);
   padding: clamp(1rem, 1.6vw, 1.5rem);
   background: var(--surface);
+  text-decoration: none;
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.holding-product-card:hover {
+  background: #161614;
+  transform: translateY(-0.25rem);
 }
 
 .holding-product-card.is-violet { color: var(--violet); }
@@ -372,6 +379,18 @@
 
 .holding-product-card:hover .holding-product-image img {
   transform: scale(1.025);
+}
+
+.holding-product-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  color: currentColor;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .holding-approach {

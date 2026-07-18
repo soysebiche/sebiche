@@ -1,0 +1,39 @@
+'use client'
+
+import Link from 'next/link'
+import type { HomeCopy } from '../../content/home'
+import type { Language } from '../../lib/language'
+import { trackMarketingEvent } from '../../lib/marketing-analytics'
+
+export default function ClosingSection({ copy, language }: { copy: HomeCopy, language: Language }) {
+    return (
+        <section id="contact" className="holding-closing" aria-labelledby="closing-title">
+            <div>
+                <h2 id="closing-title">
+                    <span>{copy.closing.start}</span>
+                    <span>{copy.closing.end} <em>{copy.closing.accent}</em></span>
+                </h2>
+                <div className="holding-contact-row is-dark">
+                    <Link
+                        className="holding-button"
+                        href="/contacto"
+                        onClick={() => trackMarketingEvent('Contact Form Started', { source: 'home_closing', language })}
+                    >
+                        {copy.closing.cta}
+                    </Link>
+                </div>
+            </div>
+
+            <footer className="holding-footer">
+                <span>SEBICHE — Dallas, Texas</span>
+                <div>
+                    <Link href="/productos/restos">RestOS</Link>
+                    <i aria-hidden />
+                    <Link href="/productos/tiptrack">TipTrack</Link>
+                    <i aria-hidden />
+                    <Link href="/productos/86mise">86MISE</Link>
+                </div>
+            </footer>
+        </section>
+    )
+}

@@ -2,6 +2,7 @@ import { Cormorant_Garamond, Manrope } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 import './holding.css'
+import './product.css'
 import type { Metadata } from 'next'
 import { getRequestLanguage } from '../lib/request-language'
 

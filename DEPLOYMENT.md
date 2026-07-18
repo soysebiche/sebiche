@@ -13,7 +13,15 @@ npm run typecheck
 npm test
 ```
 
-No application environment variables are currently required. Vercel Analytics is enabled automatically when `VERCEL` is present.
+The marketing pages render without environment variables. Vercel Analytics is enabled automatically when `VERCEL` is present.
+
+The internal contact form needs these production variables to deliver messages:
+
+- `RESEND_API_KEY`
+- `CONTACT_FROM_EMAIL` — a sender on a domain verified in Resend
+- `CONTACT_TO_EMAIL` — the Sebiche inbox that receives inquiries
+
+If they are absent or delivery fails, the form fails safely and presents a prefilled `mailto:` fallback without clearing the visitor's information.
 
 ## Vercel configuration
 
@@ -22,7 +30,7 @@ No application environment variables are currently required. Vercel Analytics is
 - Build command: `npm run build`
 - Production domain: `sebiche.com`
 
-After deployment, verify `/`, `/robots.txt`, `/sitemap.xml` and `/manifest.webmanifest`. Confirm that retired portfolio and restaurant-display URLs return `404`.
+After deployment, verify `/`, the three `/productos/*` pages, `/contacto`, `/robots.txt`, `/sitemap.xml` and `/manifest.webmanifest`. Submit a test inquiry and confirm it reaches `CONTACT_TO_EMAIL`. Confirm that retired portfolio and restaurant-display URLs return `404`.
 
 ## Search setup
 

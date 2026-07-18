@@ -1,3 +1,5 @@
+import { getRequestLanguage } from '../../lib/request-language'
+
 const organizationJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -16,11 +18,13 @@ const organizationJsonLd = {
     },
 }
 
-export default function MarketingLayout({ children }: { children: React.ReactNode }) {
+export default async function MarketingLayout({ children }: { children: React.ReactNode }) {
+    const language = await getRequestLanguage()
+
     return (
         <>
             <nav aria-label="Skip navigation">
-                <a href="#main" className="holding-skip-link">Skip to content</a>
+                <a href="#main" className="holding-skip-link">{language === 'es' ? 'Saltar al contenido' : 'Skip to content'}</a>
             </nav>
             <script
                 type="application/ld+json"

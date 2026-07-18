@@ -7,6 +7,10 @@ const host = '127.0.0.1'
 const nextCli = new URL('../node_modules/next/dist/bin/next', import.meta.url).pathname
 const routes = [
   ['/', 'SEBICHE'],
+  ['/productos/restos', 'One operational thread'],
+  ['/productos/tiptrack', 'Every delivery visible'],
+  ['/productos/86mise', 'Know what is on hand'],
+  ['/contacto', 'Tell us where the friction is'],
   ['/manifest.webmanifest', 'Restaurant Technology'],
   ['/robots.txt', 'Sitemap: https://sebiche.com/sitemap.xml'],
   ['/sitemap.xml', '<urlset'],
@@ -107,6 +111,29 @@ test('homepage exposes canonical corporate metadata only', async () => {
   assert.match(body, /<title>Sebiche \| Restaurant Technology<\/title>/i)
   assert.match(body, /rel="canonical" href="https:\/\/sebiche\.com"/i)
   assert.doesNotMatch(body, /Sebastian|Napuri|Linio|Liverpool|Founder experience/i)
+  assert.match(body, /href="\/productos\/restos"/i)
+  assert.match(body, /href="\/productos\/tiptrack"/i)
+  assert.match(body, /href="\/productos\/86mise"/i)
+  assert.match(body, /href="\/contacto"/i)
+})
+
+test('product pages expose specific canonical metadata and honest status', async () => {
+  const products = [
+    ['/productos/restos', 'RestOS', 'Private pilot'],
+    ['/productos/tiptrack', 'TipTrack', 'Operational PWA'],
+    ['/productos/86mise', '86MISE', 'Authenticated technical beta'],
+  ]
+
+  for (const [route, name, status] of products) {
+    const response = await fetch(`${baseUrl}${route}`)
+    const body = await response.text()
+
+    assert.equal(response.status, 200)
+    assert.match(body, new RegExp(`<title>${name} \\| Sebiche<\\/title>`, 'i'))
+    assert.match(body, new RegExp(`rel="canonical" href="https:\\/\\/sebiche\\.com${route}"`, 'i'))
+    assert.match(body, new RegExp(status, 'i'))
+    assert.match(body, new RegExp(`href="\\/contacto\\?product=${route.split('/').at(-1)}"`, 'i'))
+  }
 })
 
 test('retired pages and public assets return 404', async () => {
@@ -117,15 +144,44 @@ test('retired pages and public assets return 404', async () => {
   }
 })
 
-test('sitemap contains only the corporate homepage', async () => {
+test('sitemap contains the complete corporate conversion surface', async () => {
   const response = await fetch(`${baseUrl}/sitemap.xml`)
   const body = await response.text()
   const locations = body.match(/<loc>/g) ?? []
 
-  assert.equal(locations.length, 1)
+  assert.equal(locations.length, 5)
   assert.match(body, /<loc>https:\/\/sebiche\.com<\/loc>/i)
+  assert.match(body, /<loc>https:\/\/sebiche\.com\/productos\/restos<\/loc>/i)
+  assert.match(body, /<loc>https:\/\/sebiche\.com\/productos\/tiptrack<\/loc>/i)
+  assert.match(body, /<loc>https:\/\/sebiche\.com\/productos\/86mise<\/loc>/i)
+  assert.match(body, /<loc>https:\/\/sebiche\.com\/contacto<\/loc>/i)
   assert.doesNotMatch(body, /case-studies|menu-board|\/pizza|\/entrees/i)
   assert.doesNotMatch(body, /sebiche\.vercel\.app/i)
+})
+
+test('contact endpoint validates input and fails safely when delivery is not configured', async () => {
+  const invalidResponse = await fetch(`${baseUrl}/api/contact`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ name: 'Test' }),
+  })
+  assert.equal(invalidResponse.status, 400)
+
+  const fallbackResponse = await fetch(`${baseUrl}/api/contact`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({
+      name: 'Test User',
+      email: 'test@example.com',
+      restaurant: 'Test Restaurant',
+      product: 'restos',
+      message: 'We need to improve our order workflow.',
+      language: 'en',
+      website: '',
+    }),
+  })
+  assert.equal(fallbackResponse.status, 503)
+  assert.deepEqual(await fallbackResponse.json(), { ok: false, code: 'CONTACT_NOT_CONFIGURED' })
 })
 
 test('language preference uses cookie before Accept-Language', async () => {
