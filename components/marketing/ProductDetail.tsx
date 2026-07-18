@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { getProductCopy, products, type Product } from '../../content/products'
 import type { Language } from '../../lib/language'
 import { trackMarketingEvent } from '../../lib/marketing-analytics'
@@ -18,10 +18,11 @@ export default function ProductDetail({ product, initialLanguage }: { product: P
     const { language, selectLanguage } = useLanguageSelection(initialLanguage)
     const copy = getProductCopy(product, language)
     const common = commonCopy[language]
+    const viewedLanguage = useRef(initialLanguage)
 
     useEffect(() => {
-        trackMarketingEvent('Product Viewed', { product: product.slug, language })
-    }, [language, product.slug])
+        trackMarketingEvent('Product Viewed', { product: product.slug, language: viewedLanguage.current })
+    }, [product.slug])
 
     return (
         <main id="main" className={`product-site is-${product.accent}`}>
@@ -83,8 +84,6 @@ export default function ProductDetail({ product, initialLanguage }: { product: P
                         src={product.image}
                         alt={copy.imageAlt}
                         fill
-                        priority
-                        unoptimized
                         sizes="(max-width: 760px) 92vw, 74vw"
                     />
                 </div>

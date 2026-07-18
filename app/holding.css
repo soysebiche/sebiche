@@ -515,15 +515,38 @@
 }
 
 .holding-closing {
+  position: relative;
   min-height: 31rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background:
-    linear-gradient(90deg, rgba(12, 12, 10, 0.78) 0%, rgba(12, 12, 10, 0.68) 48%, rgba(12, 12, 10, 0.42) 100%),
-    url('/holding/closing-editorial.jpg') center / cover;
+  background: #0c0c0a;
   color: var(--paper);
   padding: clamp(3rem, 6vw, 6rem) 3.5vw 1.6rem;
+}
+
+.holding-closing-media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.holding-closing-media::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(12, 12, 10, 0.78) 0%, rgba(12, 12, 10, 0.68) 48%, rgba(12, 12, 10, 0.42) 100%);
+  content: '';
+}
+
+.holding-closing-media img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.holding-closing > div:not(.holding-closing-media),
+.holding-closing > footer {
+  position: relative;
+  z-index: 1;
 }
 
 .holding-closing h2 {

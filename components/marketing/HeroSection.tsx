@@ -20,7 +20,7 @@ export default function HeroSection({ copy, language }: { copy: HomeCopy, langua
                     <Link
                         className="holding-button"
                         href="/contacto"
-                        onClick={() => trackMarketingEvent('Contact Form Started', { source: 'home_hero', language })}
+                        onClick={() => trackMarketingEvent('Contact CTA Clicked', { source: 'home_hero', language })}
                     >
                         {copy.hero.cta}
                     </Link>
@@ -32,8 +32,8 @@ export default function HeroSection({ copy, language }: { copy: HomeCopy, langua
                     src="/holding/hero-editorial.jpg"
                     alt={copy.imageAlt.hero}
                     fill
-                    priority
-                    unoptimized
+                    fetchPriority="high"
+                    loading="eager"
                     sizes="(max-width: 760px) 100vw, 54vw"
                 />
                 <div className="holding-ticket" aria-hidden>

@@ -43,8 +43,6 @@ export default function ProductGrid({ copy, language }: { copy: HomeCopy, langua
                                     src={product.image}
                                     alt={copy.imageAlt[imageAltKeys[slug]]}
                                     fill
-                                    loading="eager"
-                                    unoptimized
                                     sizes="(max-width: 840px) 100vw, 33vw"
                                 />
                             </div>

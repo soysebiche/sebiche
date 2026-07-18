@@ -25,8 +25,6 @@ export default function ApproachSection({ copy }: { copy: HomeCopy }) {
                     src="/holding/operations-editorial.jpg"
                     alt={copy.imageAlt.operations}
                     fill
-                    loading="eager"
-                    unoptimized
                     sizes="(max-width: 760px) 100vw, 75vw"
                 />
             </div>

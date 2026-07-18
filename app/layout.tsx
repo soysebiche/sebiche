@@ -1,9 +1,9 @@
 import { Cormorant_Garamond, Manrope } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 import './holding.css'
 import './product.css'
 import type { Metadata } from 'next'
+import Telemetry from '../components/Telemetry'
 import { getRequestLanguage } from '../lib/request-language'
 
 const manrope = Manrope({
@@ -71,7 +71,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             </head>
             <body>
                 {children}
-                {process.env.VERCEL ? <Analytics /> : null}
+                <Telemetry enabled={Boolean(process.env.VERCEL)} />
             </body>
         </html>
     )

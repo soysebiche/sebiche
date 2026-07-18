@@ -19,7 +19,21 @@ Estas decisiones posteriores a la auditoría prevalecen sobre cualquier alternat
 | Fase 1 — Estabilizar | Completada | Accesibilidad crítica, navegación, lint, build y pruebas corregidos |
 | Fase 2 — Unificar | Completada y desplegada | Sitio exclusivamente corporativo, localización y SEO unificados, legado aislado |
 | **Fase 3 — Convertir** | **Completada y desplegada** | Productos explorables, navegación conectada, captación medible y fallback operativo |
-| Fase 4 — Optimizar | Pendiente | Rendimiento, experimentación y evidencia real |
+| **Fase 4 — Optimizar** | **En progreso** | Baseline medido; optimización de medios y telemetría de campo en implementación |
+
+## Objetivo vigente: fase 4
+
+La línea base móvil de producción del 17 de julio de 2026 es:
+
+| Indicador | Baseline | Meta |
+|---|---:|---:|
+| Lighthouse Performance | 75/100 | ≥90/100 |
+| LCP de laboratorio | 5.7 s | <2.5 s |
+| TBT de laboratorio | 110 ms | <200 ms |
+| CLS de laboratorio | 0 | <0.1 |
+| Accessibility / Best Practices / SEO | 100 / 100 / 100 | Mantener 100 |
+
+La primera iteración elimina descargas anticipadas, activa AVIF/WebP responsivo, difiere telemetría no crítica y añade Speed Insights para medir LCP, INP y CLS reales. El embudo y el primer experimento quedan definidos en `docs/phase-4-measurement.md`.
 
 ## Resultado de la fase 3
 

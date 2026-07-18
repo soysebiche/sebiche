@@ -115,6 +115,9 @@ test('homepage exposes canonical corporate metadata only', async () => {
   assert.match(body, /href="\/productos\/tiptrack"/i)
   assert.match(body, /href="\/productos\/86mise"/i)
   assert.match(body, /href="\/contacto"/i)
+  assert.match(body, /fetchPriority="high" loading="eager"/i)
+  assert.match(body, /loading="lazy"[^>]+\/_next\/image\?url=%2Fholding%2Frestos\.png/i)
+  assert.doesNotMatch(body, /<img[^>]+src="\/holding\//i)
 })
 
 test('product pages expose specific canonical metadata and honest status', async () => {

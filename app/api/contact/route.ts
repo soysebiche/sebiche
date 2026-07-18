@@ -1,4 +1,5 @@
 import { track } from '@vercel/analytics/server'
+import { after } from 'next/server'
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const PRODUCT_VALUES = new Set(['', 'restos', 'tiptrack', '86mise'])
@@ -35,6 +36,14 @@ export async function POST(request: Request) {
     }
 
     const apiKey = process.env.RESEND_API_KEY
+    if (process.env.VERCEL) {
+        after(() => track('Contact Form Validated', {
+            product: product || 'unspecified',
+            language,
+            deliveryMode: apiKey ? 'provider' : 'fallback',
+        }, { request }).catch(() => undefined))
+    }
+
     if (!apiKey) {
         return Response.json({ ok: false, code: 'CONTACT_NOT_CONFIGURED' }, { status: 503 })
     }
@@ -56,7 +65,7 @@ export async function POST(request: Request) {
     }
 
     if (process.env.VERCEL) {
-        await track('Contact Form Delivered', { product: product || 'unspecified', language }, { request }).catch(() => undefined)
+        after(() => track('Contact Form Delivered', { product: product || 'unspecified', language }, { request }).catch(() => undefined))
     }
 
     return Response.json({ ok: true })
