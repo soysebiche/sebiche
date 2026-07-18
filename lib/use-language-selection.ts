@@ -8,6 +8,14 @@ export function useLanguageSelection(initialLanguage: Language) {
 
     useEffect(() => {
         document.documentElement.lang = language === 'en' ? 'en-US' : 'es-419'
+
+        const skipNavigation = document.querySelector<HTMLElement>('[data-skip-navigation]')
+        const skipLink = document.querySelector<HTMLAnchorElement>('[data-skip-link]')
+
+        skipNavigation?.setAttribute('aria-label', language === 'es' ? 'Navegación de salto' : 'Skip navigation')
+        if (skipLink) {
+            skipLink.textContent = language === 'es' ? skipLink.dataset.labelEs ?? 'Saltar al contenido' : skipLink.dataset.labelEn ?? 'Skip to content'
+        }
     }, [language])
 
     function selectLanguage(nextLanguage: Language) {

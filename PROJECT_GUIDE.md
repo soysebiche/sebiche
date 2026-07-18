@@ -18,10 +18,10 @@ Estas decisiones posteriores a la auditoría prevalecen sobre cualquier alternat
 |---|---|---|
 | Fase 1 — Estabilizar | Completada | Accesibilidad crítica, navegación, lint, build y pruebas corregidos |
 | Fase 2 — Unificar | Completada y desplegada | Sitio exclusivamente corporativo, localización y SEO unificados, legado aislado |
-| **Fase 3 — Convertir** | **En progreso** | Modelo verificable creado; páginas de producto, navegación y captación en implementación |
+| **Fase 3 — Convertir** | **Completada y desplegada** | Productos explorables, navegación conectada, captación medible y fallback operativo |
 | Fase 4 — Optimizar | Pendiente | Rendimiento, experimentación y evidencia real |
 
-## Objetivo vigente: fase 3
+## Resultado de la fase 3
 
 Crear una página corporativa por producto —RestOS, TipTrack y 86MISE— que incluya:
 
@@ -37,6 +37,14 @@ Crear una página corporativa por producto —RestOS, TipTrack y 86MISE— que i
 También se deben hacer navegables las tarjetas y enlaces del footer, añadir un formulario interno con `mailto:` como fallback e instrumentar eventos.
 
 **Meta de fase 3:** 100% de productos explorables y una conversión a contacto cualificado de 3%, o una mejora de 50% sobre el baseline de los primeros 14 días.
+
+### Cierre operativo
+
+- La superficie corporativa fue desplegada en `https://www.sebiche.com` el 17 de julio de 2026.
+- RestOS, TipTrack y 86MISE tienen páginas públicas con estado real, evidencia y CTA específico.
+- Vercel Analytics registra vistas de producto, clics de CTA e inicio, envío o fallback del formulario.
+- La medición de 14 días comienza con este despliegue; la meta continúa siendo 3% de contacto cualificado o 50% de mejora sobre ese baseline.
+- Vercel no dispone todavía de una credencial `RESEND_API_KEY`. Por ello, el formulario conserva la consulta y genera un correo prellenado a `s@sebiche.com`; la entrega automática queda preparada, pero no se declara activa.
 
 ---
 

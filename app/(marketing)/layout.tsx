@@ -20,11 +20,21 @@ const organizationJsonLd = {
 
 export default async function MarketingLayout({ children }: { children: React.ReactNode }) {
     const language = await getRequestLanguage()
+    const skipNavigationLabel = language === 'es' ? 'Navegación de salto' : 'Skip navigation'
+    const skipLinkLabel = language === 'es' ? 'Saltar al contenido' : 'Skip to content'
 
     return (
         <>
-            <nav aria-label="Skip navigation">
-                <a href="#main" className="holding-skip-link">{language === 'es' ? 'Saltar al contenido' : 'Skip to content'}</a>
+            <nav aria-label={skipNavigationLabel} data-skip-navigation>
+                <a
+                    href="#main"
+                    className="holding-skip-link"
+                    data-skip-link
+                    data-label-en="Skip to content"
+                    data-label-es="Saltar al contenido"
+                >
+                    {skipLinkLabel}
+                </a>
             </nav>
             <script
                 type="application/ld+json"

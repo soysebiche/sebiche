@@ -10,8 +10,8 @@ import { useLanguageSelection } from '../../lib/use-language-selection'
 import MarketingHeader from './MarketingHeader'
 
 const commonCopy = {
-    en: { back: 'All products', proof: 'Verified product evidence', related: 'Other Sebiche products', contact: 'Contact' },
-    es: { back: 'Todos los productos', proof: 'Evidencia verificada del producto', related: 'Otros productos Sebiche', contact: 'Contacto' },
+    en: { back: 'All products', proof: 'Verified product evidence', related: 'Other Sebiche products', contact: 'Contact', screen: 'product screen' },
+    es: { back: 'Todos los productos', proof: 'Evidencia verificada del producto', related: 'Otros productos Sebiche', contact: 'Contacto', screen: 'pantalla del producto' },
 } as const
 
 export default function ProductDetail({ product, initialLanguage }: { product: Product, initialLanguage: Language }) {
@@ -77,7 +77,7 @@ export default function ProductDetail({ product, initialLanguage }: { product: P
                 </ol>
             </section>
 
-            <section className="product-screen" aria-label={`${product.name} product screen`}>
+            <section className="product-screen" aria-label={`${product.name} ${common.screen}`}>
                 <div className="product-screen-frame">
                     <Image
                         src={product.image}

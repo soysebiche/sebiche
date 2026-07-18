@@ -192,6 +192,8 @@ test('language preference uses cookie before Accept-Language', async () => {
 
   assert.match(spanishBody, /<html lang="es-419"/i)
   assert.match(spanishBody, /Tu restaurante/i)
+  assert.match(spanishBody, /Saltar al contenido/i)
+  assert.match(spanishBody, /aria-label="Navegación de salto"/i)
 
   const cookieResponse = await fetch(baseUrl, {
     headers: {
