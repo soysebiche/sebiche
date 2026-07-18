@@ -20,6 +20,23 @@ Medición móvil de Lighthouse ejecutada el 17 de julio de 2026 sobre `https://w
 
 Lighthouse atribuyó aproximadamente 1 MB de ahorro potencial a formatos modernos y tamaños responsivos. La página inicial transfería cerca de 1.7 MB y descargaba anticipadamente imágenes ubicadas bajo el fold.
 
+## Resultado de la primera iteración
+
+El 17 de julio de 2026 se desplegó el commit `ac3587b`. Para reducir el ruido propio de Lighthouse, el resultado posterior usa la mediana de tres corridas móviles consecutivas sobre producción. La línea base anterior corresponde a una sola corrida, por lo que la comparación orienta, pero no reemplaza los datos de campo.
+
+| Indicador | Antes | Después, mediana | Meta | Estado |
+|---|---:|---:|---:|---|
+| Performance | 75/100 | 94/100 | ≥90/100 | Alcanzada |
+| FCP | 1.0 s | 1.04 s | — | Estable |
+| LCP | 5.7 s | 2.46 s | <2.5 s | Alcanzada con margen estrecho |
+| TBT | 110 ms | 171 ms | <200 ms | Alcanzada |
+| CLS | 0 | 0 | <0.1 | Alcanzada |
+| Speed Index | 4.7 s | 3.70 s | — | Mejora de 21% |
+| Transferencia inicial | ~1,688 KiB | ~311 KiB | — | Reducción de 82% |
+| Accessibility / Best Practices / SEO | 100 / 100 / 100 | 100 / 100 / 100 | Mantener 100 | Alcanzada |
+
+Las tres corridas de Performance fueron 93, 94 y 96. Sus LCP fueron 2.54 s, 2.34 s y 2.46 s. Una corrida quedó apenas por encima del objetivo, de modo que Speed Insights debe confirmar el resultado en tráfico real antes de declarar estable la mejora. Lighthouse ya no identifica ahorro en formatos modernos, tamaño responsivo ni compresión de imágenes.
+
 ## Fuentes de verdad
 
 - **Vercel Speed Insights:** LCP, INP y CLS de usuarios reales por ruta y dispositivo.
@@ -51,7 +68,7 @@ Mientras `RESEND_API_KEY` no esté configurada, la conversión comercial confirm
 
 ## Primer experimento de propuesta
 
-El experimento comienza después de 14 días de baseline o 100 sesiones de producto, lo que ocurra más tarde.
+El baseline limpio comienza el 18 de julio de 2026 a las 00:00, hora de Chicago, después de las pruebas de producción. El experimento comienza después de 14 días de baseline o 100 sesiones de producto, lo que ocurra más tarde; por tiempo, la fecha más temprana posible es el 1 de agosto de 2026.
 
 - **Control:** “Hablemos de tu operación”.
 - **Variante:** “Evalúa qué producto encaja en tu operación”.
