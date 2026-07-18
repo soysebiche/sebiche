@@ -5,6 +5,8 @@ node_modules/
 
 # Testing
 /coverage
+/.playwright-cli/
+/output/
 
 # Next.js
 /.next/
@@ -31,6 +33,9 @@ yarn-error.log*
 
 # Vercel
 .vercel
+
+# Local agent tooling
+/skills/
 
 # TypeScript
 *.tsbuildinfo
