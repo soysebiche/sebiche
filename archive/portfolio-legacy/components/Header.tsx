@@ -1,26 +1,27 @@
 'use client'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Link from 'next/link'
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
 
   const navItems = [
-    { name: 'Journey', href: '/#about' },
-    { name: 'Education', href: '/#education' },
-    { name: 'Experience', href: '/#experience' },
-    { name: 'Skills', href: '/#skills' },
-    { name: 'Case Studies', href: '/#projects' },
+    { name: 'Home', href: '/' },
+    { name: 'Products', href: '/#products' },
+    { name: 'Approach', href: '/#approach' },
+    { name: 'Linio', href: '/case-studies/linio' },
+    { name: 'Liverpool', href: '/case-studies/liverpool' },
     { name: 'Contact', href: '/#contact' },
   ]
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-      <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav aria-label="Case study navigation" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <a href="/" className="text-lg font-bold text-charcoal hover:text-turquoise transition">
-            Sebastian Napuri
-          </a>
+          <Link href="/" className="text-lg font-bold text-charcoal hover:text-turquoise transition">
+            SEBICHE
+          </Link>
 
           <ul className="hidden md:flex space-x-8 items-center">
             {navItems.map((item) => (

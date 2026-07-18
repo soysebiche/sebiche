@@ -3,6 +3,7 @@ import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 import './holding.css'
 import type { Metadata } from 'next'
+import { getRequestLanguage } from '../lib/request-language'
 
 const manrope = Manrope({
     subsets: ['latin'],
@@ -19,11 +20,18 @@ const cormorant = Cormorant_Garamond({
 
 export const metadata: Metadata = {
     metadataBase: new URL('https://sebiche.com'),
-    title: 'Sebiche | Restaurant Technology',
+    title: {
+        default: 'Sebiche | Restaurant Technology',
+        template: '%s | Sebiche',
+    },
     description: 'Connected restaurant technology for orders, delivery, inventory, purchasing and forecasting.',
     keywords: ['restaurant technology', 'restaurant operations', 'POS', 'delivery management', 'restaurant inventory'],
     authors: [{ name: 'Sebiche' }],
     creator: 'Sebiche',
+    alternates: {
+        canonical: '/',
+    },
+    manifest: '/manifest.webmanifest',
     openGraph: {
         type: 'website',
         locale: 'en_US',
@@ -51,37 +59,16 @@ export const metadata: Metadata = {
     },
 }
 
-const organizationJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Sebiche',
-    url: 'https://sebiche.com',
-    email: 's@sebiche.com',
-    description: 'Connected restaurant technology for independent restaurants.',
-    location: {
-        '@type': 'Place',
-        address: {
-            '@type': 'PostalAddress',
-            addressLocality: 'Dallas',
-            addressRegion: 'TX',
-            addressCountry: 'US',
-        },
-    },
-}
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+    const language = await getRequestLanguage()
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en" className={`${manrope.variable} ${cormorant.variable}`}>
+        <html lang={language === 'es' ? 'es-419' : 'en-US'} className={`${manrope.variable} ${cormorant.variable}`}>
             <head>
                 <link rel="icon" href="/favicon.ico" type="image/x-icon" />
                 <meta name="theme-color" content="#11110f" />
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-                />
             </head>
             <body>
-                <a href="#main" className="holding-skip-link">Skip to content</a>
                 {children}
                 {process.env.VERCEL ? <Analytics /> : null}
             </body>

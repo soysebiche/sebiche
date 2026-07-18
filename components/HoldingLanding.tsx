@@ -2,15 +2,21 @@
 
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
-
-export type Language = 'en' | 'es'
+import { LANGUAGE_COOKIE, type Language } from '../lib/language'
 
 const EMAIL = 's@sebiche.com'
-const LANGUAGE_STORAGE_KEY = 'sebiche-language-v1'
 
 const copy = {
     en: {
-        nav: { products: 'Products', approach: 'Approach', contact: 'Contact' },
+        nav: {
+            products: 'Products',
+            approach: 'Approach',
+            contact: 'Contact',
+            menu: 'Menu',
+            label: 'Primary navigation',
+            language: 'Language',
+            home: 'Sebiche home',
+        },
         hero: {
             eyebrow: 'Restaurant technology',
             start: 'Your restaurant,',
@@ -54,7 +60,15 @@ const copy = {
         },
     },
     es: {
-        nav: { products: 'Productos', approach: 'Enfoque', contact: 'Contacto' },
+        nav: {
+            products: 'Productos',
+            approach: 'Enfoque',
+            contact: 'Contacto',
+            menu: 'Menú',
+            label: 'Navegación principal',
+            language: 'Idioma',
+            home: 'Inicio de Sebiche',
+        },
         hero: {
             eyebrow: 'Tecnología para restaurantes',
             start: 'Tu restaurante,',
@@ -114,12 +128,8 @@ function contactHref(language: Language) {
 
 export default function HoldingLanding({ initialLanguage }: { initialLanguage: Language }) {
     const [language, setLanguage] = useState<Language>(initialLanguage)
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
     const t = copy[language]
-
-    useEffect(() => {
-        const stored = window.localStorage.getItem(LANGUAGE_STORAGE_KEY)
-        if (stored === 'en' || stored === 'es') setLanguage(stored)
-    }, [])
 
     useEffect(() => {
         document.documentElement.lang = language === 'en' ? 'en-US' : 'es-419'
@@ -127,25 +137,46 @@ export default function HoldingLanding({ initialLanguage }: { initialLanguage: L
 
     function selectLanguage(nextLanguage: Language) {
         setLanguage(nextLanguage)
-        window.localStorage.setItem(LANGUAGE_STORAGE_KEY, nextLanguage)
+        setIsMenuOpen(false)
+        document.cookie = `${LANGUAGE_COOKIE}=${nextLanguage}; path=/; max-age=31536000; samesite=lax`
     }
 
     return (
         <main id="main" className="holding-site">
             <section className="holding-hero" aria-labelledby="hero-title">
                 <header className="holding-header">
-                    <a className="holding-wordmark" href="#main" aria-label="Sebiche home">
+                    <a className="holding-wordmark" href="#main" aria-label={t.nav.home}>
                         <strong>SEBICHE</strong>
                         <span>{t.hero.eyebrow}</span>
                     </a>
 
-                    <nav className="holding-nav" aria-label="Primary navigation">
+                    <nav className="holding-nav" aria-label={t.nav.label}>
                         <a href="#products">{t.nav.products}</a>
                         <a href="#approach">{t.nav.approach}</a>
                         <a href="#contact">{t.nav.contact}</a>
                     </nav>
 
-                    <div className="holding-language" aria-label="Language">
+                    <button
+                        type="button"
+                        className="holding-menu-button"
+                        aria-expanded={isMenuOpen}
+                        aria-controls="holding-mobile-navigation"
+                        onClick={() => setIsMenuOpen((open) => !open)}
+                    >
+                        {t.nav.menu}
+                    </button>
+
+                    <nav
+                        id="holding-mobile-navigation"
+                        className={`holding-mobile-nav${isMenuOpen ? ' is-open' : ''}`}
+                        aria-label={t.nav.label}
+                    >
+                        <a href="#products" onClick={() => setIsMenuOpen(false)}>{t.nav.products}</a>
+                        <a href="#approach" onClick={() => setIsMenuOpen(false)}>{t.nav.approach}</a>
+                        <a href="#contact" onClick={() => setIsMenuOpen(false)}>{t.nav.contact}</a>
+                    </nav>
+
+                    <div className="holding-language" aria-label={t.nav.language}>
                         <button
                             type="button"
                             className={language === 'en' ? 'is-active' : undefined}

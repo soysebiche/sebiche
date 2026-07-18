@@ -8,8 +8,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        turquoise: '#00A89A',
-        'turquoise-dark': '#008F83',
+        turquoise: '#007C72',
+        'turquoise-dark': '#00685F',
+        coral: '#B6403A',
         charcoal: '#1A1A2E',
         'charcoal-light': '#2D2D44',
         softGray: '#F8F9FC',

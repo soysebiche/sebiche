@@ -1,16 +1,14 @@
-import { Linkedin, Mail, Github } from 'lucide-react'
+import { Mail } from 'lucide-react'
 
 const navLinks = [
-  { name: 'Journey', href: '/#about' },
-  { name: 'Experience', href: '/#experience' },
-  { name: 'Projects', href: '/#projects' },
+  { name: 'Home', href: '/' },
+  { name: 'Products', href: '/#products' },
+  { name: 'Approach', href: '/#approach' },
   { name: 'Contact', href: '/#contact' },
 ]
 
 const socialLinks = [
-  { icon: Linkedin, href: 'https://www.linkedin.com/in/sebastian-napuri/', label: 'LinkedIn' },
-  { icon: Github, href: 'https://github.com/soysebiche', label: 'GitHub' },
-  { icon: Mail, href: 'mailto:snapuri@smu.edu', label: 'Email' },
+  { icon: Mail, href: 'mailto:s@sebiche.com', label: 'Email Sebiche' },
 ]
 
 export default function Footer() {
@@ -21,11 +19,11 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-8">
           <div>
-            <p className="font-bold text-lg mb-1">Sebastian Napuri</p>
-            <p className="text-sm text-gray-400">Product Designer & eCommerce Strategist</p>
+            <p className="font-bold text-lg mb-1">SEBICHE</p>
+            <p className="text-sm text-gray-400">Connected restaurant technology</p>
           </div>
 
-          <nav className="flex flex-wrap gap-x-6 gap-y-2">
+          <nav aria-label="Footer navigation" className="flex flex-wrap gap-x-6 gap-y-2">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -57,8 +55,8 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-700 pt-6 text-center">
-          <p className="text-xs text-gray-500">
-            &copy; {currentYear} Sebastian Napuri Mendoza. All rights reserved.
+          <p className="text-xs text-gray-400">
+            &copy; {currentYear} Sebiche. All rights reserved.
           </p>
         </div>
       </div>
