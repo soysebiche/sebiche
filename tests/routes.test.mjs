@@ -118,6 +118,10 @@ test('homepage exposes canonical corporate metadata only', async () => {
   assert.match(body, /fetchPriority="high" loading="eager"/i)
   assert.match(body, /loading="lazy"[^>]+\/_next\/image\?url=%2Fholding%2Frestos\.png/i)
   assert.doesNotMatch(body, /<img[^>]+src="\/holding\//i)
+
+  if (process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID) {
+    assert.match(body, new RegExp(`googletagmanager\\.com/gtag/js\\?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`))
+  }
 })
 
 test('product pages expose specific canonical metadata and honest status', async () => {

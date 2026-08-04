@@ -13,13 +13,14 @@ npm run typecheck
 npm test
 ```
 
-The marketing pages render without environment variables. Vercel Analytics is enabled automatically when `VERCEL` is present.
+The marketing pages render without environment variables. Vercel Analytics is enabled automatically when `VERCEL` is present. Google Analytics is enabled when `NEXT_PUBLIC_GA_MEASUREMENT_ID` contains the public GA4 web-stream ID.
 
 The internal contact form needs these production variables to deliver messages:
 
 - `RESEND_API_KEY`
 - `CONTACT_FROM_EMAIL` — a sender on a domain verified in Resend
 - `CONTACT_TO_EMAIL` — the Sebiche inbox that receives inquiries
+- `NEXT_PUBLIC_GA_MEASUREMENT_ID` — the public GA4 measurement ID for `sebiche.com`
 
 If they are absent or delivery fails, the form fails safely and presents a prefilled `mailto:` fallback without clearing the visitor's information.
 
@@ -34,7 +35,7 @@ After deployment, verify `/`, the three `/productos/*` pages, `/contacto`, `/rob
 
 ## Search setup
 
-Submit `https://sebiche.com/sitemap.xml` in Google Search Console after domain verification. Public canonical URLs and Open Graph metadata use `https://sebiche.com`.
+Verify the `sebiche.com` domain property in Google Search Console with its DNS TXT record, then submit `https://sebiche.com/sitemap.xml`. Public canonical URLs and Open Graph metadata use `https://sebiche.com`.
 
 ## Project boundaries
 

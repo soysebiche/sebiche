@@ -41,6 +41,7 @@ Las tres corridas de Performance fueron 93, 94 y 96. Sus LCP fueron 2.54 s, 2.34
 
 - **Vercel Speed Insights:** LCP, INP y CLS de usuarios reales por ruta y dispositivo.
 - **Vercel Web Analytics:** sesiones, páginas y eventos del embudo.
+- **Google Analytics 4:** adquisición, sesiones, páginas y eventos equivalentes del embudo; la propiedad de Sebiche debe usar su propio flujo web.
 - **Lighthouse móvil:** regresión reproducible previa a cada despliegue de optimización.
 - **Correo recibido:** confirmación comercial final; ningún evento técnico sustituye esta evidencia.
 
@@ -56,6 +57,8 @@ Los eventos no incluyen nombre, correo, restaurante ni mensaje.
 | 4 | `Contact Form Validated` | El servidor recibió campos completos y válidos; registra `provider` o `fallback`. |
 | 5a | `Contact Form Delivered` | El proveedor aceptó el correo. Es el contacto cualificado confirmado. |
 | 5b | `Contact Fallback Used` | El visitante abrió el correo prellenado. Es intención, no entrega confirmada. |
+
+En GA4, los mismos hitos del navegador se registran como `product_viewed`, `product_cta_clicked`, `contact_form_started`, `generate_lead` y `contact_fallback_used`. No se envían nombre, correo, restaurante ni mensaje.
 
 ### Fórmulas
 
