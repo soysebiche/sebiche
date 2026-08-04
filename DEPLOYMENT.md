@@ -13,14 +13,14 @@ npm run typecheck
 npm test
 ```
 
-The marketing pages render without environment variables. Vercel Analytics is enabled automatically when `VERCEL` is present. Google Analytics is enabled when `NEXT_PUBLIC_GA_MEASUREMENT_ID` contains the public GA4 web-stream ID.
+The marketing pages render without environment variables. Vercel Analytics is enabled automatically when `VERCEL` is present. Google Analytics uses Sebiche's dedicated GA4 web-stream ID, with `NEXT_PUBLIC_GA_MEASUREMENT_ID` available as an optional public override.
 
 The internal contact form needs these production variables to deliver messages:
 
 - `RESEND_API_KEY`
 - `CONTACT_FROM_EMAIL` — a sender on a domain verified in Resend
 - `CONTACT_TO_EMAIL` — the Sebiche inbox that receives inquiries
-- `NEXT_PUBLIC_GA_MEASUREMENT_ID` — the public GA4 measurement ID for `sebiche.com`
+- `NEXT_PUBLIC_GA_MEASUREMENT_ID` — optional override for the public GA4 measurement ID used by `sebiche.com`
 
 If they are absent or delivery fails, the form fails safely and presents a prefilled `mailto:` fallback without clearing the visitor's information.
 

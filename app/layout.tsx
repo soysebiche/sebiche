@@ -62,7 +62,8 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
     const language = await getRequestLanguage()
-    const googleMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.match(/^G-[A-Z0-9]+$/)?.[0]
+    const configuredMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? 'G-X9SVKLLCBY'
+    const googleMeasurementId = configuredMeasurementId.match(/^G-[A-Z0-9]+$/)?.[0]
 
     return (
         <html lang={language === 'es' ? 'es-419' : 'en-US'} className={`${manrope.variable} ${cormorant.variable}`}>
