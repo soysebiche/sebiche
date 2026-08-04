@@ -121,6 +121,7 @@ test('homepage exposes canonical corporate metadata only', async () => {
 
   const expectedMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-X9SVKLLCBY'
   assert.match(body, new RegExp(`googletagmanager\\.com/gtag/js\\?id=${expectedMeasurementId}`))
+  assert.match(body, new RegExp(`gtag\\('config','${expectedMeasurementId}'\\)`))
 })
 
 test('product pages expose specific canonical metadata and honest status', async () => {

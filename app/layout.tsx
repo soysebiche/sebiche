@@ -70,13 +70,20 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <head>
                 <link rel="icon" href="/favicon.ico" type="image/x-icon" />
                 <meta name="theme-color" content="#11110f" />
+                {googleMeasurementId ? (
+                    <>
+                        <script async src={`https://www.googletagmanager.com/gtag/js?id=${googleMeasurementId}`} />
+                        <script
+                            dangerouslySetInnerHTML={{
+                                __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${googleMeasurementId}');`,
+                            }}
+                        />
+                    </>
+                ) : null}
             </head>
             <body>
                 {children}
-                <Telemetry
-                    googleMeasurementId={googleMeasurementId}
-                    vercelEnabled={Boolean(process.env.VERCEL)}
-                />
+                <Telemetry enabled={Boolean(process.env.VERCEL)} />
             </body>
         </html>
     )

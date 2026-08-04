@@ -1,8 +1,6 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import Script from 'next/script'
-import { useEffect } from 'react'
 
 const Analytics = dynamic(
     () => import('@vercel/analytics/react').then((module) => module.Analytics),
@@ -14,44 +12,13 @@ const SpeedInsights = dynamic(
     { ssr: false },
 )
 
-type TelemetryProps = {
-    googleMeasurementId?: string
-    vercelEnabled: boolean
-}
-
-export default function Telemetry({ googleMeasurementId, vercelEnabled }: TelemetryProps) {
-    useEffect(() => {
-        if (!googleMeasurementId) return
-
-        const analyticsWindow = window as Window & {
-            dataLayer?: unknown[][]
-            gtag?: (...parameters: unknown[]) => void
-        }
-
-        analyticsWindow.dataLayer = analyticsWindow.dataLayer ?? []
-        analyticsWindow.gtag = analyticsWindow.gtag ?? ((...parameters: unknown[]) => {
-            analyticsWindow.dataLayer?.push(parameters)
-        })
-        analyticsWindow.gtag('js', new Date())
-        analyticsWindow.gtag('config', googleMeasurementId)
-    }, [googleMeasurementId])
-
-    if (!vercelEnabled && !googleMeasurementId) return null
+export default function Telemetry({ enabled }: { enabled: boolean }) {
+    if (!enabled) return null
 
     return (
         <>
-            {vercelEnabled ? (
-                <>
-                    <Analytics />
-                    <SpeedInsights />
-                </>
-            ) : null}
-            {googleMeasurementId ? (
-                <Script
-                    src={`https://www.googletagmanager.com/gtag/js?id=${googleMeasurementId}`}
-                    strategy="afterInteractive"
-                />
-            ) : null}
+            <Analytics />
+            <SpeedInsights />
         </>
     )
 }
