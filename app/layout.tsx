@@ -62,7 +62,7 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
     const language = await getRequestLanguage()
-    const configuredMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? 'G-X9SVKLLCBY'
+    const configuredMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-X9SVKLLCBY'
     const googleMeasurementId = configuredMeasurementId.match(/^G-[A-Z0-9]+$/)?.[0]
 
     return (
