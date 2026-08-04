@@ -2,6 +2,7 @@
 
 import dynamic from 'next/dynamic'
 import Script from 'next/script'
+import { useEffect } from 'react'
 
 const Analytics = dynamic(
     () => import('@vercel/analytics/react').then((module) => module.Analytics),
@@ -19,6 +20,22 @@ type TelemetryProps = {
 }
 
 export default function Telemetry({ googleMeasurementId, vercelEnabled }: TelemetryProps) {
+    useEffect(() => {
+        if (!googleMeasurementId) return
+
+        const analyticsWindow = window as Window & {
+            dataLayer?: unknown[][]
+            gtag?: (...parameters: unknown[]) => void
+        }
+
+        analyticsWindow.dataLayer = analyticsWindow.dataLayer ?? []
+        analyticsWindow.gtag = analyticsWindow.gtag ?? ((...parameters: unknown[]) => {
+            analyticsWindow.dataLayer?.push(parameters)
+        })
+        analyticsWindow.gtag('js', new Date())
+        analyticsWindow.gtag('config', googleMeasurementId)
+    }, [googleMeasurementId])
+
     if (!vercelEnabled && !googleMeasurementId) return null
 
     return (
@@ -30,20 +47,10 @@ export default function Telemetry({ googleMeasurementId, vercelEnabled }: Teleme
                 </>
             ) : null}
             {googleMeasurementId ? (
-                <>
-                    <Script
-                        src={`https://www.googletagmanager.com/gtag/js?id=${googleMeasurementId}`}
-                        strategy="afterInteractive"
-                    />
-                    <Script id="google-analytics" strategy="afterInteractive">
-                        {`
-                            window.dataLayer = window.dataLayer || [];
-                            function gtag(){dataLayer.push(arguments);}
-                            gtag('js', new Date());
-                            gtag('config', '${googleMeasurementId}');
-                        `}
-                    </Script>
-                </>
+                <Script
+                    src={`https://www.googletagmanager.com/gtag/js?id=${googleMeasurementId}`}
+                    strategy="afterInteractive"
+                />
             ) : null}
         </>
     )
