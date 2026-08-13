@@ -4,6 +4,8 @@ Auditoría de mantenibilidad del sitio corporativo activo. No cubre `archive/por
 
 **Barra de aprobación:** no se aprueba “porque funciona”. El TypeScript activo es pequeño (~1,550 líneas) y en su mayoría directo. Aun así, hay regresiones estructurales claras, un movimiento de code-judo evidente que no se ha tomado, y crecimiento de casos especiales en i18n, catálogo y chrome. **No aprueba** como arquitectura lista para seguir creciendo sin reencuadre.
 
+Plan de corrección: `docs/thermo-nuclear-remediation-plan.md`.
+
 **Qué está bien y no hay que tocar:** aislamiento del archivo, composición de `HoldingLanding`, honestidad de estado de producto, fallback `mailto:` del formulario, `strict` sin `any`, y smoke tests de rutas corporativas vs. legado retirado.
 
 ---
@@ -189,7 +191,7 @@ ESLint apaga `react/no-unescaped-entities` y `react-hooks/set-state-in-effect`. 
 6. **`TrackLink`** para devolver Hero/Grid/Closing a Server Components.
 7. **Toolchain** — `target` moderno, `@types/react` 19, quitar `framer-motion`.
 
-El paso 1+2 es el judo: menos conceptos, mismos flujos, cero features nuevas.
+El paso 1+2 es el judo: menos conceptos, mismos flujos, cero features nuevas. El desglose por paquetes, archivos, tests y riesgos está en `docs/thermo-nuclear-remediation-plan.md`.
 
 ---
 
