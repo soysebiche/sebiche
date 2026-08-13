@@ -1,8 +1,8 @@
 import { track } from '@vercel/analytics/server'
 import { after } from 'next/server'
+import { isProductSlug } from '../../../content/products'
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-const PRODUCT_VALUES = new Set(['', 'restos', 'tiptrack', '86mise'])
 
 function clean(value: unknown, maxLength: number) {
     return typeof value === 'string' ? value.trim().slice(0, maxLength) : ''
@@ -31,7 +31,7 @@ export async function POST(request: Request) {
     const message = clean(payload.message, 3000)
     const language = clean(payload.language, 2) === 'es' ? 'es' : 'en'
 
-    if (!name || !EMAIL_PATTERN.test(email) || !restaurant || !message || !PRODUCT_VALUES.has(product)) {
+    if (!name || !EMAIL_PATTERN.test(email) || !restaurant || !message || (product !== '' && !isProductSlug(product))) {
         return Response.json({ ok: false, code: 'INVALID_FIELDS' }, { status: 400 })
     }
 

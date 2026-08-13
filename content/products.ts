@@ -27,6 +27,7 @@ type LocalizedProduct = {
     evidenceLabel: string
     evidenceBody: string
     cta: string
+    cardBody: string
     imageAlt: string
 }
 
@@ -89,6 +90,7 @@ export const products: Record<ProductSlug, Product> = {
             evidenceLabel: 'focused test scripts passing locally',
             evidenceBody: 'The current project status records green lint, production build and 96 focused test scripts across its operational contracts.',
             cta: 'Discuss a RestOS pilot',
+            cardBody: 'Orders, POS, kitchen and payments.',
             imageAlt: 'RestOS internal point-of-sale order entry screen',
         },
         es: {
@@ -124,6 +126,7 @@ export const products: Record<ProductSlug, Product> = {
             evidenceLabel: 'scripts de prueba enfocados aprobados localmente',
             evidenceBody: 'El estado actual registra lint, build de producción y 96 scripts de prueba enfocados en verde.',
             cta: 'Conversemos sobre un piloto RestOS',
+            cardBody: 'Pedidos, POS, cocina y pagos.',
             imageAlt: 'Pantalla interna de captura de pedidos en RestOS',
         },
     },
@@ -168,6 +171,7 @@ export const products: Record<ProductSlug, Product> = {
             evidenceLabel: 'functional native-driver parity verified',
             evidenceBody: 'The fixed capability scorecard records 98% parity, production-backed RPC validation and successful physical iPhone lifecycle tests.',
             cta: 'Evaluate TipTrack for your team',
+            cardBody: 'Delivery, routes, tips and oversight.',
             imageAlt: 'TipTrack secure operations login screen',
         },
         es: {
@@ -203,6 +207,7 @@ export const products: Record<ProductSlug, Product> = {
             evidenceLabel: 'de paridad funcional nativa verificada',
             evidenceBody: 'El scorecard fijo registra 98% de paridad, validación de RPC contra producción y ciclos exitosos en un iPhone físico.',
             cta: 'Evaluar TipTrack para tu equipo',
+            cardBody: 'Reparto, rutas, propinas y supervisión.',
             imageAlt: 'Pantalla segura de acceso operativo de TipTrack',
         },
     },
@@ -275,6 +280,7 @@ export const products: Record<ProductSlug, Product> = {
             evidenceLabel: 'confirmed technical audit score',
             evidenceBody: 'The current audit records 131 backend tests, 15 unit tests and 18 end-to-end journeys passing. An operator session and SUS score remain the gate to 8.5/10.',
             cta: 'Explore an 86MISE beta',
+            cardBody: 'Inventory, purchasing and forecasting.',
             imageAlt: '86MISE dashboard prioritizing expiry, low stock and pending purchase decisions',
         },
         es: {
@@ -310,6 +316,7 @@ export const products: Record<ProductSlug, Product> = {
             evidenceLabel: 'de puntaje técnico confirmado',
             evidenceBody: 'La auditoría vigente registra 131 pruebas backend, 15 unitarias y 18 recorridos E2E aprobados. La sesión con operador y el SUS siguen siendo el gate para 8.5/10.',
             cta: 'Explorar una beta de 86MISE',
+            cardBody: 'Inventario, compras y pronóstico.',
             imageAlt: 'Dashboard de 86MISE que prioriza vencimientos, stock bajo y compras pendientes',
         },
     },
@@ -317,6 +324,10 @@ export const products: Record<ProductSlug, Product> = {
 
 export function isProductSlug(value: string): value is ProductSlug {
     return productSlugs.includes(value as ProductSlug)
+}
+
+export function productPath(slug: ProductSlug) {
+    return `/productos/${slug}`
 }
 
 export function getProductCopy(product: Product, language: Language) {

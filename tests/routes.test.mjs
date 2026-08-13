@@ -174,6 +174,21 @@ test('contact endpoint validates input and fails safely when delivery is not con
   })
   assert.equal(invalidResponse.status, 400)
 
+  const unknownProductResponse = await fetch(`${baseUrl}/api/contact`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({
+      name: 'Test User',
+      email: 'test@example.com',
+      restaurant: 'Test Restaurant',
+      product: 'unknown',
+      message: 'We need to improve our order workflow.',
+      language: 'en',
+      website: '',
+    }),
+  })
+  assert.equal(unknownProductResponse.status, 400)
+
   const fallbackResponse = await fetch(`${baseUrl}/api/contact`, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },

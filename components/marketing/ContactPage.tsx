@@ -1,11 +1,11 @@
 'use client'
 
-import Link from 'next/link'
 import { FormEvent, useRef, useState } from 'react'
-import { products, type ProductSlug } from '../../content/products'
+import { productSlugs, products, type ProductSlug } from '../../content/products'
 import type { Language } from '../../lib/language'
 import { trackMarketingEvent } from '../../lib/marketing-analytics'
 import { useLanguageSelection } from '../../lib/use-language-selection'
+import MarketingFooter from './MarketingFooter'
 import MarketingHeader from './MarketingHeader'
 
 const CONTACT_EMAIL = 's@sebiche.com'
@@ -120,7 +120,7 @@ export default function ContactPage({ initialLanguage, defaultProduct = '' }: { 
                                 <span>{t.fields.product}</span>
                                 <select value={formValues.product} onChange={(event) => setFormValues({ ...formValues, product: event.target.value as ProductSlug | '' })}>
                                     <option value="">{t.fields.select}</option>
-                                    {Object.values(products).map((product) => <option value={product.slug} key={product.slug}>{product.name}</option>)}
+                                    {productSlugs.map((slug) => <option value={slug} key={slug}>{products[slug].name}</option>)}
                                 </select>
                             </label>
                             <label className="is-wide">
@@ -142,14 +142,7 @@ export default function ContactPage({ initialLanguage, defaultProduct = '' }: { 
                     )}
                 </div>
             </section>
-            <footer className="product-footer">
-                <span>SEBICHE — Dallas, Texas</span>
-                <nav aria-label={t.products}>
-                    <Link href="/productos/restos">RestOS</Link>
-                    <Link href="/productos/tiptrack">TipTrack</Link>
-                    <Link href="/productos/86mise">86MISE</Link>
-                </nav>
-            </footer>
+            <MarketingFooter variant="internal" relatedLabel={t.products} />
         </main>
     )
 }

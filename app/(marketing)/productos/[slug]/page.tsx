@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import ProductDetail from '../../../../components/marketing/ProductDetail'
-import { getProductCopy, isProductSlug, products, productSlugs } from '../../../../content/products'
+import { getProductCopy, isProductSlug, productPath, products, productSlugs } from '../../../../content/products'
 import { getRequestLanguage } from '../../../../lib/request-language'
 
 type ProductPageProps = { params: Promise<{ slug: string }> }
@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 
     const product = products[slug]
     const copy = product.en
-    const canonical = `/productos/${slug}`
+    const canonical = productPath(slug)
 
     return {
         title: product.name,
@@ -47,7 +47,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         applicationCategory: 'BusinessApplication',
         operatingSystem: 'Web',
         description: productCopy.intro,
-        url: `https://sebiche.com/productos/${product.slug}`,
+        url: `https://sebiche.com${productPath(product.slug)}`,
         author: { '@type': 'Organization', name: 'Sebiche' },
     }
 

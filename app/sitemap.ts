@@ -1,13 +1,12 @@
 import { MetadataRoute } from 'next'
+import { productPath, productSlugs } from '../content/products'
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://sebiche.com'
 
-    const routes = [
+    const routes: Array<{ path: string, priority: number }> = [
         { path: '', priority: 1 },
-        { path: '/productos/restos', priority: 0.8 },
-        { path: '/productos/tiptrack', priority: 0.8 },
-        { path: '/productos/86mise', priority: 0.8 },
+        ...productSlugs.map((slug) => ({ path: productPath(slug), priority: 0.8 })),
         { path: '/contacto', priority: 0.7 },
     ]
 
