@@ -22,11 +22,6 @@ export const homeCopy = {
             accent: 'One connected operation.',
             intro: 'Explore what each product solves, how it works and its real delivery status.',
             explore: 'Explore product',
-            items: [
-                { slug: 'restos', name: 'RestOS', body: 'Orders, POS, kitchen and payments.' },
-                { slug: 'tiptrack', name: 'TipTrack', body: 'Delivery, routes, tips and oversight.' },
-                { slug: '86mise', name: '86MISE', body: 'Inventory, purchasing and forecasting.' },
-            ],
         },
         approach: {
             start: 'Technology that understands',
@@ -46,9 +41,6 @@ export const homeCopy = {
         },
         imageAlt: {
             hero: 'A chef finishing a dish on the restaurant pass',
-            restos: 'RestOS point of sale screen',
-            tiptrack: 'TipTrack delivery operations screen',
-            mise: '86MISE inventory dashboard',
             operations: 'A chef working the hot line during service',
         },
     },
@@ -75,11 +67,6 @@ export const homeCopy = {
             accent: 'Una operación conectada.',
             intro: 'Explora qué resuelve cada producto, cómo funciona y cuál es su estado real.',
             explore: 'Explorar producto',
-            items: [
-                { slug: 'restos', name: 'RestOS', body: 'Pedidos, POS, cocina y pagos.' },
-                { slug: 'tiptrack', name: 'TipTrack', body: 'Reparto, rutas, propinas y supervisión.' },
-                { slug: '86mise', name: '86MISE', body: 'Inventario, compras y pronóstico.' },
-            ],
         },
         approach: {
             start: 'Tecnología que entiende',
@@ -99,9 +86,6 @@ export const homeCopy = {
         },
         imageAlt: {
             hero: 'Un chef terminando un plato en el pase del restaurante',
-            restos: 'Pantalla de punto de venta de RestOS',
-            tiptrack: 'Pantalla de operaciones de reparto de TipTrack',
-            mise: 'Panel de inventario de 86MISE',
             operations: 'Un chef trabajando en la línea durante el servicio',
         },
     },

@@ -3,10 +3,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef } from 'react'
-import { getProductCopy, products, type Product } from '../../content/products'
+import { getProductCopy, type Product } from '../../content/products'
 import type { Language } from '../../lib/language'
 import { trackMarketingEvent } from '../../lib/marketing-analytics'
 import { useLanguageSelection } from '../../lib/use-language-selection'
+import MarketingFooter from './MarketingFooter'
 import MarketingHeader from './MarketingHeader'
 
 const commonCopy = {
@@ -174,15 +175,12 @@ export default function ProductDetail({ product, initialLanguage }: { product: P
                 </Link>
             </section>
 
-            <footer className="product-footer">
-                <span>SEBICHE — Dallas, Texas</span>
-                <nav aria-label={common.related}>
-                    {Object.values(products).map((item) => (
-                        <Link href={`/productos/${item.slug}`} key={item.slug} aria-current={item.slug === product.slug ? 'page' : undefined}>{item.name}</Link>
-                    ))}
-                    <Link href="/contacto">{common.contact}</Link>
-                </nav>
-            </footer>
+            <MarketingFooter
+                variant="internal"
+                currentSlug={product.slug}
+                relatedLabel={common.related}
+                contactLabel={common.contact}
+            />
         </main>
     )
 }

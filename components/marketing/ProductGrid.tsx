@@ -3,11 +3,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import type { HomeCopy } from '../../content/home'
-import { products, type ProductSlug } from '../../content/products'
+import { getProductCopy, productPath, productSlugs, products } from '../../content/products'
 import type { Language } from '../../lib/language'
 import { trackMarketingEvent } from '../../lib/marketing-analytics'
-
-const imageAltKeys = { restos: 'restos', tiptrack: 'tiptrack', '86mise': 'mise' } as const
 
 export default function ProductGrid({ copy, language }: { copy: HomeCopy, language: Language }) {
     return (
@@ -21,27 +19,28 @@ export default function ProductGrid({ copy, language }: { copy: HomeCopy, langua
             </div>
 
             <div className="holding-product-grid">
-                {copy.products.items.map((item) => {
-                    const slug = item.slug as ProductSlug
+                {productSlugs.map((slug) => {
                     const product = products[slug]
+                    const productCopy = getProductCopy(product, language)
+
                     return (
                         <Link
                             className={`holding-product-card is-${product.accent}`}
-                            href={`/productos/${slug}`}
+                            href={productPath(slug)}
                             key={slug}
                             onClick={() => trackMarketingEvent('Product CTA Clicked', { product: slug, source: 'home_card', language })}
                         >
                             <div className="holding-product-heading">
                                 <div>
-                                    <h3>{item.name}</h3>
-                                    <p>{item.body}</p>
+                                    <h3>{product.name}</h3>
+                                    <p>{productCopy.cardBody}</p>
                                 </div>
                                 <span aria-hidden>{product.icon}</span>
                             </div>
                             <div className="holding-product-image">
                                 <Image
                                     src={product.image}
-                                    alt={copy.imageAlt[imageAltKeys[slug]]}
+                                    alt={productCopy.imageAlt}
                                     fill
                                     sizes="(max-width: 840px) 100vw, 33vw"
                                 />
