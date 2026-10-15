@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { homeCopy } from '../../content/home'
+import SebicheSymbol from '../brand/SebicheSymbol'
 import type { Language } from '../../lib/language'
 
 type MarketingHeaderProps = {
@@ -24,8 +25,11 @@ export default function MarketingHeader({ language, onLanguageChange, context = 
     return (
         <header className="holding-header">
             <Link className="holding-wordmark" href={homeHref} aria-label={t.nav.home}>
-                <strong>SEBICHE</strong>
-                <span>{t.hero.eyebrow}</span>
+                <SebicheSymbol className="holding-symbol" />
+                <span className="holding-wordmark-text">
+                    <strong>SEBICHE</strong>
+                    <span>{t.hero.eyebrow}</span>
+                </span>
             </Link>
 
             <nav className="holding-nav" aria-label={t.nav.label}>

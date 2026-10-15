@@ -41,20 +41,36 @@
 }
 
 .holding-wordmark {
+  --wordmark-size: clamp(1rem, 1.45vw, 1.35rem);
   justify-self: start;
   display: inline-flex;
-  flex-direction: column;
+  align-items: center;
+  /* Lockup gap: one ticket width (18% of the symbol) */
+  gap: calc(var(--wordmark-size) * 2.3 * 0.18);
   color: var(--paper);
   line-height: 1;
   text-decoration: none;
 }
 
+.holding-symbol {
+  display: block;
+  flex: 0 0 auto;
+  width: calc(var(--wordmark-size) * 2.3);
+  min-width: 24px;
+  height: auto;
+}
+
+.holding-wordmark-text {
+  display: inline-flex;
+  flex-direction: column;
+}
+
 .holding-wordmark strong {
-  font-size: clamp(1rem, 1.45vw, 1.35rem);
+  font-size: var(--wordmark-size);
   letter-spacing: 0.22em;
 }
 
-.holding-wordmark span {
+.holding-wordmark-text span {
   margin-top: 0.42rem;
   font-size: 0.52rem;
   font-weight: 700;
@@ -659,6 +675,10 @@
     color: var(--paper);
   }
 
+  .holding-wordmark-text span {
+    white-space: nowrap;
+  }
+
   .holding-header {
     background: #171713;
   }
@@ -807,5 +827,12 @@
 @media (prefers-reduced-motion: reduce) {
   .holding-hero-media img {
     animation: none;
+  }
+}
+
+/* Phones: the descriptor no longer fits beside the menu; the lockup keeps symbol + wordmark */
+@media (max-width: 420px) {
+  .holding-wordmark-text span {
+    display: none;
   }
 }

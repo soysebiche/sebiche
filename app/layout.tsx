@@ -68,8 +68,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     return (
         <html lang={language === 'es' ? 'es-419' : 'en-US'} className={`${manrope.variable} ${cormorant.variable}`}>
             <head>
-                <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-                <meta name="theme-color" content="#11110f" />
+                <meta name="theme-color" content="#090909" />
                 {googleMeasurementId ? (
                     <>
                         <script async src={`https://www.googletagmanager.com/gtag/js?id=${googleMeasurementId}`} />
