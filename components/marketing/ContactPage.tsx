@@ -6,6 +6,7 @@ import { products, type ProductSlug } from '../../content/products'
 import type { Language } from '../../lib/language'
 import { trackMarketingEvent } from '../../lib/marketing-analytics'
 import { useLanguageSelection } from '../../lib/use-language-selection'
+import FooterSignature from '../brand/FooterSignature'
 import MarketingHeader from './MarketingHeader'
 
 const CONTACT_EMAIL = 's@sebiche.com'
@@ -143,7 +144,7 @@ export default function ContactPage({ initialLanguage, defaultProduct = '' }: { 
                 </div>
             </section>
             <footer className="product-footer">
-                <span>SEBICHE — Dallas, Texas</span>
+                <FooterSignature />
                 <nav aria-label={t.products}>
                     <Link href="/productos/restos">RestOS</Link>
                     <Link href="/productos/tiptrack">TipTrack</Link>

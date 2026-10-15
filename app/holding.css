@@ -593,9 +593,9 @@
   text-decoration: none;
 }
 
-.holding-footer a:first-child { color: var(--copper); }
-.holding-footer a:nth-of-type(2) { color: var(--violet); }
-.holding-footer a:nth-of-type(3) { color: var(--orange); }
+.holding-footer-products a:first-child { color: var(--copper); }
+.holding-footer-products a:nth-of-type(2) { color: var(--violet); }
+.holding-footer-products a:nth-of-type(3) { color: var(--orange); }
 
 .holding-footer i {
   width: 1px;
@@ -835,4 +835,36 @@
   .holding-wordmark-text span {
     display: none;
   }
+}
+
+/* Footer lockup, shared by the home, product and contact footers */
+.footer-signature {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+}
+
+.footer-symbol {
+  display: block;
+  width: 1.75rem;
+  min-width: 24px;
+  height: auto;
+}
+
+.footer-signature strong {
+  color: var(--paper);
+  font-size: 0.82rem;
+  letter-spacing: 0.22em;
+}
+
+.footer-signature a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-underline-offset: 0.25em;
+}
+
+.footer-signature a:hover {
+  text-decoration-color: currentColor;
 }

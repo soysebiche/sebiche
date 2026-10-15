@@ -7,6 +7,7 @@ import { getProductCopy, products, type Product } from '../../content/products'
 import type { Language } from '../../lib/language'
 import { trackMarketingEvent } from '../../lib/marketing-analytics'
 import { useLanguageSelection } from '../../lib/use-language-selection'
+import FooterSignature from '../brand/FooterSignature'
 import MarketingHeader from './MarketingHeader'
 
 const commonCopy = {
@@ -44,7 +45,10 @@ export default function ProductDetail({ product, initialLanguage }: { product: P
                 </div>
                 <div className="product-hero-identity" aria-label={product.name}>
                     <span>{product.icon}</span>
-                    <strong>{product.name}</strong>
+                    <div className="product-hero-signature">
+                        <strong>{product.name}</strong>
+                        <p>by <b>SEBICHE</b></p>
+                    </div>
                 </div>
             </section>
 
@@ -175,7 +179,7 @@ export default function ProductDetail({ product, initialLanguage }: { product: P
             </section>
 
             <footer className="product-footer">
-                <span>SEBICHE — Dallas, Texas</span>
+                <FooterSignature />
                 <nav aria-label={common.related}>
                     {Object.values(products).map((item) => (
                         <Link href={`/productos/${item.slug}`} key={item.slug} aria-current={item.slug === product.slug ? 'page' : undefined}>{item.name}</Link>

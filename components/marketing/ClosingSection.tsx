@@ -5,6 +5,7 @@ import Link from 'next/link'
 import type { HomeCopy } from '../../content/home'
 import type { Language } from '../../lib/language'
 import { trackMarketingEvent } from '../../lib/marketing-analytics'
+import FooterSignature from '../brand/FooterSignature'
 
 export default function ClosingSection({ copy, language }: { copy: HomeCopy, language: Language }) {
     return (
@@ -34,8 +35,8 @@ export default function ClosingSection({ copy, language }: { copy: HomeCopy, lan
             </div>
 
             <footer className="holding-footer">
-                <span>SEBICHE — Dallas, Texas</span>
-                <div>
+                <FooterSignature />
+                <div className="holding-footer-products">
                     <Link href="/productos/restos">RestOS</Link>
                     <i aria-hidden />
                     <Link href="/productos/tiptrack">TipTrack</Link>

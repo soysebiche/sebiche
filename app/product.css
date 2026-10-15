@@ -96,6 +96,26 @@
   font-size: 0.8rem;
 }
 
+.product-hero-signature {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+/* Endorsement: product name, then "by SEBICHE" */
+.product-hero-signature p {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.product-hero-signature b {
+  margin-left: 0.3em;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+}
+
 .product-hero-identity strong {
   font-size: clamp(3rem, 6vw, 7rem);
   font-weight: 550;
