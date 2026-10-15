@@ -10,12 +10,22 @@
 
     --ground: #090909;
     --surface: #10100f;
+    --surface-card: var(--surface);
+    --surface-hover: #161614;
+    --surface-panel: #11110f;
+    --surface-deep: #0d0d0c;
+    --surface-frame: #161716;
+    --surface-nav: #171713;
+    --surface-closing: #0c0c0a;
     --paper: #f1eee7;
     --ink: var(--paper);
     --muted: #9e9a92;
     --soft: #d3cfc8;
     --rule: rgba(241, 238, 231, 0.22);
     --rule-input: rgba(241, 238, 231, 0.38);
+    --rule-menu: rgba(241, 238, 231, 0.42);
+    --rule-strong: rgba(241, 238, 231, 0.62);
+    --rule-footer: rgba(241, 238, 231, 0.7);
     --copper: #cf6330;
     --copper-action: #a94721;
     --copper-hover: #933e1d;
@@ -25,6 +35,10 @@
     --orange: #dd713d;
     --olive: #9ca66a;
     --on-accent: #100f0e;
+    --on-action: #ffffff;
+    --ticket-paper: rgba(225, 209, 183, 0.9);
+    --ticket-ink: #29231c;
+    --shadow-ticket: 0 1rem 3rem rgba(0, 0, 0, 0.18);
     --selection: rgba(189, 87, 39, 0.22);
   }
 

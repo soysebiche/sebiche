@@ -27,9 +27,8 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
             url: canonical,
             title: `${product.name} | Sebiche`,
             description: copy.intro,
-            images: [{ url: product.image, alt: copy.imageAlt }],
         },
-        twitter: { card: 'summary_large_image', title: `${product.name} | Sebiche`, description: copy.intro, images: [product.image] },
+        twitter: { card: 'summary_large_image', title: `${product.name} | Sebiche`, description: copy.intro },
     }
 }
 

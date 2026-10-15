@@ -210,7 +210,7 @@
   grid-template-columns: minmax(0, 1.45fr) minmax(17rem, 0.55fr);
   padding: clamp(3rem, 6vw, 6rem) 3.5vw;
   border-bottom: 1px solid var(--rule);
-  background: #11110f;
+  background: var(--surface-panel);
 }
 
 .product-screen-frame {
@@ -218,7 +218,7 @@
   min-height: clamp(25rem, 48vw, 48rem);
   overflow: hidden;
   border: 1px solid var(--rule);
-  background: #161716;
+  background: var(--surface-frame);
 }
 
 .product-screen-frame img { object-fit: cover; object-position: top center; }
@@ -241,7 +241,7 @@
 .product-scenes {
   padding: clamp(5rem, 9vw, 9rem) 3.5vw;
   border-bottom: 1px solid var(--rule);
-  background: #0d0d0c;
+  background: var(--surface-deep);
 }
 
 .product-scenes-lead {
@@ -281,7 +281,7 @@
   aspect-ratio: 2368 / 1672;
   overflow: hidden;
   border: 1px solid var(--rule);
-  background: #161716;
+  background: var(--surface-frame);
 }
 
 .product-scene-frame img { object-fit: cover; object-position: top center; }
@@ -398,7 +398,7 @@
   display: flex;
   align-items: center;
   border-left: 1px solid var(--rule);
-  background: #11110f;
+  background: var(--surface-panel);
   padding: clamp(3rem, 7vw, 7rem) 3.5vw;
 }
 
@@ -432,7 +432,7 @@
   min-height: 3.65rem;
   border: 0;
   background: var(--copper-action);
-  color: white;
+  color: var(--on-action);
   padding: 0.9rem 1.5rem;
   font: inherit;
   font-size: 0.86rem;

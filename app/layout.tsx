@@ -41,18 +41,11 @@ export const metadata: Metadata = {
         siteName: 'Sebiche',
         title: 'Sebiche | Restaurant Technology',
         description: 'Your restaurant, connected end to end.',
-        images: [{
-            url: '/holding/hero-editorial.jpg',
-            width: 1200,
-            height: 630,
-            alt: 'Chef finishing a dish on the restaurant pass',
-        }],
     },
     twitter: {
         card: 'summary_large_image',
         title: 'Sebiche | Restaurant Technology',
         description: 'Your restaurant, connected end to end.',
-        images: ['/holding/hero-editorial.jpg'],
     },
     robots: {
         index: true,
