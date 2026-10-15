@@ -3,9 +3,29 @@
 @tailwind utilities;
 
 @layer base {
+  /* Sebiche brand tokens — mirror of the Sebiche design system (tokens.json) */
   :root {
     --font-sans: 'Manrope', sans-serif;
     --font-editorial: 'Cormorant Garamond', serif;
+
+    --ground: #090909;
+    --surface: #10100f;
+    --paper: #f1eee7;
+    --ink: var(--paper);
+    --muted: #9e9a92;
+    --soft: #d3cfc8;
+    --rule: rgba(241, 238, 231, 0.22);
+    --rule-input: rgba(241, 238, 231, 0.38);
+    --copper: #cf6330;
+    --copper-action: #a94721;
+    --copper-hover: #933e1d;
+    --copper-light: #e38251;
+    --focus: #bd5727;
+    --violet: #9a76c5;
+    --orange: #dd713d;
+    --olive: #9ca66a;
+    --on-accent: #100f0e;
+    --selection: rgba(189, 87, 39, 0.22);
   }
 
   html {
@@ -15,8 +35,8 @@
   body {
     @apply antialiased;
     font-family: var(--font-sans);
-    color: #f1eee7;
-    background: #090909;
+    color: var(--paper);
+    background: var(--ground);
   }
 
   h1,
@@ -29,12 +49,12 @@
   }
 
   ::selection {
-    background: rgba(189, 87, 39, 0.22);
-    color: #f1eee7;
+    background: var(--selection);
+    color: var(--paper);
   }
 
   *:focus-visible {
-    outline: 2px solid #bd5727;
+    outline: 2px solid var(--focus);
     outline-offset: 3px;
   }
 }

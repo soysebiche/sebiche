@@ -1,20 +1,15 @@
 .product-site,
 .contact-site {
-  --paper: #f1eee7;
-  --ink: #f1eee7;
-  --muted: #a6a29a;
-  --rule: rgba(241, 238, 231, 0.2);
-  --accent: #cf6330;
-  --copper-action: #a94721;
+  --accent: var(--copper);
   position: relative;
   min-width: 320px;
   overflow: hidden;
-  background: #090909;
+  background: var(--ground);
   color: var(--paper);
 }
 
-.product-site.is-violet { --accent: #9a76c5; }
-.product-site.is-orange { --accent: #dd713d; }
+.product-site.is-violet { --accent: var(--violet); }
+.product-site.is-orange { --accent: var(--orange); }
 
 .product-site *,
 .contact-site * { box-sizing: border-box; }
@@ -88,7 +83,7 @@
   justify-content: space-between;
   border-left: 1px solid var(--rule);
   background: var(--accent);
-  color: #100f0e;
+  color: var(--on-accent);
   padding: clamp(2rem, 4vw, 4.5rem);
 }
 
@@ -288,7 +283,7 @@
 .product-boundaries h2 { margin-top: 0; }
 .product-boundaries ul { margin: 3rem 0 0; padding: 0; list-style: none; }
 .product-boundaries li { padding: 1rem 0; border-top: 1px solid var(--rule); color: var(--muted); font-size: 0.86rem; line-height: 1.5; }
-.product-status { background: var(--accent); color: #100f0e; }
+.product-status { background: var(--accent); color: var(--on-accent); }
 .product-status > p { margin: 0; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
 .product-status h2 { font-size: clamp(2.4rem, 4vw, 4.5rem); line-height: 0.95; }
 .product-status > span { display: block; max-width: 35rem; line-height: 1.65; }
@@ -371,7 +366,7 @@
   padding: clamp(4rem, 8vw, 8rem) 5vw 4rem 3.5vw;
 }
 
-.contact-intro > p { margin: 0 0 1.5rem; color: #cf6330; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+.contact-intro > p { margin: 0 0 1.5rem; color: var(--copper); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
 .contact-intro h1 { max-width: 10ch; margin: 0; font-size: clamp(3.7rem, 6vw, 7rem); font-weight: 450; letter-spacing: -0.065em; line-height: 0.92; }
 .contact-intro > span { max-width: 37rem; margin-top: 2rem; color: var(--muted); line-height: 1.7; }
 
@@ -395,7 +390,7 @@
 .contact-form-panel textarea {
   width: 100%;
   border: 0;
-  border-bottom: 1px solid rgba(241, 238, 231, 0.38);
+  border-bottom: 1px solid var(--rule-input);
   border-radius: 0;
   background: transparent;
   color: var(--paper);
@@ -407,7 +402,7 @@
 .contact-form-panel textarea { resize: vertical; line-height: 1.6; }
 .contact-form-panel input:focus,
 .contact-form-panel select:focus,
-.contact-form-panel textarea:focus { border-bottom-color: #cf6330; outline: 0; }
+.contact-form-panel textarea:focus { border-bottom-color: var(--copper); outline: 0; }
 .contact-form-panel .is-wide { grid-column: 1 / -1; }
 .contact-honeypot { display: none; }
 
@@ -416,7 +411,7 @@
 .contact-result button {
   min-height: 3.65rem;
   border: 0;
-  background: #a94721;
+  background: var(--copper-action);
   color: white;
   padding: 0.9rem 1.5rem;
   font: inherit;
@@ -428,13 +423,13 @@
 .contact-submit button:disabled { cursor: wait; opacity: 0.65; }
 .contact-submit small { max-width: 20rem; color: var(--muted); line-height: 1.45; }
 
-.contact-error { display: flex; align-items: center; justify-content: space-between; gap: 2rem; border: 1px solid #cf6330; padding: 1.25rem; }
+.contact-error { display: flex; align-items: center; justify-content: space-between; gap: 2rem; border: 1px solid var(--copper); padding: 1.25rem; }
 .contact-error div { display: flex; flex-direction: column; gap: 0.35rem; }
 .contact-error div span { color: var(--muted); font-size: 0.78rem; line-height: 1.5; }
-.contact-error a { flex: 0 0 auto; color: #e38251; font-size: 0.8rem; font-weight: 700; text-decoration: none; }
+.contact-error a { flex: 0 0 auto; color: var(--copper-light); font-size: 0.8rem; font-weight: 700; text-decoration: none; }
 
 .contact-result { max-width: 38rem; }
-.contact-result > span { display: grid; width: 3rem; height: 3rem; place-items: center; border: 1px solid #cf6330; color: #cf6330; }
+.contact-result > span { display: grid; width: 3rem; height: 3rem; place-items: center; border: 1px solid var(--copper); color: var(--copper); }
 .contact-result h2 { margin: 3rem 0 1rem; font-size: clamp(3rem, 5vw, 5rem); font-weight: 450; letter-spacing: -0.06em; line-height: 0.95; }
 .contact-result p { margin: 0 0 2.5rem; color: var(--muted); line-height: 1.7; }
 
