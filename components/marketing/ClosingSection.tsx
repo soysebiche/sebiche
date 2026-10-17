@@ -5,6 +5,7 @@ import Link from 'next/link'
 import type { HomeCopy } from '../../content/home'
 import type { Language } from '../../lib/language'
 import { trackMarketingEvent } from '../../lib/marketing-analytics'
+import { pathFor } from '../../lib/routes'
 import FooterSignature from '../brand/FooterSignature'
 
 export default function ClosingSection({ copy, language }: { copy: HomeCopy, language: Language }) {
@@ -26,7 +27,7 @@ export default function ClosingSection({ copy, language }: { copy: HomeCopy, lan
                 <div className="holding-contact-row is-dark">
                     <Link
                         className="holding-button"
-                        href="/contacto"
+                        href={pathFor(language, { page: 'contact' })}
                         onClick={() => trackMarketingEvent('Contact CTA Clicked', { source: 'home_closing', language })}
                     >
                         {copy.closing.cta}
@@ -37,11 +38,11 @@ export default function ClosingSection({ copy, language }: { copy: HomeCopy, lan
             <footer className="holding-footer">
                 <FooterSignature />
                 <div className="holding-footer-products">
-                    <Link href="/productos/restos">RestOS</Link>
+                    <Link href={pathFor(language, { page: 'product', slug: 'restos' })}>RestOS</Link>
                     <i aria-hidden />
-                    <Link href="/productos/tiptrack">TipTrack</Link>
+                    <Link href={pathFor(language, { page: 'product', slug: 'tiptrack' })}>TipTrack</Link>
                     <i aria-hidden />
-                    <Link href="/productos/86mise">86MISE</Link>
+                    <Link href={pathFor(language, { page: 'product', slug: '86mise' })}>86MISE</Link>
                 </div>
             </footer>
         </section>

@@ -1,5 +1,13 @@
 export const homeCopy = {
     en: {
+        meta: {
+            title: 'Sebiche | Restaurant Technology',
+            description: 'Connected restaurant technology for orders, delivery, inventory, purchasing and forecasting.',
+            share: 'Your restaurant, connected end to end.',
+            keywords: ['restaurant technology', 'restaurant operations', 'POS', 'delivery management', 'restaurant inventory'],
+            contactTitle: 'Contact',
+            contactDescription: 'Discuss your restaurant operation and product fit with Sebiche.',
+        },
         nav: {
             products: 'Products',
             approach: 'Approach',
@@ -53,6 +61,14 @@ export const homeCopy = {
         },
     },
     es: {
+        meta: {
+            title: 'Sebiche | Tecnología para restaurantes',
+            description: 'Tecnología conectada para restaurantes: pedidos, reparto, inventario, compras y pronóstico.',
+            share: 'Tu restaurante, conectado de punta a punta.',
+            keywords: ['tecnología para restaurantes', 'software para restaurantes', 'punto de venta', 'reparto propio', 'inventario de restaurante'],
+            contactTitle: 'Contacto',
+            contactDescription: 'Conversemos sobre la operación de tu restaurante y qué producto de Sebiche encaja.',
+        },
         nav: {
             products: 'Productos',
             approach: 'Enfoque',

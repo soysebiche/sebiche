@@ -29,13 +29,27 @@ If they are absent or delivery fails, the form fails safely and presents a prefi
 - Framework preset: Next.js
 - Root directory: repository root
 - Build command: `npm run build`
-- Production domain: `sebiche.com`
+- Production domain: `www.sebiche.com`. The apex `sebiche.com` redirects to it, so `lib/site.ts` (`SITE_URL`) uses `www` for every canonical, sitemap entry, JSON-LD url and Open Graph image. Change both together.
 
-After deployment, verify `/`, the three `/productos/*` pages, `/contacto`, `/robots.txt`, `/sitemap.xml` and `/manifest.webmanifest`. Submit a test inquiry and confirm it reaches `CONTACT_TO_EMAIL`. Confirm that retired portfolio and restaurant-display URLs return `404`.
+## Routes and languages
+
+Every page exists once per language and is prerendered at build time:
+
+| Page | English | Spanish |
+| --- | --- | --- |
+| Home | `/en` | `/es` |
+| Product | `/en/products/{restos,tiptrack,86mise}` | `/es/productos/{restos,tiptrack,86mise}` |
+| Contact | `/en/contact` | `/es/contacto` |
+
+Each page declares its canonical, the `hreflang` alternates (`en-US`, `es-419`, and `x-default` → `/` for the home) and localized title, description and share image. Paths live in `lib/routes.ts`.
+
+`proxy.ts` handles paths without a language prefix: `/` and the old `/productos/*` and `/contacto` URLs redirect (307) to the visitor's language, taken from the `sebiche-language` cookie that the language switch sets, then from `Accept-Language`, defaulting to English. The query string is kept, so `/contacto?product=86mise` still preselects the product.
+
+After deployment, verify `/en`, `/es`, the six product pages, both contact pages, the redirects from `/`, `/robots.txt`, `/sitemap.xml` and `/manifest.webmanifest`. Submit a test inquiry and confirm it reaches `CONTACT_TO_EMAIL`. Confirm that retired portfolio and restaurant-display URLs return `404`.
 
 ## Search setup
 
-Verify the `sebiche.com` domain property in Google Search Console with its DNS TXT record, then submit `https://sebiche.com/sitemap.xml`. Public canonical URLs and Open Graph metadata use `https://sebiche.com`.
+Verify the `sebiche.com` domain property in Google Search Console with its DNS TXT record, then submit `https://www.sebiche.com/sitemap.xml`. The sitemap lists both languages with their `hreflang` alternates.
 
 ## Project boundaries
 

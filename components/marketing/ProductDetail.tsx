@@ -2,11 +2,11 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { getProductCopy, products, type Product } from '../../content/products'
 import type { Language } from '../../lib/language'
 import { trackMarketingEvent } from '../../lib/marketing-analytics'
-import { useLanguageSelection } from '../../lib/use-language-selection'
+import { pathFor } from '../../lib/routes'
 import FooterSignature from '../brand/FooterSignature'
 import MarketingHeader from './MarketingHeader'
 
@@ -15,35 +15,34 @@ const commonCopy = {
     es: { back: 'Todos los productos', proof: 'Evidencia verificada del producto', related: 'Otros productos Sebiche', contact: 'Contacto', screen: 'pantalla del producto', scenes: 'Dentro del producto', scenesTitle: 'De la señal operativa a la acción controlada.' },
 } as const
 
-export default function ProductDetail({ product, initialLanguage }: { product: Product, initialLanguage: Language }) {
-    const { language, selectLanguage } = useLanguageSelection(initialLanguage)
+export default function ProductDetail({ product, language }: { product: Product, language: Language }) {
     const copy = getProductCopy(product, language)
     const common = commonCopy[language]
-    const viewedLanguage = useRef(initialLanguage)
+    const contactHref = `${pathFor(language, { page: 'contact' })}?product=${product.slug}`
 
     useEffect(() => {
-        trackMarketingEvent('Product Viewed', { product: product.slug, language: viewedLanguage.current })
-    }, [product.slug])
+        trackMarketingEvent('Product Viewed', { product: product.slug, language })
+    }, [product.slug, language])
 
     return (
         <main id="main" className={`product-site is-${product.accent}`}>
-            <MarketingHeader language={language} onLanguageChange={selectLanguage} />
+            <MarketingHeader language={language} route={{ page: 'product', slug: product.slug }} />
 
             <section className="product-hero" aria-labelledby="product-title">
                 <div className="product-hero-copy">
-                    <Link className="product-back" href="/#products"><span aria-hidden>←</span> {common.back}</Link>
+                    <Link className="product-back" href={`${pathFor(language, { page: 'home' })}#products`}><span aria-hidden>←</span> {common.back}</Link>
                     <p className="product-eyebrow"><span>{product.number}</span>{copy.eyebrow}</p>
                     <h1 id="product-title">{copy.headline}</h1>
                     <p className="product-intro">{copy.intro}</p>
                     <Link
                         className="holding-button"
-                        href={`/contacto?product=${product.slug}`}
+                        href={contactHref}
                         onClick={() => trackMarketingEvent('Product CTA Clicked', { product: product.slug, source: 'product_hero', language })}
                     >
                         {copy.cta}
                     </Link>
                 </div>
-                <div className="product-hero-identity" aria-label={product.name}>
+                <div className="product-hero-identity" role="img" aria-label={`${product.name} by SEBICHE`}>
                     <span>{product.icon}</span>
                     <div className="product-hero-signature">
                         <strong>{product.name}</strong>
@@ -171,7 +170,7 @@ export default function ProductDetail({ product, initialLanguage }: { product: P
                 <h2 id="product-cta-title">{copy.headline}</h2>
                 <Link
                     className="holding-button"
-                    href={`/contacto?product=${product.slug}`}
+                    href={contactHref}
                     onClick={() => trackMarketingEvent('Product CTA Clicked', { product: product.slug, source: 'product_closing', language })}
                 >
                     {copy.cta}
@@ -182,9 +181,9 @@ export default function ProductDetail({ product, initialLanguage }: { product: P
                 <FooterSignature />
                 <nav aria-label={common.related}>
                     {Object.values(products).map((item) => (
-                        <Link href={`/productos/${item.slug}`} key={item.slug} aria-current={item.slug === product.slug ? 'page' : undefined}>{item.name}</Link>
+                        <Link href={pathFor(language, { page: 'product', slug: item.slug })} key={item.slug} aria-current={item.slug === product.slug ? 'page' : undefined}>{item.name}</Link>
                     ))}
-                    <Link href="/contacto">{common.contact}</Link>
+                    <Link href={pathFor(language, { page: 'contact' })}>{common.contact}</Link>
                 </nav>
             </footer>
         </main>
