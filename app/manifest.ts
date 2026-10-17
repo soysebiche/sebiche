@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next'
+import tokens from '../brand/tokens.json'
 
 export default function manifest(): MetadataRoute.Manifest {
     return {
@@ -8,8 +9,8 @@ export default function manifest(): MetadataRoute.Manifest {
         start_url: '/',
         scope: '/',
         display: 'standalone',
-        background_color: '#090909',
-        theme_color: '#090909',
+        background_color: tokens.color.ground,
+        theme_color: tokens.color.ground,
         lang: 'en-US',
         icons: [
             {

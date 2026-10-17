@@ -5,6 +5,7 @@ import './product.css'
 import type { Metadata } from 'next'
 import Telemetry from '../components/Telemetry'
 import { getRequestLanguage } from '../lib/request-language'
+import tokens from '../brand/tokens.json'
 
 const manrope = Manrope({
     subsets: ['latin'],
@@ -61,7 +62,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     return (
         <html lang={language === 'es' ? 'es-419' : 'en-US'} className={`${manrope.variable} ${cormorant.variable}`}>
             <head>
-                <meta name="theme-color" content="#090909" />
+                <meta name="theme-color" content={tokens.color.ground} />
                 {googleMeasurementId ? (
                     <>
                         <script async src={`https://www.googletagmanager.com/gtag/js?id=${googleMeasurementId}`} />

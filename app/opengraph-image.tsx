@@ -16,7 +16,7 @@ export default async function OpenGraphImage() {
         (
             <div style={{ display: 'flex', width: '100%', height: '100%', position: 'relative', background: brand.ground, color: brand.paper, fontFamily: 'Manrope' }}>
                 <img src={photo} alt="" width={ogSize.width} height={ogSize.height} style={{ position: 'absolute', inset: 0 }} />
-                <div style={{ position: 'absolute', inset: 0, display: 'flex', background: 'linear-gradient(90deg, rgba(9, 9, 9, 0.9) 0%, rgba(9, 9, 9, 0.62) 55%, rgba(9, 9, 9, 0.3) 100%)' }} />
+                <div style={{ position: 'absolute', inset: 0, display: 'flex', background: brand.veil }} />
                 <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: '100%', padding: 64 }}>
                     <OgLockup descriptor={hero.eyebrow} />
                     <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>

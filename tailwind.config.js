@@ -1,5 +1,11 @@
 /** @type {import('tailwindcss').Config} */
-// Sebiche brand tokens — mirror of the Sebiche design system (tokens.json) and app/globals.css
+// Sebiche brand tokens come from brand/tokens.json; utilities point at the CSS variables in app/tokens.css.
+// eslint-disable-next-line @typescript-eslint/no-require-imports -- Tailwind loads this file as CommonJS
+const tokens = require('./brand/tokens.json')
+
+const fromTokens = (group, prefix = '') =>
+  Object.fromEntries(Object.keys(group).map((name) => [name, `var(--${prefix}${name})`]))
+
 module.exports = {
   content: [
     './components/**/*.{js,ts,jsx,tsx}',
@@ -8,31 +14,30 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        ground: '#090909',
-        surface: '#10100f',
-        paper: '#f1eee7',
-        muted: '#9e9a92',
-        soft: '#d3cfc8',
-        rule: 'rgba(241, 238, 231, 0.22)',
+        ...fromTokens(tokens.color),
         copper: {
-          DEFAULT: '#cf6330',
-          action: '#a94721',
-          hover: '#933e1d',
-          light: '#e38251',
+          DEFAULT: 'var(--copper)',
+          action: 'var(--copper-action)',
+          hover: 'var(--copper-hover)',
+          light: 'var(--copper-light)',
         },
-        focus: '#bd5727',
-        violet: '#9a76c5',
-        orange: '#dd713d',
-        olive: '#9ca66a',
-        'on-accent': '#100f0e',
       },
       fontFamily: {
         sans: ['var(--font-sans)', 'sans-serif'],
         editorial: ['var(--font-editorial)', 'serif'],
+        mono: ['var(--font-mono)'],
       },
-      borderRadius: {
-        none: '0',
-      },
+      fontSize: fromTokens(tokens.text, 'text-'),
+      fontWeight: fromTokens(tokens.weight, 'weight-'),
+      lineHeight: fromTokens(tokens.leading, 'leading-'),
+      letterSpacing: fromTokens(tokens.tracking, 'tracking-'),
+      spacing: fromTokens(tokens.space, 'space-'),
+      transitionDuration: fromTokens(tokens.duration, 'duration-'),
+      transitionTimingFunction: fromTokens(tokens.ease, 'ease-'),
+    },
+    // Square corners only: the system has no rounded corners.
+    borderRadius: {
+      none: '0',
     },
   },
   plugins: [],

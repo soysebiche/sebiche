@@ -1,20 +1,28 @@
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import sharp from 'sharp'
+import tokens from '../brand/tokens.json'
+import { symbolFills, symbolRects } from './brand'
 
-// Shared pieces for the Open Graph images. Values mirror the brand tokens in app/globals.css.
+// Shared pieces for the Open Graph images. Images cannot read CSS variables, so the values
+// come straight from brand/tokens.json.
 export const ogSize = { width: 1200, height: 630 }
 export const ogContentType = 'image/png'
 
+const { color } = tokens
+
 export const brand = {
-    ground: '#090909',
-    paper: '#f1eee7',
-    muted: '#9e9a92',
-    rule: 'rgba(241, 238, 231, 0.22)',
-    copper: '#cf6330',
-    violet: '#9a76c5',
-    orange: '#dd713d',
-    onAccent: '#100f0e',
+    ground: color.ground,
+    paper: color.paper,
+    muted: color.muted,
+    rule: color.rule,
+    copper: color.copper,
+    violet: color.violet,
+    orange: color.orange,
+    onAccent: color['on-accent'],
+    veil: tokens.veil.share,
+    trackingWordmark: tokens.tracking.wordmark,
+    trackingDescriptor: tokens.tracking.descriptor,
 }
 
 const fontDir = join(process.cwd(), 'assets/fonts')
@@ -33,12 +41,13 @@ export async function loadOgFonts() {
     ]
 }
 
-// The hero photo with the site's hero treatment (saturate 0.65, contrast 1.1, brightness 0.72).
+// The hero photo with the site's hero treatment (tokens.photo.hero, as on the home hero).
 export async function loadHeroPhoto() {
+    const { saturate, contrast, brightness } = tokens.photo.hero
     const photo = await sharp(join(process.cwd(), 'public/holding/hero-editorial.jpg'))
         .resize(ogSize.width, ogSize.height, { fit: 'cover' })
-        .modulate({ saturation: 0.65, brightness: 0.72 })
-        .linear(1.1, -12.8)
+        .modulate({ saturation: saturate, brightness })
+        .linear(contrast, -128 * (contrast - 1))
         .jpeg({ quality: 82 })
         .toBuffer()
 
@@ -47,11 +56,8 @@ export async function loadHeroPhoto() {
 
 export function OgSymbol({ size }: { size: number }) {
     return (
-        <svg width={size} height={size} viewBox="0 0 100 100">
-            <rect x="8" y="22" width="84" height="8" fill={brand.paper} />
-            <rect x="16" y="36" width="18" height="32" fill={brand.copper} />
-            <rect x="41" y="36" width="18" height="44" fill={brand.violet} />
-            <rect x="66" y="36" width="18" height="26" fill={brand.orange} />
+        <svg width={size} height={size} viewBox={`0 0 ${tokens.symbol.viewBox} ${tokens.symbol.viewBox}`}>
+            {symbolRects(symbolFills(color)).map(({ key, ...rect }) => <rect key={key} {...rect} />)}
         </svg>
     )
 }
@@ -59,11 +65,11 @@ export function OgSymbol({ size }: { size: number }) {
 // Symbol + wordmark + descriptor, one ticket width apart.
 export function OgLockup({ descriptor }: { descriptor: string }) {
     return (
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: Math.round(64 * tokens.symbol.clearSpace) }}>
             <OgSymbol size={64} />
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                <div style={{ fontSize: 28, fontWeight: 700, letterSpacing: '0.22em', lineHeight: 1 }}>SEBICHE</div>
-                <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', lineHeight: 1 }}>
+                <div style={{ fontSize: 28, fontWeight: 700, letterSpacing: brand.trackingWordmark, lineHeight: 1 }}>SEBICHE</div>
+                <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: brand.trackingDescriptor, textTransform: 'uppercase', lineHeight: 1 }}>
                     {descriptor}
                 </div>
             </div>
