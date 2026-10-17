@@ -1,15 +1,14 @@
 'use client'
 
 import Link from 'next/link'
-import { FormEvent, useRef, useState } from 'react'
-import { products, type ProductSlug } from '../../content/products'
+import { FormEvent, useEffect, useRef, useState } from 'react'
+import { isProductSlug, products, type ProductSlug } from '../../content/products'
 import type { Language } from '../../lib/language'
 import { trackMarketingEvent } from '../../lib/marketing-analytics'
-import { useLanguageSelection } from '../../lib/use-language-selection'
+import { pathFor } from '../../lib/routes'
+import { CONTACT_EMAIL } from '../../lib/site'
 import FooterSignature from '../brand/FooterSignature'
 import MarketingHeader from './MarketingHeader'
-
-const CONTACT_EMAIL = 's@sebiche.com'
 
 const copy = {
     en: {
@@ -36,12 +35,21 @@ const copy = {
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
 
-export default function ContactPage({ initialLanguage, defaultProduct = '' }: { initialLanguage: Language, defaultProduct?: ProductSlug | '' }) {
-    const { language, selectLanguage } = useLanguageSelection(initialLanguage)
+export default function ContactPage({ language }: { language: Language }) {
     const [status, setStatus] = useState<FormStatus>('idle')
-    const [formValues, setFormValues] = useState({ name: '', email: '', restaurant: '', product: defaultProduct, message: '', website: '' })
+    // Product pages link here with ?product=<slug>. The page is static, so the query is read in the
+    // browser rather than on the server.
+    const [defaultProduct, setDefaultProduct] = useState<ProductSlug | ''>('')
+    const [formValues, setFormValues] = useState({ name: '', email: '', restaurant: '', product: '' as ProductSlug | '', message: '', website: '' })
     const hasTrackedStart = useRef(false)
     const t = copy[language]
+
+    useEffect(() => {
+        const product = new URLSearchParams(window.location.search).get('product') ?? ''
+        if (!isProductSlug(product)) return
+        setDefaultProduct(product)
+        setFormValues((values) => (values.product ? values : { ...values, product }))
+    }, [])
 
     function trackStart() {
         if (hasTrackedStart.current) return
@@ -83,7 +91,7 @@ export default function ContactPage({ initialLanguage, defaultProduct = '' }: { 
 
     return (
         <main id="main" className="contact-site">
-            <MarketingHeader language={language} onLanguageChange={selectLanguage} />
+            <MarketingHeader language={language} route={{ page: 'contact' }} />
             <section className="contact-layout" aria-labelledby="contact-title">
                 <div className="contact-intro">
                     <p>{t.eyebrow}</p>
@@ -146,9 +154,9 @@ export default function ContactPage({ initialLanguage, defaultProduct = '' }: { 
             <footer className="product-footer">
                 <FooterSignature />
                 <nav aria-label={t.products}>
-                    <Link href="/productos/restos">RestOS</Link>
-                    <Link href="/productos/tiptrack">TipTrack</Link>
-                    <Link href="/productos/86mise">86MISE</Link>
+                    <Link href={pathFor(language, { page: 'product', slug: 'restos' })}>RestOS</Link>
+                    <Link href={pathFor(language, { page: 'product', slug: 'tiptrack' })}>TipTrack</Link>
+                    <Link href={pathFor(language, { page: 'product', slug: '86mise' })}>86MISE</Link>
                 </nav>
             </footer>
         </main>

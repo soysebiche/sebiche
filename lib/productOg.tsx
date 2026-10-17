@@ -1,35 +1,33 @@
 import { ImageResponse } from 'next/og'
-import { homeCopy } from '../../../../content/home'
-import { isProductSlug, products, productSlugs } from '../../../../content/products'
-import { brand, loadOgFonts, OgLockup, ogContentType, ogSize } from '../../../../lib/og'
+import { homeCopy } from '../content/home'
+import { isProductSlug, products } from '../content/products'
+import type { Language } from './language'
+import { brand, loadOgFonts, OgLockup, ogContentType, ogSize } from './og'
 
-export const size = ogSize
-export const contentType = ogContentType
+// Share image for a product page. Used by /es/productos/[slug] and /en/products/[slug], each
+// with its own language, like the page metadata.
+type ProductImageParams = { params: Promise<{ slug: string }> }
 
-export function generateStaticParams() {
-    return productSlugs.map((slug) => ({ slug }))
-}
-
-export async function generateImageMetadata({ params }: { params: Promise<{ slug: string }> }) {
+export async function productImageMetadata({ params }: ProductImageParams) {
     const { slug } = await params
     const name = isProductSlug(slug) ? products[slug].name : 'Sebiche'
     return [{ id: 'default', alt: `${name} by SEBICHE`, size: ogSize, contentType: ogContentType }]
 }
 
 // Endorsed product card: product headline on ground, identity panel in the product color
-// with "<product> by SEBICHE". English, like the page metadata.
-export default async function ProductOpenGraphImage({ params }: { params: Promise<{ slug: string }> }) {
+// with "<product> by SEBICHE".
+export async function productImage({ params }: ProductImageParams, language: Language) {
     const { slug } = await params
     const fonts = await loadOgFonts()
     const product = isProductSlug(slug) ? products[slug] : products.restos
     const accent = brand[product.accent]
-    const copy = product.en
+    const copy = product[language]
 
     return new ImageResponse(
         (
             <div style={{ display: 'flex', width: '100%', height: '100%', background: brand.ground, color: brand.paper, fontFamily: 'Manrope' }}>
                 <div style={{ display: 'flex', flex: 1, flexDirection: 'column', justifyContent: 'space-between', padding: 64 }}>
-                    <OgLockup descriptor={homeCopy.en.hero.eyebrow} />
+                    <OgLockup descriptor={homeCopy[language].hero.eyebrow} />
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
                         <div style={{ display: 'flex', gap: 16, fontSize: 15, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
                             <span style={{ color: accent }}>{product.number}</span>

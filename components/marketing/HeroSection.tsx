@@ -5,6 +5,7 @@ import Link from 'next/link'
 import type { HomeCopy } from '../../content/home'
 import type { Language } from '../../lib/language'
 import { trackMarketingEvent } from '../../lib/marketing-analytics'
+import { pathFor } from '../../lib/routes'
 
 export default function HeroSection({ copy, language }: { copy: HomeCopy, language: Language }) {
     return (
@@ -19,7 +20,7 @@ export default function HeroSection({ copy, language }: { copy: HomeCopy, langua
                 <div className="holding-contact-row">
                     <Link
                         className="holding-button"
-                        href="/contacto"
+                        href={pathFor(language, { page: 'contact' })}
                         onClick={() => trackMarketingEvent('Contact CTA Clicked', { source: 'home_hero', language })}
                     >
                         {copy.hero.cta}

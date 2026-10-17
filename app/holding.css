@@ -86,7 +86,7 @@
 }
 
 .holding-nav a,
-.holding-language button,
+.holding-language a,
 .holding-menu-button,
 .holding-mobile-nav a {
   color: inherit;
@@ -127,7 +127,7 @@
   gap: var(--space-3xs);
 }
 
-.holding-language button {
+.holding-language a {
   display: inline-flex;
   min-width: var(--control-min);
   min-height: var(--control-min);
@@ -140,7 +140,7 @@
   padding: 0;
 }
 
-.holding-language button.is-active {
+.holding-language a[aria-current="page"] {
   opacity: 1;
   text-decoration: underline;
   text-underline-offset: 0.35rem;

@@ -6,6 +6,7 @@ import type { HomeCopy } from '../../content/home'
 import { products, type ProductSlug } from '../../content/products'
 import type { Language } from '../../lib/language'
 import { trackMarketingEvent } from '../../lib/marketing-analytics'
+import { pathFor } from '../../lib/routes'
 
 const imageAltKeys = { restos: 'restos', tiptrack: 'tiptrack', '86mise': 'mise' } as const
 
@@ -27,7 +28,7 @@ export default function ProductGrid({ copy, language }: { copy: HomeCopy, langua
                     return (
                         <Link
                             className={`holding-product-card is-${product.accent}`}
-                            href={`/productos/${slug}`}
+                            href={pathFor(language, { page: 'product', slug })}
                             key={slug}
                             onClick={() => trackMarketingEvent('Product CTA Clicked', { product: slug, source: 'home_card', language })}
                         >
