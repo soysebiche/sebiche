@@ -1,11 +1,12 @@
 import type { MetadataRoute } from 'next'
 import tokens from '../brand/tokens.json'
+import { homeCopy } from '../content/home'
 
 export default function manifest(): MetadataRoute.Manifest {
     return {
         name: 'Sebiche | Restaurant Technology',
         short_name: 'Sebiche',
-        description: 'Connected restaurant technology for orders, delivery, inventory, purchasing and forecasting.',
+        description: homeCopy.en.meta.description,
         start_url: '/',
         scope: '/',
         display: 'standalone',

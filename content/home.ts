@@ -2,11 +2,11 @@ export const homeCopy = {
     en: {
         meta: {
             title: 'Sebiche | Restaurant Technology',
-            description: 'Connected restaurant technology for orders, delivery, inventory, purchasing and forecasting.',
+            description: 'Technology for independent restaurants: orders, your own delivery, inventory and purchasing, built from how a kitchen actually runs.',
             share: 'Your restaurant, connected end to end.',
             keywords: ['restaurant technology', 'restaurant operations', 'POS', 'delivery management', 'restaurant inventory'],
             contactTitle: 'Contact',
-            contactDescription: 'Discuss your restaurant operation and product fit with Sebiche.',
+            contactDescription: 'Tell us how your restaurant runs and we’ll tell you honestly whether one of our products fits.',
         },
         nav: {
             products: 'Products',
@@ -22,13 +22,13 @@ export const homeCopy = {
             start: 'Your restaurant,',
             accent: 'connected',
             end: 'end to end.',
-            body: 'A family of products built from real operations to help independent restaurants go digital.',
+            body: 'Products built from real service, for independent restaurants that still run on paper tickets, memory and too many tablets.',
             cta: 'Discuss your operation',
         },
         products: {
             title: 'Three products.',
             accent: 'One connected operation.',
-            intro: 'Explore what each product solves, how it works and its real delivery status.',
+            intro: 'See what each one fixes in your service, how it works and where it actually stands today.',
             explore: 'Explore product',
             items: [
                 { slug: 'restos', name: 'RestOS', body: 'Orders, POS, kitchen and payments.' },
@@ -37,19 +37,19 @@ export const homeCopy = {
             ],
         },
         approach: {
-            start: 'Technology that understands',
-            accent: 'how a restaurant works.',
+            start: 'Built for the rush,',
+            accent: 'not for the demo.',
             pillars: [
-                { title: 'Less friction', body: 'Clearer workflows so your team can focus on service.' },
-                { title: 'More control', body: 'Real-time visibility from the kitchen to the doorstep.' },
-                { title: 'Decisions with context', body: 'Connected data that helps you act better every day.' },
+                { title: 'The ticket fires once', body: 'The order goes from the counter to the right station without anyone typing it again.' },
+                { title: 'You know where the driver is', body: 'Every delivery, its cash and its tip are on record before you close the night.' },
+                { title: 'No surprise 86s', body: 'You see what’s running low and what’s about to expire before service, not halfway through it.' },
             ],
-            caption: 'The details shape the operation.',
+            caption: 'Mise en place for the whole restaurant.',
         },
         closing: {
-            start: 'Digitize your restaurant',
-            end: 'without losing its',
-            accent: 'soul.',
+            start: 'Paper tickets got you this far.',
+            end: 'Now give your line',
+            accent: 'a real system.',
             cta: 'Start a conversation',
         },
         imageAlt: {
@@ -63,11 +63,11 @@ export const homeCopy = {
     es: {
         meta: {
             title: 'Sebiche | Tecnología para restaurantes',
-            description: 'Tecnología conectada para restaurantes: pedidos, reparto, inventario, compras y pronóstico.',
+            description: 'Tecnología para restaurantes independientes: pedidos, reparto propio, inventario y compras, hecha desde cómo trabaja una cocina de verdad.',
             share: 'Tu restaurante, conectado de punta a punta.',
             keywords: ['tecnología para restaurantes', 'software para restaurantes', 'punto de venta', 'reparto propio', 'inventario de restaurante'],
             contactTitle: 'Contacto',
-            contactDescription: 'Conversemos sobre la operación de tu restaurante y qué producto de Sebiche encaja.',
+            contactDescription: 'Cuéntanos cómo trabaja tu restaurante y te diremos con honestidad si alguno de nuestros productos te sirve.',
         },
         nav: {
             products: 'Productos',
@@ -83,13 +83,13 @@ export const homeCopy = {
             start: 'Tu restaurante,',
             accent: 'conectado',
             end: 'de punta a punta.',
-            body: 'Una familia de productos creada desde la operación real para digitalizar restaurantes independientes.',
+            body: 'Productos hechos desde el servicio real, para restaurantes independientes que todavía corren con comandas de papel, memoria y demasiadas tabletas.',
             cta: 'Hablemos de tu operación',
         },
         products: {
             title: 'Tres productos.',
             accent: 'Una operación conectada.',
-            intro: 'Explora qué resuelve cada producto, cómo funciona y cuál es su estado real.',
+            intro: 'Mira qué arregla cada uno en tu servicio, cómo funciona y en qué punto está hoy de verdad.',
             explore: 'Explorar producto',
             items: [
                 { slug: 'restos', name: 'RestOS', body: 'Pedidos, POS, cocina y pagos.' },
@@ -98,19 +98,19 @@ export const homeCopy = {
             ],
         },
         approach: {
-            start: 'Tecnología que entiende',
-            accent: 'cómo trabaja un restaurante.',
+            start: 'Hecho para la hora pico,',
+            accent: 'no para la demo.',
             pillars: [
-                { title: 'Menos fricción', body: 'Flujos más claros para que tu equipo se enfoque en el servicio.' },
-                { title: 'Más control', body: 'Visibilidad en tiempo real desde la cocina hasta la entrega.' },
-                { title: 'Decisiones con contexto', body: 'Datos conectados que te ayudan a decidir mejor cada día.' },
+                { title: 'La comanda sale una vez', body: 'El pedido va del mostrador a la estación correcta sin que nadie lo vuelva a escribir.' },
+                { title: 'Sabes dónde va el repartidor', body: 'Cada entrega, su efectivo y su propina quedan registrados antes de cerrar la noche.' },
+                { title: 'Sin 86 sorpresa', body: 'Ves qué se está acabando y qué está por vencer antes del servicio, no a la mitad.' },
             ],
-            caption: 'El detalle hace la diferencia.',
+            caption: 'Mise en place para todo el restaurante.',
         },
         closing: {
-            start: 'Digitaliza tu restaurante',
-            end: 'sin perder su',
-            accent: 'esencia.',
+            start: 'Las comandas de papel te trajeron hasta aquí.',
+            end: 'Ahora dale a tu línea',
+            accent: 'un sistema de verdad.',
             cta: 'Iniciar una conversación',
         },
         imageAlt: {

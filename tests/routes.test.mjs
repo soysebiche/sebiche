@@ -9,12 +9,12 @@ const site = 'https://www.sebiche.com'
 const routes = [
   ['/en', 'Your restaurant'],
   ['/es', 'Tu restaurante'],
-  ['/en/products/restos', 'One operational thread'],
-  ['/es/productos/restos', 'Un solo hilo operativo'],
-  ['/en/products/tiptrack', 'Every delivery visible'],
-  ['/es/productos/tiptrack', 'Cada entrega visible'],
-  ['/en/products/86mise', 'Know what is on hand'],
-  ['/es/productos/86mise', 'Saber qué tienes'],
+  ['/en/products/restos', 'Every order on one screen'],
+  ['/es/productos/restos', 'Todos tus pedidos en una pantalla'],
+  ['/en/products/tiptrack', 'Every delivery in sight'],
+  ['/es/productos/tiptrack', 'Cada entrega a la vista'],
+  ['/en/products/86mise', 'Know what’s on the shelf'],
+  ['/es/productos/86mise', 'Ten claro qué hay en tu cámara'],
   ['/en/contact', 'Tell us where the friction is'],
   ['/es/contacto', 'Cuéntanos dónde está la fricción'],
   ['/manifest.webmanifest', 'Restaurant Technology'],
@@ -22,9 +22,9 @@ const routes = [
   ['/sitemap.xml', '<urlset'],
 ]
 const products = [
-  ['restos', 'RestOS', 'Private pilot', 'Piloto privado'],
-  ['tiptrack', 'TipTrack', 'Operational PWA', 'PWA operativa'],
-  ['86mise', '86MISE', 'Limited operational beta', 'Beta operativa limitada'],
+  ['restos', 'RestOS', 'Private pilot · by invitation', 'Piloto privado · por invitación'],
+  ['tiptrack', 'TipTrack', 'Web app in service', 'App web en servicio'],
+  ['86mise', '86MISE', 'Limited beta · by invitation', 'Beta limitada · por invitación'],
 ]
 const retiredRoutes = [
   '/case-studies/linio',
