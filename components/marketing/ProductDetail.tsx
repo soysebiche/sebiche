@@ -11,8 +11,8 @@ import FooterSignature from '../brand/FooterSignature'
 import MarketingHeader from './MarketingHeader'
 
 const commonCopy = {
-    en: { back: 'All products', proof: 'Verified product evidence', related: 'Other Sebiche products', contact: 'Contact', screen: 'product screen', scenes: 'Inside the product', scenesTitle: 'From operational signal to controlled action.' },
-    es: { back: 'Todos los productos', proof: 'Evidencia verificada del producto', related: 'Otros productos Sebiche', contact: 'Contacto', screen: 'pantalla del producto', scenes: 'Dentro del producto', scenesTitle: 'De la señal operativa a la acción controlada.' },
+    en: { back: 'All products', proof: 'In one number', related: 'Other Sebiche products', contact: 'Contact', screen: 'product screen', scenes: 'Inside the product', scenesTitle: 'From the walk-in to the purchase order.' },
+    es: { back: 'Todos los productos', proof: 'En un número', related: 'Otros productos Sebiche', contact: 'Contacto', screen: 'pantalla del producto', scenes: 'Dentro del producto', scenesTitle: 'De la cámara a la orden de compra.' },
 } as const
 
 export default function ProductDetail({ product, language }: { product: Product, language: Language }) {
@@ -167,7 +167,7 @@ export default function ProductDetail({ product, language }: { product: Product,
 
             <section className="product-final-cta" aria-labelledby="product-cta-title">
                 <p>{product.name}</p>
-                <h2 id="product-cta-title">{copy.headline}</h2>
+                <h2 id="product-cta-title">{copy.closingHeadline}</h2>
                 <Link
                     className="holding-button"
                     href={contactHref}
