@@ -1,16 +1,25 @@
 import { ImageResponse } from 'next/og'
-import { homeCopy } from '../content/home'
-import { brand, loadHeroPhoto, loadOgFonts, OgLockup, ogContentType, ogSize } from '../lib/og'
+import { homeCopy } from '../../content/home'
+import { isLanguage } from '../../lib/language'
+import { brand, loadHeroPhoto, loadOgFonts, OgLockup, ogContentType, ogSize } from '../../lib/og'
 
-export const alt = 'Sebiche — Your restaurant, connected end to end.'
 export const size = ogSize
 export const contentType = ogContentType
 
-// Shared links are read by crawlers without a language preference, so the image follows the
-// English metadata (og:locale en_US). One language per piece, as the brand guidelines ask.
-export default async function OpenGraphImage() {
+type ImageParams = { params: Promise<{ lang: string }> }
+
+export async function generateImageMetadata({ params }: ImageParams) {
+    const { lang } = await params
+    const { meta } = homeCopy[isLanguage(lang) ? lang : 'en']
+    return [{ id: 'default', alt: `Sebiche — ${meta.share}`, size: ogSize, contentType: ogContentType }]
+}
+
+// Each language has its own share image, matching its page metadata. One language per piece,
+// as the brand guidelines ask.
+export default async function OpenGraphImage({ params }: ImageParams) {
+    const { lang } = await params
     const [fonts, photo] = await Promise.all([loadOgFonts(), loadHeroPhoto()])
-    const { hero } = homeCopy.en
+    const { hero } = homeCopy[isLanguage(lang) ? lang : 'en']
 
     return new ImageResponse(
         (

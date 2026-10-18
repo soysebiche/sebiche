@@ -1,6 +1,5 @@
+import { CONTACT_EMAIL } from '../../lib/site'
 import SebicheSymbol from './SebicheSymbol'
-
-const CONTACT_EMAIL = 's@sebiche.com'
 
 // Footer lockup: El pase symbol, wordmark and the published contact.
 export default function FooterSignature() {

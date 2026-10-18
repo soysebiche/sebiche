@@ -1,26 +1,24 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { homeCopy } from '../../content/home'
 import SebicheSymbol from '../brand/SebicheSymbol'
-import type { Language } from '../../lib/language'
+import { languages, rememberLanguage, type Language } from '../../lib/language'
+import { htmlLang, pathFor, type Route } from '../../lib/routes'
 
 type MarketingHeaderProps = {
     language: Language
-    onLanguageChange: (language: Language) => void
-    context?: 'home' | 'internal'
+    // The page being shown, so the language switch links to the same page in the other language.
+    route: Route
 }
 
-export default function MarketingHeader({ language, onLanguageChange, context = 'internal' }: MarketingHeaderProps) {
+export default function MarketingHeader({ language, route }: MarketingHeaderProps) {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const t = homeCopy[language]
-    const homeHref = context === 'home' ? '#main' : '/'
-
-    function selectLanguage(nextLanguage: Language) {
-        onLanguageChange(nextLanguage)
-        setIsMenuOpen(false)
-    }
+    const home = pathFor(language, { page: 'home' })
+    const homeHref = route.page === 'home' ? '#main' : home
+    const contactHref = pathFor(language, { page: 'contact' })
 
     return (
         <header className="holding-header">
@@ -33,9 +31,9 @@ export default function MarketingHeader({ language, onLanguageChange, context = 
             </Link>
 
             <nav className="holding-nav" aria-label={t.nav.label}>
-                <Link href="/#products">{t.nav.products}</Link>
-                <Link href="/#approach">{t.nav.approach}</Link>
-                <Link href="/contacto">{t.nav.contact}</Link>
+                <Link href={`${home}#products`}>{t.nav.products}</Link>
+                <Link href={`${home}#approach`}>{t.nav.approach}</Link>
+                <Link href={contactHref}>{t.nav.contact}</Link>
             </nav>
 
             <button
@@ -53,29 +51,26 @@ export default function MarketingHeader({ language, onLanguageChange, context = 
                 className={`holding-mobile-nav${isMenuOpen ? ' is-open' : ''}`}
                 aria-label={t.nav.label}
             >
-                <Link href="/#products" onClick={() => setIsMenuOpen(false)}>{t.nav.products}</Link>
-                <Link href="/#approach" onClick={() => setIsMenuOpen(false)}>{t.nav.approach}</Link>
-                <Link href="/contacto" onClick={() => setIsMenuOpen(false)}>{t.nav.contact}</Link>
+                <Link href={`${home}#products`} onClick={() => setIsMenuOpen(false)}>{t.nav.products}</Link>
+                <Link href={`${home}#approach`} onClick={() => setIsMenuOpen(false)}>{t.nav.approach}</Link>
+                <Link href={contactHref} onClick={() => setIsMenuOpen(false)}>{t.nav.contact}</Link>
             </nav>
 
-            <div className="holding-language" aria-label={t.nav.language}>
-                <button
-                    type="button"
-                    className={language === 'en' ? 'is-active' : undefined}
-                    onClick={() => selectLanguage('en')}
-                    aria-pressed={language === 'en'}
-                >
-                    EN
-                </button>
-                <span aria-hidden>/</span>
-                <button
-                    type="button"
-                    className={language === 'es' ? 'is-active' : undefined}
-                    onClick={() => selectLanguage('es')}
-                    aria-pressed={language === 'es'}
-                >
-                    ES
-                </button>
+            <div className="holding-language" role="group" aria-label={t.nav.language}>
+                {languages.map((option, index) => (
+                    <Fragment key={option}>
+                        {index > 0 ? <span aria-hidden>/</span> : null}
+                        <Link
+                            href={pathFor(option, route)}
+                            hrefLang={htmlLang[option]}
+                            lang={htmlLang[option]}
+                            aria-current={option === language ? 'page' : undefined}
+                            onClick={() => { rememberLanguage(option); setIsMenuOpen(false) }}
+                        >
+                            {option.toUpperCase()}
+                        </Link>
+                    </Fragment>
+                ))}
             </div>
         </header>
     )
