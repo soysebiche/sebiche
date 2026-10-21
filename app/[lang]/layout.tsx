@@ -10,7 +10,7 @@ import { fontVariables } from '../../lib/fonts'
 import { isLanguage, languages } from '../../lib/language'
 import { htmlLang } from '../../lib/routes'
 import { CONTACT_EMAIL, SITE_URL } from '../../lib/site'
-import tokens from '../../brand/tokens.json'
+import tokens from '../../brand/tokens.flat.json'
 
 // Only /en and /es exist; anything else at the first segment is a 404.
 export const dynamicParams = false

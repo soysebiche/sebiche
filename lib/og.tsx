@@ -1,11 +1,11 @@
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import sharp from 'sharp'
-import tokens from '../brand/tokens.json'
+import tokens from '../brand/tokens.flat.json'
 import { symbolFills, symbolRects } from './brand'
 
 // Shared pieces for the Open Graph images. Images cannot read CSS variables, so the values
-// come straight from brand/tokens.json.
+// come straight from brand/tokens.flat.json.
 export const ogSize = { width: 1200, height: 630 }
 export const ogContentType = 'image/png'
 

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next'
-import tokens from '../brand/tokens.json'
+import tokens from '../brand/tokens.flat.json'
 import { homeCopy } from '../content/home'
 
 export default function manifest(): MetadataRoute.Manifest {

@@ -1,0 +1,69 @@
+{
+  "$comment": "Site-only brand values the design system (brand/tokens.json) does not carry: the product map, the symbol geometry, the fluid type scale and the weight/leading/tracking scales the CSS uses. {type.<style>.<prop>} and {<token>} refer to brand/tokens.json, so the values follow the design system; literals are site-only. scripts/brand-tokens.mjs merges both files.",
+  "product": {
+    "restos": { "name": "RestOS", "color": "copper", "mark": "OS" },
+    "tiptrack": { "name": "TipTrack", "color": "violet", "mark": "↗" },
+    "86mise": { "name": "86MISE", "color": "orange", "mark": "▤" }
+  },
+  "weight": {
+    "display": "{type.display-xl.fontWeight}",
+    "medium": 500,
+    "semibold": 600,
+    "button": "{type.sm.fontWeight}",
+    "bold": 700
+  },
+  "text": {
+    "$comment": "The design system gives the largest size of each style; the site scales the fluid ones down with clamp().",
+    "micro": "{type.micro.fontSize}",
+    "label": "{type.label.fontSize}",
+    "xs": "{type.xs.fontSize}",
+    "sm": "{type.sm.fontSize}",
+    "base": "{type.base.fontSize}",
+    "lead": "clamp(1rem, 1.3vw, {type.lead.fontSize})",
+    "caption": "{type.caption.fontSize}",
+    "glyph": "{type.glyph.fontSize}",
+    "step": "clamp(1.2rem, 1.7vw, {type.step.fontSize})",
+    "title": "clamp(1.8rem, 2.75vw, {type.title.fontSize})",
+    "display-m": "clamp(2.5rem, 4.5vw, {type.display-m.fontSize})",
+    "display-l": "clamp(3rem, 5vw, {type.display-l.fontSize})",
+    "display-xl": "clamp(3.5rem, 6vw, {type.display-xl.fontSize})",
+    "display-2xl": "clamp(3.5rem, 7vw, {type.display-2xl.fontSize})",
+    "display-sm": "{type.display-sm.fontSize}",
+    "display-sm-hero": "clamp(3.4rem, 16vw, {type.display-sm-hero.fontSize})",
+    "numeral-proof": "clamp(5rem, 9vw, {type.numeral-proof.fontSize})",
+    "numeral-86": "clamp(8rem, 15vw, {type.numeral-86.fontSize})",
+    "wordmark": "clamp(1rem, 1.45vw, {type.wordmark.fontSize})"
+  },
+  "leading": {
+    "numeral": "{type.numeral-86.lineHeight}",
+    "display": "{type.display-xl.lineHeight}",
+    "display-loose": "{type.display-m.lineHeight}",
+    "heading": "{type.step.lineHeight}",
+    "snug": 1.45,
+    "body": "{type.base.lineHeight}"
+  },
+  "tracking": {
+    "display": "{type.display-m.letterSpacing}",
+    "display-tight": "{type.display-xl.letterSpacing}",
+    "heading": "-0.05em",
+    "product": "{type.title.letterSpacing}",
+    "step": "{type.step.letterSpacing}",
+    "accent": "{type.accent-italic.letterSpacing}",
+    "numeral": "{type.numeral-86.letterSpacing}",
+    "label": "{type.label.letterSpacing}",
+    "descriptor": "{type.micro.letterSpacing}",
+    "wordmark": "{type.wordmark.letterSpacing}"
+  },
+  "symbol": {
+    "$comment": "El pase on a 100-unit square: a rail and three order tickets, one per product, left to right.",
+    "viewBox": 100,
+    "rail": { "x": 8, "y": 22, "width": 84, "height": 8 },
+    "tickets": [
+      { "product": "restos", "x": 16, "y": 36, "width": 18, "height": 32 },
+      { "product": "tiptrack", "x": 41, "y": 36, "width": 18, "height": 44 },
+      { "product": "86mise", "x": 66, "y": 36, "width": 18, "height": 26 }
+    ],
+    "clearSpace": 0.18,
+    "minSize": { "color": 24, "oneInk": 16, "lockupWidth": 120 }
+  }
+}

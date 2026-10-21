@@ -1,4 +1,4 @@
-import tokens from '../brand/tokens.json'
+import tokens from '../brand/tokens.flat.json'
 
 type ProductSlug = keyof typeof tokens.product
 
@@ -13,7 +13,7 @@ export function symbolFills(palette: Record<string, string>): SymbolFills {
     }
 }
 
-// The symbol's rectangles on its 100-unit square, from brand/tokens.json.
+// The symbol's rectangles on its 100-unit square, from brand/tokens.flat.json.
 export function symbolRects(fills: SymbolFills) {
     const { rail, tickets } = tokens.symbol
     return [

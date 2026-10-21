@@ -1,10 +1,10 @@
-import tokens from '../../brand/tokens.json'
+import tokens from '../../brand/tokens.flat.json'
 import { cssPalette, symbolFills, symbolRects } from '../../lib/brand'
 
 const rects = symbolRects(symbolFills(cssPalette))
 
 // El pase: a rail with three order tickets, one per product (RestOS, TipTrack, 86MISE).
-// Geometry and colors come from brand/tokens.json.
+// Geometry and colors come from brand/tokens.flat.json.
 export default function SebicheSymbol({ className }: { className?: string }) {
     return (
         <svg className={className} viewBox={`0 0 ${tokens.symbol.viewBox} ${tokens.symbol.viewBox}`} aria-hidden focusable="false">

@@ -11,15 +11,18 @@ Esta guía es la referencia en el repositorio. La guía visual completa y el des
 
 ## Fuente única: `brand/tokens.json`
 
-Todos los valores de la marca están en [`brand/tokens.json`](brand/tokens.json). Nada más los define.
+Todos los valores de la marca están en [`brand/tokens.json`](brand/tokens.json), copia del design system (`soysebiche/sebiche-brand`, `design-system/project/tokens.json`): grupos de tokens `{ name, value, usage }` con alias `{surface}`. No lo edites aquí; cámbialo en el design system y cópialo. Lo que el design system no define (mapa de productos, geometría del símbolo, escala tipográfica fluida, escalas de peso, interlineado y tracking) está en [`brand/site.json`](brand/site.json), que referencia valores del design system con `{type.<estilo>.<prop>}`.
+
+[`scripts/brand-tokens.mjs`](scripts/brand-tokens.mjs) resuelve los alias y aplana ambos archivos en `brand/tokens.flat.json` (generado), que es lo que leen el resto.
 
 | Quién lo usa | Cómo |
 | --- | --- |
+| `brand/tokens.flat.json` | Generado: los tokens resueltos en forma plana (`color.ground`, `space.sm`…). |
 | `app/tokens.css` | Generado: cada token como propiedad CSS en `:root`. |
 | `app/holding.css`, `app/product.css` | Solo referencian `var(--…)`. |
-| `tailwind.config.js` | Lee el JSON y expone utilidades que apuntan a las variables (`bg-ground`, `text-label`, `tracking-wordmark`, `px-gutter`, `duration-fast`…). |
-| `lib/og.tsx`, `app/manifest.ts`, `app/layout.tsx` | Importan el JSON; las imágenes OG no leen variables CSS. |
-| `components/brand/SebicheSymbol.tsx`, `lib/brand.ts` | Dibujan el símbolo desde su geometría en el JSON. |
+| `tailwind.config.js` | Lee `brand/tokens.flat.json` y expone utilidades que apuntan a las variables (`bg-ground`, `text-label`, `tracking-wordmark`, `px-gutter`, `duration-fast`…). |
+| `lib/og.tsx`, `app/manifest.ts`, `app/layout.tsx` | Importan `brand/tokens.flat.json`; las imágenes OG no leen variables CSS. |
+| `components/brand/SebicheSymbol.tsx`, `lib/brand.ts` | Dibujan el símbolo desde su geometría (`brand/site.json`). |
 | `public/brand/*.svg`, íconos y favicon | Generados. |
 
 Para cambiar algo:
@@ -28,7 +31,7 @@ Para cambiar algo:
 npm run brand
 ```
 
-edita `brand/tokens.json` antes de correrlo. `npm run brand:check` falla si algún archivo generado quedó desactualizado; úsalo en CI. No edites a mano `app/tokens.css`, los SVG de `public/brand/`, `app/icon.svg`, `app/apple-icon.png` ni `app/favicon.ico`.
+sincroniza `brand/tokens.json` o edita `brand/site.json` antes de correrlo. `npm run brand:check` falla si algún archivo generado quedó desactualizado; úsalo en CI. No edites a mano `brand/tokens.flat.json`, `app/tokens.css`, los SVG de `public/brand/`, `app/icon.svg`, `app/apple-icon.png` ni `app/favicon.ico`.
 
 Las únicas cifras literales que quedan en los CSS son medidas de layout de un componente (anchos máximos, alturas mínimas de una sección, columnas de la retícula).
 

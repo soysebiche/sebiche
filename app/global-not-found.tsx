@@ -2,7 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import NotFoundContent from '../components/site/NotFoundContent'
 import { fontVariables } from '../lib/fonts'
-import tokens from '../brand/tokens.json'
+import tokens from '../brand/tokens.flat.json'
 
 // URLs that match no route at all (the root layout lives under app/[lang], so there is no layout
 // to render them in).
