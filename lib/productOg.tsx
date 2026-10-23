@@ -11,7 +11,7 @@ type ProductImageParams = { params: Promise<{ slug: string }> }
 export async function productImageMetadata({ params }: ProductImageParams) {
     const { slug } = await params
     const name = isProductSlug(slug) ? products[slug].name : 'Sebiche'
-    return [{ id: 'default', alt: `${name} by SEBICHE`, size: ogSize, contentType: ogContentType }]
+    return [{ id: 'default', alt: `${name} · SEBICHE`, size: ogSize, contentType: ogContentType }]
 }
 
 // Endorsed product card: product headline on ground, identity panel in the product color
@@ -41,7 +41,7 @@ export async function productImage({ params }: ProductImageParams, language: Lan
                 <div style={{ display: 'flex', width: 360, flexDirection: 'column', justifyContent: 'flex-end', gap: 20, background: accent, color: brand.onAccent, padding: 48 }}>
                     <div style={{ display: 'flex', fontSize: 76, fontWeight: 500, letterSpacing: '-0.07em', lineHeight: 1 }}>{product.name}</div>
                     <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, fontSize: 18, fontWeight: 500 }}>
-                        <span>by</span>
+                        <span>{language === 'es' ? 'de' : 'by'}</span>
                         <span style={{ fontWeight: 700, letterSpacing: '0.22em' }}>SEBICHE</span>
                     </div>
                 </div>

@@ -8,6 +8,7 @@ import type { Language } from '../../lib/language'
 import { trackMarketingEvent } from '../../lib/marketing-analytics'
 import { pathFor } from '../../lib/routes'
 import FooterSignature from '../brand/FooterSignature'
+import DemoCta from './DemoCta'
 import MarketingHeader from './MarketingHeader'
 
 const commonCopy = {
@@ -30,17 +31,20 @@ export default function ProductDetail({ product, language }: { product: Product,
 
             <section className="product-hero" aria-labelledby="product-title">
                 <div className="product-hero-copy">
-                    <Link className="product-back" href={`${pathFor(language, { page: 'home' })}#products`}><span aria-hidden>←</span> {common.back}</Link>
+                    <Link className="product-back" href={pathFor(language, { page: 'products' })}><span aria-hidden>←</span> {common.back}</Link>
                     <p className="product-eyebrow"><span>{product.number}</span>{copy.eyebrow}</p>
                     <h1 id="product-title">{copy.headline}</h1>
                     <p className="product-intro">{copy.intro}</p>
-                    <Link
-                        className="holding-button"
-                        href={contactHref}
-                        onClick={() => trackMarketingEvent('Product CTA Clicked', { product: product.slug, source: 'product_hero', language })}
-                    >
-                        {copy.cta}
-                    </Link>
+                    <div className="product-cta-row">
+                        <Link
+                            className="holding-button"
+                            href={contactHref}
+                            onClick={() => trackMarketingEvent('Product CTA Clicked', { product: product.slug, source: 'product_hero', language })}
+                        >
+                            {copy.cta}
+                        </Link>
+                        <DemoCta language={language} className="holding-text-link" source={`product_hero_${product.slug}`} />
+                    </div>
                 </div>
                 <div className="product-hero-identity" role="img" aria-label={`${product.name} by SEBICHE`}>
                     <span>{product.icon}</span>
@@ -168,13 +172,16 @@ export default function ProductDetail({ product, language }: { product: Product,
             <section className="product-final-cta" aria-labelledby="product-cta-title">
                 <p>{product.name}</p>
                 <h2 id="product-cta-title">{copy.closingHeadline}</h2>
-                <Link
-                    className="holding-button"
-                    href={contactHref}
-                    onClick={() => trackMarketingEvent('Product CTA Clicked', { product: product.slug, source: 'product_closing', language })}
-                >
-                    {copy.cta}
-                </Link>
+                <div className="product-cta-row">
+                    <Link
+                        className="holding-button"
+                        href={contactHref}
+                        onClick={() => trackMarketingEvent('Product CTA Clicked', { product: product.slug, source: 'product_closing', language })}
+                    >
+                        {copy.cta}
+                    </Link>
+                    <DemoCta language={language} className="holding-text-link" source={`product_closing_${product.slug}`} />
+                </div>
             </section>
 
             <footer className="product-footer">

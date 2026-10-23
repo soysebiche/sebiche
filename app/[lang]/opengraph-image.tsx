@@ -18,8 +18,9 @@ export async function generateImageMetadata({ params }: ImageParams) {
 // as the brand guidelines ask.
 export default async function OpenGraphImage({ params }: ImageParams) {
     const { lang } = await params
+    const language = isLanguage(lang) ? lang : 'en'
     const [fonts, photo] = await Promise.all([loadOgFonts(), loadHeroPhoto()])
-    const { hero } = homeCopy[isLanguage(lang) ? lang : 'en']
+    const { hero } = homeCopy[language]
 
     return new ImageResponse(
         (

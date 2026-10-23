@@ -9,6 +9,8 @@ const site = 'https://www.sebiche.com'
 const routes = [
   ['/en', 'Your restaurant'],
   ['/es', 'Tu restaurante'],
+  ['/en/products', 'Three products'],
+  ['/es/productos', 'Tres productos'],
   ['/en/products/restos', 'Every order on one screen'],
   ['/es/productos/restos', 'Todos tus pedidos en una pantalla'],
   ['/en/products/tiptrack', 'Every delivery in sight'],
@@ -127,7 +129,7 @@ test('unknown routes return the custom 404', async () => {
 })
 
 test('localized segments only exist in their own language', async () => {
-  for (const route of ['/en/productos/restos', '/es/products/restos', '/en/contacto', '/es/contact', '/es/productos/unknown']) {
+  for (const route of ['/en/productos', '/en/productos/restos', '/es/products', '/es/products/restos', '/en/contacto', '/es/contact', '/es/productos/unknown']) {
     const response = await fetch(`${baseUrl}${route}`)
     assert.equal(response.status, 404, `${route} should not be accessible`)
   }
@@ -135,8 +137,14 @@ test('localized segments only exist in their own language', async () => {
 
 test('the bare root and legacy URLs redirect by cookie, then Accept-Language', async () => {
   assert.deepEqual(await redirectFor('/'), { status: 307, location: '/en' })
+  assert.deepEqual(await redirectFor('/', { 'accept-language': 'es' }), { status: 307, location: '/es' })
   assert.deepEqual(await redirectFor('/', { 'accept-language': 'es-MX,es;q=0.9,en;q=0.8' }), { status: 307, location: '/es' })
+  assert.deepEqual(await redirectFor('/', { 'accept-language': 'es-419' }), { status: 307, location: '/es' })
+  assert.deepEqual(await redirectFor('/', { 'accept-language': 'en;q=0.4,es-MX;q=0.8' }), { status: 307, location: '/es' })
+  assert.deepEqual(await redirectFor('/', { 'accept-language': 'fr-FR,fr;q=0.9' }), { status: 307, location: '/en' })
   assert.deepEqual(await redirectFor('/', { 'accept-language': 'es-MX,es;q=0.9', cookie: 'sebiche-language=en' }), { status: 307, location: '/en' })
+  assert.deepEqual(await redirectFor('/productos', { 'accept-language': 'es' }), { status: 307, location: '/es/productos' })
+  assert.deepEqual(await redirectFor('/products'), { status: 307, location: '/en/products' })
   assert.deepEqual(await redirectFor('/productos/tiptrack', { 'accept-language': 'es' }), { status: 307, location: '/es/productos/tiptrack' })
   assert.deepEqual(await redirectFor('/productos/tiptrack'), { status: 307, location: '/en/products/tiptrack' })
   assert.deepEqual(await redirectFor('/contacto?product=86mise', { 'accept-language': 'es' }), { status: 307, location: '/es/contacto?product=86mise' })
@@ -179,10 +187,15 @@ test('homepage exposes corporate content and localized links only', async () => 
   const body = await response.text()
 
   assert.doesNotMatch(body, /Sebastian|Napuri|Linio|Liverpool|Founder experience/i)
+  assert.match(body, /href="\/en\/products"/i)
   assert.match(body, /href="\/en\/products\/restos"/i)
   assert.match(body, /href="\/en\/products\/tiptrack"/i)
   assert.match(body, /href="\/en\/products\/86mise"/i)
   assert.match(body, /href="\/en\/contact"/i)
+  assert.match(body, /Book a 15-min demo/i)
+  assert.match(body, /Connected restaurant technology for independent restaurants/)
+  assert.match(body, /https:\/\/x\.com\/sebiche21/)
+  assert.match(body, /aria-hidden[^>]*>↗/)
   assert.match(body, /hrefLang="es-419"[^>]*href="\/es"/i)
   assert.match(body, /Skip to content/i)
   assert.match(body, /fetchPriority="high" loading="eager"/i)
@@ -190,10 +203,14 @@ test('homepage exposes corporate content and localized links only', async () => 
   assert.doesNotMatch(body, /<img[^>]+src="\/holding\//i)
 
   const spanish = await (await fetch(`${baseUrl}/es`)).text()
+  assert.match(spanish, /href="\/es\/productos"/i)
   assert.match(spanish, /href="\/es\/productos\/restos"/i)
   assert.match(spanish, /href="\/es\/contacto"/i)
+  assert.match(spanish, /Agenda una demo/i)
+  assert.match(spanish, /Tecnología conectada para restaurantes independientes/)
   assert.match(spanish, /Saltar al contenido/i)
   assert.match(spanish, /aria-label="Navegación de salto"/i)
+  assert.doesNotMatch(spanish, /linkedin\.com\/in\/sebastian-napuri/i)
 
   const expectedMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-X9SVKLLCBY'
   assert.match(body, new RegExp(`googletagmanager\\.com/gtag/js\\?id=${expectedMeasurementId}`))
@@ -216,9 +233,28 @@ test('product pages expose localized canonical metadata and honest status', asyn
       assert.match(body, new RegExp(`hrefLang="es-419" href="${escape(`${site}/es/productos/${slug}`)}"`, 'i'))
       assert.match(body, new RegExp(status, 'i'))
       assert.match(body, new RegExp(`href="${escape(`${contact}?product=${slug}`)}"`, 'i'))
+      assert.match(body, new RegExp(`href="${escape(route.replace(/\/[^/]+$/, ''))}"`, 'i'))
+      assert.match(body, /Book a 15-min demo|Agenda una demo/)
+      assert.match(body, /"@type":"SoftwareApplication"/)
       assert.match(body, /"@type":"BreadcrumbList"/)
     }
   }
+})
+
+test('product index pages list RestOS, TipTrack and 86MISE', async () => {
+  const english = await (await fetch(`${baseUrl}/en/products`)).text()
+  const spanish = await (await fetch(`${baseUrl}/es/productos`)).text()
+
+  for (const body of [english, spanish]) {
+    assert.match(body, /RestOS/)
+    assert.match(body, /TipTrack/)
+    assert.match(body, /86MISE/)
+    assert.match(body, /"@type":"ItemList"/)
+  }
+  assert.match(english, /href="\/en\/products\/restos"/i)
+  assert.match(spanish, /href="\/es\/productos\/tiptrack"/i)
+  assert.match(english, new RegExp(`rel="canonical" href="${escape(`${site}/en/products`)}"`, 'i'))
+  assert.match(spanish, new RegExp(`rel="canonical" href="${escape(`${site}/es/productos`)}"`, 'i'))
 })
 
 test('share images render for every page', async () => {
@@ -246,8 +282,8 @@ test('sitemap lists every page in both languages with hreflang alternates', asyn
   const body = await response.text()
   const locations = body.match(/<loc>/g) ?? []
 
-  assert.equal(locations.length, 10)
-  for (const path of ['/en', '/es', '/en/products/restos', '/es/productos/restos', '/en/products/tiptrack', '/es/productos/tiptrack', '/en/products/86mise', '/es/productos/86mise', '/en/contact', '/es/contacto']) {
+  assert.equal(locations.length, 12)
+  for (const path of ['/en', '/es', '/en/products', '/es/productos', '/en/products/restos', '/es/productos/restos', '/en/products/tiptrack', '/es/productos/tiptrack', '/en/products/86mise', '/es/productos/86mise', '/en/contact', '/es/contacto']) {
     assert.match(body, new RegExp(`<loc>${escape(site + path)}</loc>`, 'i'))
   }
   assert.match(body, /hreflang="es-419"/i)
@@ -255,6 +291,21 @@ test('sitemap lists every page in both languages with hreflang alternates', asyn
   assert.doesNotMatch(body, /https:\/\/sebiche\.com/i)
   assert.doesNotMatch(body, /case-studies|menu-board|\/pizza|\/entrees/i)
   assert.doesNotMatch(body, /sebiche\.vercel\.app/i)
+})
+
+test('responses send security headers and a report-only CSP', async () => {
+  const response = await fetch(`${baseUrl}/en`)
+  await response.text()
+
+  assert.equal(response.headers.get('x-frame-options'), 'DENY')
+  assert.equal(response.headers.get('x-content-type-options'), 'nosniff')
+  assert.equal(response.headers.get('referrer-policy'), 'strict-origin-when-cross-origin')
+  assert.match(response.headers.get('permissions-policy') ?? '', /camera=\(\)/)
+  assert.match(response.headers.get('strict-transport-security') ?? '', /includeSubDomains/)
+  const csp = response.headers.get('content-security-policy-report-only') ?? ''
+  assert.match(csp, /frame-ancestors 'none'/)
+  assert.match(csp, /googletagmanager\.com/)
+  assert.match(csp, /va\.vercel-scripts\.com/)
 })
 
 test('contact endpoint validates input and fails safely when delivery is not configured', async () => {

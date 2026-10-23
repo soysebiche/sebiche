@@ -3,7 +3,11 @@ import { languages, type Language } from './language'
 
 // Every public page exists once per language, under its own prefix and with localized
 // segments: /es/productos/restos ↔ /en/products/restos, /es/contacto ↔ /en/contact.
-export type Route = { page: 'home' } | { page: 'product'; slug: ProductSlug } | { page: 'contact' }
+export type Route =
+    | { page: 'home' }
+    | { page: 'products' }
+    | { page: 'product'; slug: ProductSlug }
+    | { page: 'contact' }
 
 export const routeSegments = {
     en: { product: 'products', contact: 'contact' },
@@ -16,6 +20,8 @@ export function pathFor(language: Language, route: Route) {
     switch (route.page) {
         case 'home':
             return `/${language}`
+        case 'products':
+            return `/${language}/${segments.product}`
         case 'product':
             return `/${language}/${segments.product}/${route.slug}`
         case 'contact':

@@ -6,6 +6,7 @@ import { homeCopy } from '../../content/home'
 import SebicheSymbol from '../brand/SebicheSymbol'
 import { languages, rememberLanguage, type Language } from '../../lib/language'
 import { htmlLang, pathFor, type Route } from '../../lib/routes'
+import DemoCta from './DemoCta'
 
 type MarketingHeaderProps = {
     language: Language
@@ -18,6 +19,7 @@ export default function MarketingHeader({ language, route }: MarketingHeaderProp
     const t = homeCopy[language]
     const home = pathFor(language, { page: 'home' })
     const homeHref = route.page === 'home' ? '#main' : home
+    const productsHref = pathFor(language, { page: 'products' })
     const contactHref = pathFor(language, { page: 'contact' })
 
     return (
@@ -31,10 +33,12 @@ export default function MarketingHeader({ language, route }: MarketingHeaderProp
             </Link>
 
             <nav className="holding-nav" aria-label={t.nav.label}>
-                <Link href={`${home}#products`}>{t.nav.products}</Link>
+                <Link href={productsHref} aria-current={route.page === 'products' ? 'page' : undefined}>{t.nav.products}</Link>
                 <Link href={`${home}#approach`}>{t.nav.approach}</Link>
                 <Link href={contactHref}>{t.nav.contact}</Link>
             </nav>
+
+            <DemoCta language={language} className="holding-demo holding-demo-header" source="header" />
 
             <button
                 type="button"
@@ -51,9 +55,10 @@ export default function MarketingHeader({ language, route }: MarketingHeaderProp
                 className={`holding-mobile-nav${isMenuOpen ? ' is-open' : ''}`}
                 aria-label={t.nav.label}
             >
-                <Link href={`${home}#products`} onClick={() => setIsMenuOpen(false)}>{t.nav.products}</Link>
+                <Link href={productsHref} aria-current={route.page === 'products' ? 'page' : undefined} onClick={() => setIsMenuOpen(false)}>{t.nav.products}</Link>
                 <Link href={`${home}#approach`} onClick={() => setIsMenuOpen(false)}>{t.nav.approach}</Link>
                 <Link href={contactHref} onClick={() => setIsMenuOpen(false)}>{t.nav.contact}</Link>
+                <DemoCta language={language} className="holding-demo holding-demo-mobile" source="header_mobile" onClick={() => setIsMenuOpen(false)} />
             </nav>
 
             <div className="holding-language" role="group" aria-label={t.nav.language}>

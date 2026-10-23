@@ -7,7 +7,7 @@ import GoogleAnalytics from '../../components/site/GoogleAnalytics'
 import Telemetry from '../../components/Telemetry'
 import { homeCopy } from '../../content/home'
 import { fontVariables } from '../../lib/fonts'
-import { isLanguage, languages } from '../../lib/language'
+import { isLanguage, languages, type Language } from '../../lib/language'
 import { htmlLang } from '../../lib/routes'
 import { CONTACT_EMAIL, SITE_URL } from '../../lib/site'
 import tokens from '../../brand/tokens.flat.json'
@@ -38,24 +38,28 @@ export async function generateMetadata({ params }: LayoutProps<'/[lang]'>): Prom
     }
 }
 
-const organizationJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    '@id': `${SITE_URL}/#organization`,
-    name: 'Sebiche',
-    url: SITE_URL,
-    logo: `${SITE_URL}/brand/icon-512.png`,
-    email: CONTACT_EMAIL,
-    description: 'Connected restaurant technology for independent restaurants.',
-    location: {
-        '@type': 'Place',
-        address: {
-            '@type': 'PostalAddress',
-            addressLocality: 'Dallas',
-            addressRegion: 'TX',
-            addressCountry: 'US',
+function organizationJsonLd(language: Language) {
+    return {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        '@id': `${SITE_URL}/#organization`,
+        name: 'Sebiche',
+        url: SITE_URL,
+        logo: `${SITE_URL}/brand/icon-512.png`,
+        email: CONTACT_EMAIL,
+        description: homeCopy[language].meta.organization,
+        inLanguage: htmlLang[language],
+        sameAs: ['https://x.com/sebiche21'],
+        location: {
+            '@type': 'Place',
+            address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Dallas',
+                addressRegion: 'TX',
+                addressCountry: 'US',
+            },
         },
-    },
+    }
 }
 
 export default async function RootLayout({ children, params }: LayoutProps<'/[lang]'>) {
@@ -76,7 +80,7 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[la
                 </nav>
                 <script
                     type="application/ld+json"
-                    dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd(lang)) }}
                 />
                 {children}
                 <Telemetry enabled={Boolean(process.env.VERCEL)} />

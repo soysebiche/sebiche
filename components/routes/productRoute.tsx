@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { homeCopy } from '../../content/home'
 import { getProductCopy, isProductSlug, products } from '../../content/products'
 import { isLanguage, type Language } from '../../lib/language'
 import { pageMetadata } from '../../lib/metadata'
@@ -33,6 +34,7 @@ export async function ProductRoute({ params, language }: { params: ProductParams
     const { product } = resolved
     const copy = getProductCopy(product, language)
     const url = `${SITE_URL}${pathFor(language, { page: 'product', slug: product.slug })}`
+    const productsUrl = `${SITE_URL}${pathFor(language, { page: 'products' })}`
     const jsonLd = [
         {
             '@context': 'https://schema.org',
@@ -43,14 +45,17 @@ export async function ProductRoute({ params, language }: { params: ProductParams
             description: copy.intro,
             inLanguage: language,
             url,
+            image: `${SITE_URL}${product.image}`,
             author: { '@id': `${SITE_URL}/#organization` },
+            brand: { '@id': `${SITE_URL}/#organization` },
         },
         {
             '@context': 'https://schema.org',
             '@type': 'BreadcrumbList',
             itemListElement: [
                 { '@type': 'ListItem', position: 1, name: 'Sebiche', item: `${SITE_URL}${pathFor(language, { page: 'home' })}` },
-                { '@type': 'ListItem', position: 2, name: product.name, item: url },
+                { '@type': 'ListItem', position: 2, name: homeCopy[language].nav.products, item: productsUrl },
+                { '@type': 'ListItem', position: 3, name: product.name, item: url },
             ],
         },
     ]
