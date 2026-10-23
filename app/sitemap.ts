@@ -6,6 +6,7 @@ import { SITE_URL } from '../lib/site'
 
 const routes: Array<{ route: Route; priority: number }> = [
     { route: { page: 'home' }, priority: 1 },
+    { route: { page: 'products' }, priority: 0.85 },
     ...productSlugs.map((slug) => ({ route: { page: 'product', slug } as const, priority: 0.8 })),
     { route: { page: 'contact' }, priority: 0.7 },
 ]

@@ -1,3 +1,5 @@
+const { securityHeaders } = require('./lib/security-headers')
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     turbopack: {
@@ -11,6 +13,12 @@ const nextConfig = {
     experimental: {
       // The root layout is app/[lang]/layout.tsx, so unmatched URLs need app/global-not-found.tsx.
       globalNotFound: true,
+    },
+    async headers() {
+      return [
+        { source: '/', headers: securityHeaders },
+        { source: '/:path*', headers: securityHeaders },
+      ]
     },
   };
   

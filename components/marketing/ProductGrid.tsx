@@ -30,11 +30,12 @@ export default function ProductGrid({ copy, language }: { copy: HomeCopy, langua
                             className={`holding-product-card is-${product.accent}`}
                             href={pathFor(language, { page: 'product', slug })}
                             key={slug}
+                            aria-labelledby={`product-${slug}-name product-${slug}-explore`}
                             onClick={() => trackMarketingEvent('Product CTA Clicked', { product: slug, source: 'home_card', language })}
                         >
                             <div className="holding-product-heading">
                                 <div>
-                                    <h3>{item.name}</h3>
+                                    <h3 id={`product-${slug}-name`}>{item.name}</h3>
                                     <p>{item.body}</p>
                                 </div>
                                 <span aria-hidden>{product.icon}</span>
@@ -47,7 +48,7 @@ export default function ProductGrid({ copy, language }: { copy: HomeCopy, langua
                                     sizes="(max-width: 840px) 100vw, 33vw"
                                 />
                             </div>
-                            <span className="holding-product-link">{copy.products.explore} <span aria-hidden>↗</span></span>
+                            <span className="holding-product-link" id={`product-${slug}-explore`}>{copy.products.explore} <span aria-hidden>↗</span></span>
                         </Link>
                     )
                 })}

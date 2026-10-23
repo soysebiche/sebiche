@@ -5,8 +5,8 @@ import { pathFor, type Route } from './lib/routes'
 
 // Pages live under /en and /es. Paths without a language prefix (the bare root and the URLs from
 // before the language prefixes) redirect to the visitor's language: an explicit choice from the
-// language switch first, then the browser's Accept-Language. Temporary, because the target
-// depends on who asks.
+// language switch first, then the browser's Accept-Language (es* → /es, otherwise /en). Temporary,
+// because the target depends on who asks.
 export function proxy(request: NextRequest) {
     const route = routeFor(request.nextUrl.pathname)
     if (!route) return NextResponse.next()
@@ -26,6 +26,7 @@ export function proxy(request: NextRequest) {
 function routeFor(pathname: string): Route | null {
     if (pathname === '/') return { page: 'home' }
     if (pathname === '/contacto' || pathname === '/contact') return { page: 'contact' }
+    if (pathname === '/productos' || pathname === '/products') return { page: 'products' }
 
     const product = pathname.match(/^\/(?:productos|products)\/([^/]+)\/?$/)?.[1]
     if (product && isProductSlug(product)) return { page: 'product', slug: product }
@@ -34,5 +35,5 @@ function routeFor(pathname: string): Route | null {
 }
 
 export const config = {
-    matcher: ['/', '/contacto', '/contact', '/productos/:slug', '/products/:slug'],
+    matcher: ['/', '/contacto', '/contact', '/productos', '/products', '/productos/:slug', '/products/:slug'],
 }
