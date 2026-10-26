@@ -23,11 +23,12 @@ export function pathFor(language: Language, route: Route) {
     }
 }
 
-// hreflang alternates for a route. The bare root negotiates the language, so it is the x-default.
+// hreflang alternates for a route. English is the default locale, so x-default always
+// points at the /en URL rather than the bare root (which 308s there).
 export function languageAlternates(route: Route) {
     const alternates: Record<string, string> = {}
     for (const language of languages) alternates[htmlLang[language]] = pathFor(language, route)
-    if (route.page === 'home') alternates['x-default'] = '/'
+    alternates['x-default'] = pathFor('en', route)
     return alternates
 }
 
