@@ -21,6 +21,8 @@ export async function contactImage(_props: ContactImageParams, language: Languag
     return new ImageResponse(
         (
             <div style={{ display: 'flex', width: '100%', height: '100%', position: 'relative', background: brand.ground, color: brand.paper, fontFamily: 'Manrope' }}>
+                {/* ImageResponse has no next/image; same pattern as the homepage share image. */}
+                {/* eslint-disable-next-line @next/next/no-img-element -- OG canvas */}
                 <img src={photo} alt="" width={ogSize.width} height={ogSize.height} style={{ position: 'absolute', inset: 0 }} />
                 <div style={{ position: 'absolute', inset: 0, display: 'flex', background: brand.veil }} />
                 <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: '100%', padding: 64 }}>
