@@ -58,6 +58,7 @@ export const homeCopy = {
             tiptrack: 'TipTrack delivery operations screen',
             mise: '86MISE inventory dashboard',
             operations: 'A chef working the hot line during service',
+            closing: 'A service bell on an empty kitchen pass with steam rising behind stacked plates',
         },
     },
     es: {
@@ -119,6 +120,7 @@ export const homeCopy = {
             tiptrack: 'Pantalla de operaciones de reparto de TipTrack',
             mise: 'Panel de inventario de 86MISE',
             operations: 'Un chef trabajando en la línea durante el servicio',
+            closing: 'Un timbre de servicio en un pase de cocina vacío, con vapor detrás de los platos apilados',
         },
     },
 } as const

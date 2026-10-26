@@ -19,8 +19,9 @@ export function languageFromAcceptLanguage(value: string | null): Language {
     return preferred?.startsWith('es') ? 'es' : 'en'
 }
 
-// Remembers an explicit choice from the language switch, so the bare root sends the visitor back
-// to the language they picked rather than the browser's.
+// Remembers an explicit choice from the language switch, so unprefixed legacy URLs send the
+// visitor back to the language they picked rather than the browser's. The bare root always
+// 308s to /en and is not negotiated.
 export function rememberLanguage(language: Language) {
     document.cookie = `${LANGUAGE_COOKIE}=${language}; path=/; max-age=31536000; samesite=lax`
 }
