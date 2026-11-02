@@ -133,10 +133,10 @@ test('localized segments only exist in their own language', async () => {
   }
 })
 
-test('the bare root and legacy URLs redirect by cookie, then Accept-Language', async () => {
-  assert.deepEqual(await redirectFor('/'), { status: 307, location: '/en' })
-  assert.deepEqual(await redirectFor('/', { 'accept-language': 'es-MX,es;q=0.9,en;q=0.8' }), { status: 307, location: '/es' })
-  assert.deepEqual(await redirectFor('/', { 'accept-language': 'es-MX,es;q=0.9', cookie: 'sebiche-language=en' }), { status: 307, location: '/en' })
+test('the bare root permanently redirects to /en; legacy URLs still negotiate language', async () => {
+  assert.deepEqual(await redirectFor('/'), { status: 308, location: '/en' })
+  assert.deepEqual(await redirectFor('/', { 'accept-language': 'es-MX,es;q=0.9,en;q=0.8' }), { status: 308, location: '/en' })
+  assert.deepEqual(await redirectFor('/', { cookie: 'sebiche-language=es' }), { status: 308, location: '/en' })
   assert.deepEqual(await redirectFor('/productos/tiptrack', { 'accept-language': 'es' }), { status: 307, location: '/es/productos/tiptrack' })
   assert.deepEqual(await redirectFor('/productos/tiptrack'), { status: 307, location: '/en/products/tiptrack' })
   assert.deepEqual(await redirectFor('/contacto?product=86mise', { 'accept-language': 'es' }), { status: 307, location: '/es/contacto?product=86mise' })
@@ -168,7 +168,7 @@ test('homepages expose localized metadata, canonical and hreflang', async () => 
     assert.match(body, new RegExp(`rel="canonical" href="${escape(site)}/${language}"`, 'i'))
     assert.match(body, new RegExp(`rel="alternate" hrefLang="en-US" href="${escape(site)}/en"`, 'i'))
     assert.match(body, new RegExp(`rel="alternate" hrefLang="es-419" href="${escape(site)}/es"`, 'i'))
-    assert.match(body, new RegExp(`rel="alternate" hrefLang="x-default" href="${escape(site)}/?"`, 'i'))
+    assert.match(body, new RegExp(`rel="alternate" hrefLang="x-default" href="${escape(site)}/en"`, 'i'))
     assert.match(body, new RegExp(`property="og:image" content="${escape(site)}/${language}/opengraph-image`, 'i'))
     assert.doesNotMatch(body, /https:\/\/sebiche\.com/i)
   }
@@ -187,13 +187,16 @@ test('homepage exposes corporate content and localized links only', async () => 
   assert.match(body, /Skip to content/i)
   assert.match(body, /fetchPriority="high" loading="eager"/i)
   assert.match(body, /loading="lazy"[^>]+\/_next\/image\?url=%2Fholding%2Frestos\.png/i)
+  assert.match(body, /alt="A service bell on an empty kitchen pass with steam rising behind stacked plates"/i)
   assert.doesNotMatch(body, /<img[^>]+src="\/holding\//i)
+  assert.doesNotMatch(body, /alt=""/i)
 
   const spanish = await (await fetch(`${baseUrl}/es`)).text()
   assert.match(spanish, /href="\/es\/productos\/restos"/i)
   assert.match(spanish, /href="\/es\/contacto"/i)
   assert.match(spanish, /Saltar al contenido/i)
   assert.match(spanish, /aria-label="Navegación de salto"/i)
+  assert.match(spanish, /alt="Un timbre de servicio en un pase de cocina vacío, con vapor detrás de los platos apilados"/i)
 
   const expectedMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-X9SVKLLCBY'
   assert.match(body, new RegExp(`googletagmanager\\.com/gtag/js\\?id=${expectedMeasurementId}`))
@@ -214,6 +217,7 @@ test('product pages expose localized canonical metadata and honest status', asyn
       assert.match(body, new RegExp(`rel="canonical" href="${escape(site + route)}"`, 'i'))
       assert.match(body, new RegExp(`hrefLang="en-US" href="${escape(`${site}/en/products/${slug}`)}"`, 'i'))
       assert.match(body, new RegExp(`hrefLang="es-419" href="${escape(`${site}/es/productos/${slug}`)}"`, 'i'))
+      assert.match(body, new RegExp(`hrefLang="x-default" href="${escape(`${site}/en/products/${slug}`)}"`, 'i'))
       assert.match(body, new RegExp(status, 'i'))
       assert.match(body, new RegExp(`href="${escape(`${contact}?product=${slug}`)}"`, 'i'))
       assert.match(body, /"@type":"BreadcrumbList"/)
@@ -222,10 +226,12 @@ test('product pages expose localized canonical metadata and honest status', asyn
 })
 
 test('share images render for every page', async () => {
-  for (const route of ['/en', '/es', '/en/products/restos', '/es/productos/86mise']) {
+  for (const route of ['/en', '/es', '/en/products/restos', '/es/productos/86mise', '/en/contact', '/es/contacto']) {
     const body = await (await fetch(`${baseUrl}${route}`)).text()
     const image = body.match(/property="og:image" content="([^"]+)"/)?.[1]
+    const twitterImage = body.match(/name="twitter:image" content="([^"]+)"/)?.[1]
     assert.ok(image, `${route} has an og:image`)
+    assert.ok(twitterImage, `${route} has a twitter:image`)
 
     const response = await fetch(`${baseUrl}${new URL(image).pathname}${new URL(image).search}`)
     assert.equal(response.status, 200, `${route} og:image`)
@@ -252,9 +258,32 @@ test('sitemap lists every page in both languages with hreflang alternates', asyn
   }
   assert.match(body, /hreflang="es-419"/i)
   assert.match(body, /hreflang="x-default"/i)
+  assert.match(body, /hreflang="x-default" href="https:\/\/www\.sebiche\.com\/en"/i)
+  assert.match(body, /hreflang="x-default" href="https:\/\/www\.sebiche\.com\/en\/contact"/i)
+  assert.match(body, /hreflang="x-default" href="https:\/\/www\.sebiche\.com\/en\/products\/restos"/i)
+  assert.doesNotMatch(body, /hreflang="x-default" href="https:\/\/www\.sebiche\.com\/"/i)
   assert.doesNotMatch(body, /https:\/\/sebiche\.com/i)
   assert.doesNotMatch(body, /case-studies|menu-board|\/pizza|\/entrees/i)
   assert.doesNotMatch(body, /sebiche\.vercel\.app/i)
+})
+
+test('contact pages expose canonical, hreflang x-default and share images', async () => {
+  const pages = [
+    ['/en/contact', `${site}/en/contact`],
+    ['/es/contacto', `${site}/es/contacto`],
+  ]
+
+  for (const [route, canonical] of pages) {
+    const body = await (await fetch(`${baseUrl}${route}`)).text()
+
+    assert.match(body, new RegExp(`rel="canonical" href="${escape(canonical)}"`, 'i'))
+    assert.match(body, new RegExp(`hrefLang="en-US" href="${escape(`${site}/en/contact`)}"`, 'i'))
+    assert.match(body, new RegExp(`hrefLang="es-419" href="${escape(`${site}/es/contacto`)}"`, 'i'))
+    assert.match(body, new RegExp(`hrefLang="x-default" href="${escape(`${site}/en/contact`)}"`, 'i'))
+    assert.match(body, /property="og:image"/i)
+    assert.match(body, /name="twitter:image"/i)
+    assert.match(body, new RegExp(`property="og:url" content="${escape(canonical)}"`, 'i'))
+  }
 })
 
 test('contact endpoint validates input and fails safely when delivery is not configured', async () => {

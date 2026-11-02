@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { FormEvent, useEffect, useRef, useState } from 'react'
+import { contactCopy } from '../../content/contact'
 import { isProductSlug, products, type ProductSlug } from '../../content/products'
 import type { Language } from '../../lib/language'
 import { trackMarketingEvent } from '../../lib/marketing-analytics'
@@ -9,29 +10,6 @@ import { pathFor } from '../../lib/routes'
 import { CONTACT_EMAIL } from '../../lib/site'
 import FooterSignature from '../brand/FooterSignature'
 import MarketingHeader from './MarketingHeader'
-
-const copy = {
-    en: {
-        eyebrow: 'Start with your service',
-        title: 'Tell us where the shift breaks.',
-        intro: 'Tell us what keeps going wrong during service: the ticket that gets rewritten, the tip-out that eats the end of the night, the 86 nobody called. We’ll tell you straight whether one of our products fixes it today. If it doesn’t, we’ll say so.',
-        direct: 'Prefer email?', directBody: 'Write directly to',
-        fields: { name: 'Name', email: 'Work email', restaurant: 'Restaurant', product: 'Product you’re looking at', message: 'What keeps going wrong during service?', select: 'Not sure yet', submit: 'Send message', sending: 'Sending…' },
-        successTitle: 'Got it.', successBody: 'Thanks. We’ll read it and write back to you directly.', again: 'Send another message',
-        errorTitle: 'The form didn’t go through.', errorBody: 'What you wrote is still here in this browser. Send it by email instead and everything you filled in goes with it.', fallback: 'Send by email',
-        privacy: 'We only use this to write back to you. No mailing list.', products: 'Products',
-    },
-    es: {
-        eyebrow: 'Empieza por tu servicio',
-        title: 'Cuéntanos dónde se rompe el turno.',
-        intro: 'Dinos qué se te complica en pleno servicio: la comanda que se vuelve a escribir, el reparto de propinas que se come el cierre, el 86 que nadie avisó. Te diremos claro si alguno de nuestros productos lo resuelve hoy. Si no, también te lo diremos.',
-        direct: '¿Prefieres correo?', directBody: 'Escribe directamente a',
-        fields: { name: 'Nombre', email: 'Correo de trabajo', restaurant: 'Restaurante', product: 'Producto que te interesa', message: '¿Qué se te complica en el servicio?', select: 'Aún no lo sé', submit: 'Enviar mensaje', sending: 'Enviando…' },
-        successTitle: 'Recibido.', successBody: 'Gracias. Lo leemos y te respondemos directamente.', again: 'Enviar otro mensaje',
-        errorTitle: 'El formulario no se envió.', errorBody: 'Lo que escribiste sigue aquí, en este navegador. Mándalo por correo y todo lo que llenaste va incluido.', fallback: 'Enviar por correo',
-        privacy: 'Solo lo usamos para responderte. Sin lista de correos.', products: 'Productos',
-    },
-} as const
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
 
@@ -42,7 +20,7 @@ export default function ContactPage({ language }: { language: Language }) {
     const [defaultProduct, setDefaultProduct] = useState<ProductSlug | ''>('')
     const [formValues, setFormValues] = useState({ name: '', email: '', restaurant: '', product: '' as ProductSlug | '', message: '', website: '' })
     const hasTrackedStart = useRef(false)
-    const t = copy[language]
+    const t = contactCopy[language]
 
     useEffect(() => {
         const product = new URLSearchParams(window.location.search).get('product') ?? ''

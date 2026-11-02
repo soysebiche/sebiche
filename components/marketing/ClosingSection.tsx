@@ -11,10 +11,10 @@ import FooterSignature from '../brand/FooterSignature'
 export default function ClosingSection({ copy, language }: { copy: HomeCopy, language: Language }) {
     return (
         <section id="contact" className="holding-closing" aria-labelledby="closing-title">
-            <div className="holding-closing-media" aria-hidden>
+            <div className="holding-closing-media">
                 <Image
                     src="/holding/closing-editorial.jpg"
-                    alt=""
+                    alt={copy.imageAlt.closing}
                     fill
                     sizes="100vw"
                 />
